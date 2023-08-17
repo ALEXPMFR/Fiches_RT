@@ -1,0 +1,317 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{esint}
+\usepackage{geometry}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{ctable}
+\usepackage{fancybox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[french]{babel}
+\usepackage{dsfont}
+\usepackage{setspace}
+\usepackage[french]{minitoc}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+
+\addtocounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{white}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% PRÉSENTATION %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{presentation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% STYLE %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\onehalfspacing
+
+%Style  du corps
+\pagestyle{fancy}
+	\renewcommand\headrulewidth{0.5pt}
+	\renewcommand\footrulewidth{0.5pt}
+	\fancyfoot[L]{\textsc{A. Rintaud}}
+	\fancyfoot[C]{\textsc{ICO Nantes}}
+	\fancyfoot[R]{\thepage}
+
+\tableofcontents
+\clearpage
+\section{Introduction}
+
+La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuse tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
+
+Ce rapport traitera des faisceaux de photons utilisés en radiothérapie. Premièrement, sera étudié l'influence de certains paramètres d'acquisition sur la dose relative. De plus, nous avons mesurée la dose absolue dans les conditions de référence en s'appuyant sur les protocoles internationaux fournis par l'Agence Internationale de l'Énerige Atomique (AIEA).
+
+\section{Matériels et méthodes}
+\subsection{Dose absolue}
+
+Cette partie est consacrée à la mesure de la dose absorbée dans les conditions de référence, telles que décrites dans le protocole TRS-398 de l'AIEA. De plus, nous développerons également la méthodologie du protocole TRS-277.
+
+\subsubsection{Facteurs correctifs}
+
+L'utilisation d'une chambre d'ionnisation à cavité d'air étanche engendre une fluctuation de la réponse du système de mesure en fonction de plusieurs paramètres. Il faut donc appliquer une correction de la mesure :
+
+\begin{equation}
+  M_{Q'} = M_Q \times k_{T,P} \times k_{pol} \times k_{rec} \times k_H
+  \label{eq_corr_charge}
+\end{equation}
+
+Avec $M_Q$ la charge mesurée sur l'électromètre, $k_{T,P}$ le facteur correctif de la pression et de la température, $k_{pol}$ le facteur correctif de la polarisation de la chambre, $k_{rec}$ le facteur correctif de la recombinaison ionique 
+
+\paragraph{Pression et température}
+
+Le facteur $k_{T,P}$ permet de corriger de la pression et de la température et se calcule de la manière suivante :
+
+\begin{equation}
+  k_{T,P} = \dfrac{P_0T}{T_0P}
+  \label{eq_k_TP}
+\end{equation}
+
+Avec $P_0$ et $T_0$ la pression et la température de référence, respectivement égales à 1013,25 hPa et 273,15 K, $P$ et $T$ sont la pression et la température de la salle lors de la mesure.
+
+\paragraph{Polarisation}
+
+Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polarité appliquée à la chambre lors de la mesure
+
+\begin{equation}
+  k_{pol} = \dfrac{|M_+| + |M_-|}{2M}
+  \label{eq_pol}
+\end{equation}
+
+Avec $M_+$ et $M_-$ les charges mesurées pour les tensions $V_+$ et $V_-$ respectivement et $M$ est la réponse pour la tension utilisée en clinique.
+
+\paragraph{Recombinaisons ioniques}
+
+Le facteur de recombinaison permet de corriger la réponse de la chambre d'ionisation sur le nombre de charges collectées. La mesure est sous estimée car des paires d'ions sont recombinées et ne rentre pas en compte dans la mesure.
+
+\begin{equation}
+  k_{rec} = a_0 + a_1 \left(\dfrac{M_1}{M_2}\right) + a_2 \left(\dfrac{M_1}{M_2}\right) ^2
+  \label{eq_rec}
+\end{equation}
+
+Avec $M_1$ et $M_2$ les réponses aux tensions $V_1$ et $V_2$ respectivement, et $a_0$, $a_1$ et $a_2$ sont les facteurs tabulés en fonction du rapport $\frac{V_1}{V_2}$.
+
+\paragraph{Humidité}
+
+Ce facteur est égale à 1 lorsque l'humidité de la salle est comprise entre 20\% et 80\%, sinon il faut lui attribuer la valeur de 0,997.
+
+\subsubsection{Protocole TRS-277}
+
+\begin{equation}
+  D_{eau, Q} = M_Q N_{K_{air, \, Co}} k_{att} k_{m} (1-g) \left(\dfrac{S}{\rho}\right)^{eau}_{air} p_u p_{cel}
+  \label{eq_dose_277}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+  \item[$\bullet$] $M_Q$ la charge mesurée par la chambre
+  \item[$\bullet$] $N_{K_{air, \, Co}}$ le coefficient d'étalonnage de la chambre en kerma dans l'air pour un faisceau de $^{60}$Co
+  \item[$\bullet$] $k_{att}$ le facteur corrigeant de l'atténuation et de la diffusion dues à la paroi de la chambre
+  \item[$\bullet$] $k_m$ le facteur correctif de la non-équivalence à l'air de la paroi et du capuchon de mise en équilibre électronique
+  \item[$\bullet$] $g$ la fraction d'énergie perdue par radiation (rayonnement de freinage des particules secondaires)
+  \item[$\bullet$] $\left(\dfrac{S}{\rho}\right) ^{eau}_{air}$ le rapport des pouvoirs d'arrêt massiques de l'air sur l'air pour les particules primaires
+  \item[$\bullet$] $p_u$ facteur de correction de perturbation
+  \item[$\bullet$] $p_{cel}$ facteur de correction de l'électrode centrale
+\end{itemize}
+
+Le facteur $p_u$ peut se décomposer en un produit de facteurs :
+
+\begin{equation}
+  p_{u,\, Q} = p_{wall,\, Q} p_{cav,\, Q} p_{dist,\, Q}
+  \label{eq_pu}
+\end{equation}
+
+Avec :
+\begin{itemize}
+  \item[$\bullet$] $p_{wall,\, Q}$ facteur correctif de la non équivalence à l'eau de la paroi
+  \item[$\bullet$] $p_{cav,\, Q}$ facteur corrigeant de la non homogénéité de la cavité
+  \item[$\bullet$] $p_{dist,\, Q}$ facteur permettant de corriger le déplacement d'un volume d'eau provoqué par la présence de la chambre
+\end{itemize}
+
+\subsubsection{Protocole TRS-398}
+
+Le protocole TRS 398 de l'AIEA \cite{international2001iaea} permet de calculer la dose absorbée dans l'eau dans les conditions de référence tout en simplifiant le formalisme de calcul du TRS 277.
+
+\begin{equation}
+  D_{eau,\, Q} = M_{Q'} \times N_{D_{eau},\, Q_0} \times k_{Q,\, Q_0}
+  \label{eq_dose_398}
+\end{equation}
+
+Avec :
+\begin{itemize}
+  \item[$\bullet$] $M_{Q'}$ la mesure de la charge corrigée des facteurs $k_{T,P}$ $k_{pol}$ $k_{rec}$ et $k_H$
+  \item[$\bullet$] $N_{D_{eau},\, Q_0}$ le coefficient d'étalonnage de la chambre en dose dans l'eau à l'aide d'un faisceau de qualité $Q_0$
+  \item[$\bullet$] $k_{Q,\, Q_0}$ le coefficient de correction de la qualité faisceau
+\end{itemize}
+
+\begin{equation}
+  k_{Q,\, Q_0} = \dfrac{N_{D_{eau},\, Q}}{N_{D_{eau},\, Q_0}} = \dfrac{D_{air,\, Q} \left[\left(\dfrac{S}{\rho}\right) ^{eau}_{air}\right]_Q p_Q M_{Q_0}}{D_{air,\, Q_0 } \left[\left(\dfrac{S}{\rho}\right) ^{eau}_{air}\right]_{Q_0} p_{Q_0} M_Q}
+\end{equation}
+
+\subsection{Dose relative}
+
+\newpage
+\section{Résultats}
+\subsection{Dose absolue}
+\subsubsection{Détermination des facteurs correctifs}
+
+Le calcul des différents facteurs de correction de la mesure ont été calculés par les formules \ref*{eq_k_TP}, \ref*{eq_pol} et \ref*{eq_rec} (pour la pression et la température, la polarité et la recombinaison ionique) dont les résultats sont indiqués dans les tableaux \ref*{table_ktp} et \ref*{table_kpol}. Concernant la recombinaison ionique, les coefficients $a_0$, $a_1$ et $a_2$ sont indiqués dans le tableau \ref*{table_facteurs_krec}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccc}
+    \toprule
+    \textbf{Température (K)} & \textbf{Pression (hPa)} & $\mathbf{k_{TP}}$ \\
+    \toprule
+    21 & 1015 & 1,0017 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Calcul du $k_{TP}$}
+  \label{table_ktp}
+\end{table}
+
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[scale=0.5]{/Users/alexandrerintaud/Desktop/RT/scripts/figures/rdt.png}
+%   \caption{Rendement en profondeur pour les faisceaux de photons de 6 MV et de 23 MV du Clinac 2}
+%   \label{fig_rdt}
+% \end{figure}
+
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|cccc|cccc|}
+  \cline{2-9}
+                                                     & \multicolumn{4}{c|}{\textbf{X6}} & \multicolumn{4}{c|}{\textbf{X23}} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Tension (V)}} & \textbf{400} & \textbf{100} & \textbf{-400} & \textbf{-100} & \textbf{400} & \textbf{100} & \textbf{-400} & \textbf{-100} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Charge 1 (nC)}}       & 29,69  & 29,50  & 29,80  & 29,61 & 36,64  & 36,15  & 36,78  & 36,28  \\
+  \multicolumn{1}{|c|}{\textbf{Charge 2 (nC)}}       & 29,7   & 29,52  & 29,82  & 29,59 & 36,62  & 36,10  & 36,75  & 36,25  \\
+  \multicolumn{1}{|c|}{\textbf{Charge 3 (nC)}}       & 29,73  & 29,55  & 29,80  & 29,61 & 36,61  & 36,08  & 36,73  & 36,21  \\
+  \multicolumn{1}{|c|}{\textbf{Charge moyenne (nC)}} & 29,71  & 29,52  & 29,81  & 29,60 & 36,62  & 36,11  & 36,75  & 36,25  \\ \hline
+  \multicolumn{1}{|c|}{$\mathbf{k_{rec}}$}                & \multicolumn{4}{c|}{1,0020}      & \multicolumn{4}{c|}{1,0046}       \\
+  \multicolumn{1}{|c|}{$\mathbf{k_{pol} \, 400 \, V}$}          & \multicolumn{4}{c|}{1,0019}      & \multicolumn{4}{c|}{1,0019}       \\
+  \multicolumn{1}{|c|}{$\mathbf{k_{pol} \, 100 \, V}$}          & \multicolumn{4}{c|}{1,0014}      & \multicolumn{4}{c|}{1,0019}       \\ 
+  \multicolumn{1}{|c|}{\textbf{Écart relatif} $\mathbf{k_{pol}}$ \textbf{\%}} & \multicolumn{4}{c|}{0,05} & \multicolumn{4}{c|}{0} \\
+  \hline
+  \end{tabular}
+  \caption{Série de mesures avec la  pour le calcul du $k_{rec}$ et du $k_{pol}$ pour des faisceaux de photons de 6 MV et 23 MV (Clinac 2)}
+  \label{table_kpol}
+\end{table}
+
+
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    $\mathbf{\frac{V_1}{V_2}}$ & $\mathbf{a_0}$ & $\mathbf{a_1}$ & $\mathbf{a_2}$\\
+    \toprule
+    4 & 1,022 & -0,363 & 0,341\\
+    \bottomrule    
+  \end{tabular}
+  \caption{Facteurs tabulés correspondant au rapport $\frac{V_1}{V_2}$}
+  \label{table_facteurs_krec}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|cc|cc|}
+  \cline{2-5}
+                                                                                     & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \hline
+  \multicolumn{1}{|c|}{\multirow{11}{*}{\textbf{Charges (nC)}}}                      & \textbf{10 cm}           & \textbf{20 cm}          & \textbf{10 cm}           & \textbf{20 cm}           \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{} & 29,7  & 19,7  & 36,58 & 28,6  \\
+  \multicolumn{1}{|c|}{} & 29,66 & 19,67 & 36,57 & 28,54 \\
+  \multicolumn{1}{|c|}{} & 29,66 & 19,66 & 36,58 & 28,51 \\
+  \multicolumn{1}{|c|}{} & 29,69 & 19,7  & 36,57 & 28,52 \\
+  \multicolumn{1}{|c|}{} & 29,66 & 19,66 & 36,58 & 28,52 \\
+  \multicolumn{1}{|c|}{} & 29,63 & 19,65 & 36,62 & 28,53 \\
+  \multicolumn{1}{|c|}{} & 29,63 & 19,66 & 36,58 & 28,53 \\
+  \multicolumn{1}{|c|}{} & 29,63 & 19,68 & 36,6  & 28,53 \\
+  \multicolumn{1}{|c|}{} & 29,64 & 19,65 & 36,58 & 28,54 \\
+  \multicolumn{1}{|c|}{} & 29,69 & 19,66 & 36,59 & 28,53 \\
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}}                               & 29,66           & 19,67          & 36,59           & 28,54           \\
+  \hline
+  \multicolumn{1}{|c|}{$\mathbf{TPR^{20}_{10}}$ \textbf{mesuré}}  & \multicolumn{2}{c|}{0,663}       & \multicolumn{2}{c|}{0,780}        \\
+  \multicolumn{1}{|c|}{$\mathbf{TPR^{20}_{10}}$ \textbf{recette}} & \multicolumn{2}{c|}{0,664}       & \multicolumn{2}{c|}{0,781}        \\
+  \multicolumn{1}{|c|}{\textbf{Écart relatif (\%)}}                                           & \multicolumn{2}{c|}{0,125}       & \multicolumn{2}{c|}{0,133}        \\ \hline
+  \end{tabular}
+  \caption{Résultats de la mesure du $TPR^{20}_{10}$ pour des faisceaux de photons de 6 MV et de 23 MV (Clinac 2)}
+  \label{table_resultats_tpr}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|cc|cc|}
+  \cline{2-5}
+                                             & \multicolumn{2}{c|}{\textbf{X6}}    & \multicolumn{2}{c|}{\textbf{X23}}   \\ \cline{2-5} 
+                                             & \textbf{Farmer} & \textbf{Pinpoint} & \textbf{Farmer} & \textbf{Poipoint} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Charge moyenne (nC)}} & 29,66           & 0,675             & 36,59           & 0,8311            \\
+  \multicolumn{1}{|c|}{\textbf{$\mathbf{N_{D_{eau},\, Q_0}}$ (Gy/nC)}} & 5,356$\times 10^{-2}$ & 2,344 & 5,356$\times 10^{-2}$ & 2,344                     \\
+  \multicolumn{1}{|c|}{\textbf{$\mathbf{k_{Q,\, Q_0}}$}}       & \multicolumn{2}{c|}{0,9966}   & \multicolumn{2}{c|}{0,9767}                       \\
+  \multicolumn{1}{|c|}{\textbf{Dose mesurée (Gy)}}   & 1,592           & 1,596             & 1,93            & 1,930             \\
+  \multicolumn{1}{|c|}{\textbf{Dose recette (Gy)}}             & \multicolumn{2}{c|}{1,589}    & \multicolumn{2}{c|}{1,907}                        \\
+  \multicolumn{1}{|c|}{\textbf{Écart relatif (\%)}}            & 0,18                  & 0,41  & 1,18                  & \multicolumn{1}{l|}{1,21} \\ \hline
+  \end{tabular}
+  \caption{Résultats de la dose absolue dans les conditions de référence avec les chambre Farmer et Pinpoint pour des faisceaux de 6 MV et 23 MV (Clinac 2)}
+  \end{table}
+
+\subsection{Dose relative}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.65]{/Users/alexandrerintaud/Desktop/RT/scripts/figures/comp_RDT_RTM.png}
+  \caption{Comparaison entre le rendement en profondeur et le rapport tissus maximum pour un faisceau de photons de 6 MV (à gauche) et un faisceau de 23 MV (à droite)}
+  \label{fig_rdt_rtm}
+\end{figure}
+
+\clearpage
+\bibliography{biblio}
+\addcontentsline{toc}{section}{Références}
+\bibliographystyle{plain}
+\nocite{*}
+
+\end{document}
