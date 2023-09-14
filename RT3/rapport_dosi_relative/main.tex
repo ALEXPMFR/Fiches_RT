@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{esint}
+\usepackage{geometry}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{ctable}
+\usepackage{fancybox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[french]{babel}
+\usepackage{dsfont}
+\usepackage{setspace}
+\usepackage[french]{minitoc}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+
+\addtocounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{white}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% PRÉSENTATION %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{presentation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% STYLE %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\onehalfspacing
+
+%Style  du corps
+\pagestyle{fancy}
+	\renewcommand\headrulewidth{0.5pt}
+	\renewcommand\footrulewidth{0.5pt}
+	\fancyfoot[L]{\textsc{A. Rintaud}}
+	\fancyfoot[C]{\textsc{ICO Nantes}}
+	\fancyfoot[R]{\thepage}
+
+\tableofcontents
+\clearpage
+\section{Introduction}
+
+La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
+
+Ce rapport traitera des faisceaux de photons utilisés en radiothérapie externe. era étudié l'influence de certains paramètres d'acquisition sur la dose relative. De plus, nous avons mesurée la dose absolue dans les conditions de référence en s'appuyant sur les protocoles internationaux fournis par l'Agence Internationale de l'Énerige Atomique (AIEA).
+
+
+% \clearpage
+% \bibliography{biblio}
+% \addcontentsline{toc}{section}{Références}
+% \bibliographystyle{plain}
+% \nocite{*}
+
+\end{document}

@@ -82,14 +82,13 @@
 
 La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuse tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
 
-Ce rapport traitera des faisceaux de photons utilisés en radiothérapie. Premièrement, sera étudié l'influence de certains paramètres d'acquisition sur la dose relative. De plus, nous avons mesurée la dose absolue dans les conditions de référence en s'appuyant sur les protocoles internationaux fournis par l'Agence Internationale de l'Énerige Atomique (AIEA).
+Ce rapport traitera des faisceaux de photons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilsiées lors des mesures des doses absolues basées sur les protocoles internationnaux fournis par l'Agence Internationale de l'Énergie Atomique (AIEA) seront explicités, puis les résultats seront présentés. 
 
 \section{Matériels et méthodes}
-\subsection{Dose absolue}
 
 Cette partie est consacrée à la mesure de la dose absorbée dans les conditions de référence, telles que décrites dans le protocole TRS-398 de l'AIEA. De plus, nous développerons également la méthodologie du protocole TRS-277.
 
-\subsubsection{Facteurs correctifs}
+\subsection{Facteurs correctifs}
 
 L'utilisation d'une chambre d'ionnisation à cavité d'air étanche engendre une fluctuation de la réponse du système de mesure en fonction de plusieurs paramètres. Il faut donc appliquer une correction de la mesure :
 
@@ -100,7 +99,7 @@ L'utilisation d'une chambre d'ionnisation à cavité d'air étanche engendre une
 
 Avec $M_Q$ la charge mesurée sur l'électromètre, $k_{T,P}$ le facteur correctif de la pression et de la température, $k_{pol}$ le facteur correctif de la polarisation de la chambre, $k_{rec}$ le facteur correctif de la recombinaison ionique 
 
-\paragraph{Pression et température}
+\subsubsection{Pression et température}
 
 Le facteur $k_{T,P}$ permet de corriger de la pression et de la température et se calcule de la manière suivante :
 
@@ -111,7 +110,7 @@ Le facteur $k_{T,P}$ permet de corriger de la pression et de la température et 
 
 Avec $P_0$ et $T_0$ la pression et la température de référence, respectivement égales à 1013,25 hPa et 273,15 K, $P$ et $T$ sont la pression et la température de la salle lors de la mesure.
 
-\paragraph{Polarisation}
+\subsubsection{Polarisation}
 
 Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polarité appliquée à la chambre lors de la mesure
 
@@ -122,7 +121,7 @@ Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polar
 
 Avec $M_+$ et $M_-$ les charges mesurées pour les tensions $V_+$ et $V_-$ respectivement et $M$ est la réponse pour la tension utilisée en clinique.
 
-\paragraph{Recombinaisons ioniques}
+\subsubsection{Recombinaisons ioniques}
 
 Le facteur de recombinaison permet de corriger la réponse de la chambre d'ionisation sur le nombre de charges collectées. La mesure est sous estimée car des paires d'ions sont recombinées et ne rentre pas en compte dans la mesure.
 
@@ -133,11 +132,11 @@ Le facteur de recombinaison permet de corriger la réponse de la chambre d'ionis
 
 Avec $M_1$ et $M_2$ les réponses aux tensions $V_1$ et $V_2$ respectivement, et $a_0$, $a_1$ et $a_2$ sont les facteurs tabulés en fonction du rapport $\frac{V_1}{V_2}$.
 
-\paragraph{Humidité}
+\subsubsection{Humidité}
 
 Ce facteur est égale à 1 lorsque l'humidité de la salle est comprise entre 20\% et 80\%, sinon il faut lui attribuer la valeur de 0,997.
 
-\subsubsection{Protocole TRS-277}
+\subsection{Protocole TRS-277}
 
 La mesure de la dose absolue est définie, selon le protocole TRS 277 de l'AIEA \cite{internationaliaea}, à partir de l'équation suivante :
 
@@ -173,7 +172,7 @@ Avec :
   \item[$\bullet$] $p_{dist,\, Q}$ facteur permettant de corriger le déplacement d'un volume d'eau provoqué par la présence de la chambre
 \end{itemize}
 
-\subsubsection{Protocole TRS-398}
+\subsection{Protocole TRS-398}
 
 Le protocole TRS 398 de l'AIEA \cite{international2001iaea} permet de calculer la dose absorbée dans l'eau dans les conditions de référence tout en simplifiant le formalisme de calcul du TRS 277.
 
@@ -193,14 +192,62 @@ Avec :
   k_{Q,\, Q_0} = \dfrac{N_{D_{eau},\, Q}}{N_{D_{eau},\, Q_0}} = \dfrac{D_{air,\, Q} \left[\left(\dfrac{S}{\rho}\right) ^{eau}_{air}\right]_Q p_Q M_{Q_0}}{D_{air,\, Q_0 } \left[\left(\dfrac{S}{\rho}\right) ^{eau}_{air}\right]_{Q_0} p_{Q_0} M_Q}
 \end{equation}
 
-\subsection{Dose relative}
+\subsection{Indice de qualité}
+
+L'indice de qualité est calculé de la manière suivante :
+
+\begin{equation}
+  IQ = TPR^{20}_{10} = \dfrac{D_{20 \, cm}}{D_{10 \, cm}}
+  \label{eq_iq}
+\end{equation}
+
+Avec $D_{10 \, cm}$ la dose mesurée à 10 cm de profondeur et $D_{20 \, cm}$ la dose mesurée à 20 cm de profondeur.
+
+La distance source détecteur (DSD) doit être constante entre les deux mesures, comme le montre la figure 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{figures/rtf.png}
+  \caption{Conditions géométriques pour la mesure du l'indice de qualité}
+  \label{fig_tpr}
+\end{figure}
+
+\subsection{Erreurs de positionnement}
+
+Nous avons également réalisé des mesures pour mesurer l'impacte d'un mauvais positionnement de la chambre. Pour cela, nous avons appliqué un déplacement de 1 mm dans la direction latérale de part et d'autre du point de référence, puis 1 mm en profondeur au dessus et en dessous de ce même point. Dix mesures on été faites pour chaque énergie et chaque position pour ensuite calculer la charge moyenne. La dose est ensuite calculée selon le protocole TRS-398 de l'AIEA \cite{international2001iaea} puis un écart relatif est calculé entre la dose de référence et celle calculée avec le déplacement de 1 mm.
+
+\subsection{Contrôle du débit de référence (TOP)}
+
+Quotidiennement, un contôle qualité est réalisé sur les accélérateurs, communément appelé TOP. Ce contrôle permet de vérifier la dérive du débit dans le temps sur un faisceau fixe dans les conditions de référence (champ 10x10 cm$^2$, mesure faite à 10 cm de profondeur et DSD = 100 cm). La dose dans ces conditions est d'abord mesurée dans la cuve à eau, puis un facteur de passage entre l'eau et le bloc TOP est appliqué pour mesurer la dose dans le bloc lors des contrôles quotidiens. Ce facteur $f$ est défini comme suit :
+
+\begin{equation}
+  f = \dfrac{D_0}{M_0}
+  \label{eq_facteur_top}
+\end{equation}
+
+Avec $D_0$ la dose mesurée dans les conditions de référence et $M_0$ la mesure dans la boîte à TOP.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.8]{figures/conditions_ref_top.png}
+  \caption{Conditions de mesures de la dose absorbée dans la cuve à eau (à gauche) et dans le bloc TOP (à droite)}
+  \label{fig_top}
+\end{figure}
+
+La dose du jour lors du contrôle qualité se calcule de la façon suivante :
+
+\begin{equation}
+  D_j = M_j \times \dfrac{D_0}{M_0} \times k_{TP} = M_j \times f \times k_{TP}
+  \label{eq_top_jour}
+\end{equation}
+
+Avec $M_j$ la mesure du jour dans la boîte à TOP, $f = \frac{D_0}{M_0}$ le facteur de passage de la cuve à eau à la boîte à TOP et $k_{TP}$ le facteur de correction de la pression et de la température.
 
 \newpage
 \section{Résultats}
-\subsection{Dose absolue}
-\subsubsection{Détermination des facteurs correctifs}
+\subsection{Détermination des facteurs correctifs}
 
-Le calcul des différents facteurs de correction de la mesure ont été calculés par les formules \ref*{eq_k_TP}, \ref*{eq_pol} et \ref*{eq_rec} (pour la pression et la température, la polarité et la recombinaison ionique) dont les résultats sont indiqués dans les tableaux \ref*{table_ktp} et \ref*{table_kpol}. Concernant la recombinaison ionique, les coefficients $a_0$, $a_1$ et $a_2$ sont indiqués dans le tableau \ref*{table_facteurs_krec}. L'ensemble des mesures de dose absolue ont été réalisées sur le Clinac 2.
+Le calcul des différents facteurs de correction de la mesure ont été calculés par les formules \ref*{eq_k_TP}, \ref*{eq_pol} et \ref*{eq_rec} (pour la pression et la température, la polarité et la recombinaison ionique) dont les résultats sont indiqués dans les tableaux \ref*{table_ktp} et \ref*{table_kpol}. Concernant la recombinaison ionique, les coefficients $a_0$, $a_1$ et $a_2$ sont indiqués dans le tableau \ref*{table_facteurs_krec}. Ces coefficients sont tirés du protocole TRP-398 de l'AIEA \cite{international2001iaea} représentés sur la figure \ref*{fig_krec}. L'ensemble des mesures de dose absolue ont été réalisées sur le Clinac 2.
 
 \begin{table}[h]
   \centering
@@ -215,13 +262,6 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
   \label{table_ktp}
 \end{table}
 
-% \begin{figure}[h]
-%   \centering
-%   \includegraphics[scale=0.5]{/Users/alexandrerintaud/Desktop/RT/scripts/figures/rdt.png}
-%   \caption{Rendement en profondeur pour les faisceaux de photons de 6 MV et de 23 MV du Clinac 2}
-%   \label{fig_rdt}
-% \end{figure}
-
 
 \begin{table}[h]
   \centering
@@ -230,7 +270,7 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
                                                      & \multicolumn{4}{c|}{\textbf{X6}} & \multicolumn{4}{c|}{\textbf{X23}} \\ \hline
   \multicolumn{1}{|c|}{\textbf{Tension (V)}} & \textbf{400} & \textbf{100} & \textbf{-400} & \textbf{-100} & \textbf{400} & \textbf{100} & \textbf{-400} & \textbf{-100} \\ \hline
   \multicolumn{1}{|c|}{\textbf{Charge 1 (nC)}}       & 29,69  & 29,50  & 29,80  & 29,61 & 36,64  & 36,15  & 36,78  & 36,28  \\
-  \multicolumn{1}{|c|}{\textbf{Charge 2 (nC)}}       & 29,7   & 29,52  & 29,82  & 29,59 & 36,62  & 36,10  & 36,75  & 36,25  \\
+  \multicolumn{1}{|c|}{\textbf{Charge 2 (nC)}}       & 29,70   & 29,52  & 29,82  & 29,59 & 36,62  & 36,10  & 36,75  & 36,25  \\
   \multicolumn{1}{|c|}{\textbf{Charge 3 (nC)}}       & 29,73  & 29,55  & 29,80  & 29,61 & 36,61  & 36,08  & 36,73  & 36,21  \\
   \multicolumn{1}{|c|}{\textbf{Charge moyenne (nC)}} & 29,71  & 29,52  & 29,81  & 29,60 & 36,62  & 36,11  & 36,75  & 36,25  \\ \hline
   \multicolumn{1}{|c|}{$\mathbf{k_{rec}}$}                & \multicolumn{4}{c|}{1,0020}      & \multicolumn{4}{c|}{1,0046}       \\
@@ -258,20 +298,32 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
   \label{table_facteurs_krec}
 \end{table}
 
-\begin{table}[h]
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{figures/coeff_krec.png}
+  \caption{Coefficients d'extrapolation pour le calcul du $k_{rec}$ par la technique des "deux tensions", en fonction du rapport $V_1/V_2$}
+  \label{fig_krec}
+\end{figure}
+
+\newpage
+\subsection{Mesure de l'indice de qualité}
+
+L'indice de qualité est calculé pour les deux énergies disponibles sur le Clinac 2 (6 MV et 23 MV). Il a été calculé à l'aide de l'équation \ref*{eq_iq}. Nous avons réalisé 10 mesures de charge pour chaque énergie et chaque profondeur. Les valeurs moyennes ont été utilisées pour le calcul de l'indice de qualité, comme le montre le tableau \ref*{table_resultats_tpr}.
+
+\begin{table}[h!]
   \centering
   \begin{tabular}{c|cc|cc|}
   \cline{2-5}
                                                                                      & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \hline
-  \multicolumn{1}{|c|}{\multirow{11}{*}{\textbf{Charges (nC)}}}                      & \textbf{10 cm}           & \textbf{20 cm}          & \textbf{10 cm}           & \textbf{20 cm}           \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{} & 29,7  & 19,7  & 36,58 & 28,6  \\
+  \multicolumn{1}{|c|}{\multirow{11}{*}{\textbf{Charge (nC)}}}                      & \textbf{10 cm}           & \textbf{20 cm}          & \textbf{10 cm}           & \textbf{20 cm}           \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{} & 29,70 & 19,70 & 36,58 & 28,60 \\
   \multicolumn{1}{|c|}{} & 29,66 & 19,67 & 36,57 & 28,54 \\
   \multicolumn{1}{|c|}{} & 29,66 & 19,66 & 36,58 & 28,51 \\
-  \multicolumn{1}{|c|}{} & 29,69 & 19,7  & 36,57 & 28,52 \\
+  \multicolumn{1}{|c|}{} & 29,69 & 19,70 & 36,57 & 28,52 \\
   \multicolumn{1}{|c|}{} & 29,66 & 19,66 & 36,58 & 28,52 \\
   \multicolumn{1}{|c|}{} & 29,63 & 19,65 & 36,62 & 28,53 \\
   \multicolumn{1}{|c|}{} & 29,63 & 19,66 & 36,58 & 28,53 \\
-  \multicolumn{1}{|c|}{} & 29,63 & 19,68 & 36,6  & 28,53 \\
+  \multicolumn{1}{|c|}{} & 29,63 & 19,68 & 36,60 & 28,53 \\
   \multicolumn{1}{|c|}{} & 29,64 & 19,65 & 36,58 & 28,54 \\
   \multicolumn{1}{|c|}{} & 29,69 & 19,66 & 36,59 & 28,53 \\
   \hline
@@ -285,12 +337,16 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
   \label{table_resultats_tpr}
 \end{table}
 
-\begin{table}[h]
+\subsection{Mesure de la dose absolue de référence}
+
+La mes sure de la dose absolue se base, dans nos manipulations, sur le protocole TRS-398 \cite{international2001iaea}. Les mesures de dose ont été réalisées sur les deux énergies 6 MV et 23 MV et pour deux chambres d'ionnisation étalonnées récemment : PTW  Farmer de 0,6 cm$^3$ et PTW Pinpoint de 0,03 cm$^3$ comme indiqué sans le tableau \ref*{table_dose_abs_resultats}.
+
+\begin{table}[h!]
   \centering
   \begin{tabular}{c|cc|cc|}
   \cline{2-5}
                                              & \multicolumn{2}{c|}{\textbf{X6}}    & \multicolumn{2}{c|}{\textbf{X23}}   \\ \cline{2-5} 
-                                             & \textbf{Farmer} & \textbf{Pinpoint} & \textbf{Farmer} & \textbf{Poipoint} \\ \hline
+                                             & \textbf{Farmer} & \textbf{Pinpoint} & \textbf{Farmer} & \textbf{Pinpoint} \\ \hline
   \multicolumn{1}{|c|}{\textbf{Charge moyenne (nC)}} & 29,66           & 0,675             & 36,59           & 0,8311            \\
   \multicolumn{1}{|c|}{\textbf{$\mathbf{N_{D_{eau},\, Q_0}}$ (Gy/nC)}} & 5,356$\times 10^{-2}$ & 2,344 & 5,356$\times 10^{-2}$ & 2,344                     \\
   \multicolumn{1}{|c|}{\textbf{$\mathbf{k_{Q,\, Q_0}}$}}       & \multicolumn{2}{c|}{0,9966}   & \multicolumn{2}{c|}{0,9767}                       \\
@@ -299,11 +355,13 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
   \multicolumn{1}{|c|}{\textbf{Écart relatif (\%)}}            & 0,18                  & 0,41  & 1,18                  & \multicolumn{1}{l|}{1,21} \\ \hline
   \end{tabular}
   \caption{Résultats de la dose absolue dans les conditions de référence avec les chambre Farmer et Pinpoint pour des faisceaux de 6 MV et 23 MV (Clinac 2)}
+  \label{table_dose_abs_resultats}
 \end{table}
 
-\subsubsection{Calcul de la dose absolue}
+\newpage
+\subsection{Incertitudes}
 
-\subsubsection{Incertitudes}
+Le tableau \ref*{table_incertitudes_abs} synthétise les incertitudes associées au calcul de la dose absolue dans les conditions de références.
 
 \begin{table}[h]
   \centering
@@ -323,7 +381,7 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
   \label{table_incertitudes_abs}
 \end{table}
 
-\subsubsection{Erreurs de placement}
+\subsection{Erreurs de positionnement}
 
 \begin{table}[h]
   \centering
@@ -342,13 +400,13 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
   \multicolumn{1}{|c|}{}                                   & 29,79           & 29,79          & 36,71           & 36,67           \\
   \multicolumn{1}{|c|}{}                                   & 29,8            & 29,78          & 36,7            & 36,67           \\ \hline
   \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}}     & 29,785          & 29,783         & 36,69           & 36,652          \\
-  \multicolumn{1}{|c|}{\textbf{Ecart type (nC)}}           & 0,015           & 0,019          & 0,018           & 0,019           \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Écart-type (nC)}}           & 0,015           & 0,019          & 0,018           & 0,019           \\ \hline
   \multicolumn{1}{|c|}{\textbf{Dose (Gy)}}                 & 1,600           & 1,600          & 1,937           & 1,935           \\
   \multicolumn{1}{|c|}{\textbf{Incertitude absolue (Gy)}}  & 0,019           & 0,019          & 0,023           & 0,023           \\
   \multicolumn{1}{|c|}{\textbf{Incertitude relative (\%)}} & 1,182           & 1,182          & 1,178           & 1,182           \\
   \multicolumn{1}{|c|}{\textbf{Incertitude k=2 (\%)}}      & 2,364           & 2,365          & 2,356           & 2,363           \\
-  \multicolumn{1}{|c|}{\textbf{Ecart (mGy)}}               & 5,798           & 5,691          & 4,366           & 2,359           \\
-  \multicolumn{1}{|c|}{\textbf{ER (\%)}}                   & 0,364           & 0,357          & 0,226           & 0,122           \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Écart (mGy)}}               & 5,798           & 5,691          & 4,366           & 2,359           \\
+  \multicolumn{1}{|c|}{\textbf{Écart relatif (\%)}}                   & 0,364           & 0,357          & 0,226           & 0,122           \\ \hline
   \end{tabular}
   \caption{Erreurs de positionnement engendré par un déplacement latéral de la chambre}
   \label{table_erreur_lat}
@@ -371,7 +429,7 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
   \multicolumn{1}{|c|}{}                                   & 29,57           & 29,87          & 36,48           & 36,76           \\
   \multicolumn{1}{|c|}{}                                   & 29,57           & 29,88          & 36,49           & 36,76           \\ \hline
   \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}}     & 29,553          & 29,868         & 36,470          & 36,756          \\
-  \multicolumn{1}{|c|}{\textbf{Ecart type (nC)}}           & 0,018           & 0,019          & 0,012           & 0,005           \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Ecart-type (nC)}}           & 0,018           & 0,019          & 0,012           & 0,005           \\ \hline
   \multicolumn{1}{|c|}{\textbf{Dose (Gy)}}                 & 1,588           & 1,605          & 1,925           & 1,941           \\
   \multicolumn{1}{|c|}{\textbf{Incertitude absolue (Gy)}}  & 0,019           & 0,019          & 0,023           & 0,023           \\
   \multicolumn{1}{|c|}{\textbf{Incertitude relative (\%)}} & 1,182           & 1,182          & 1,179           & 1,181           \\
@@ -381,9 +439,8 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
   \end{tabular}
   \caption{Erreurs de positionnement engendré par un déplacement en profondeur de la chambre}
   \label{table_erreur_profondeur}
-  \end{table}
+\end{table}
 
-\subsection{Dose relative}
 
 \clearpage
 \bibliography{biblio}
