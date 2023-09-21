@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
+import matplotlib.ticker as ticker
 from pathlib import Path
 
 excel_files = sorted(list(Path('../mesures/export_excel/').glob('*.xlsx')))
@@ -22,39 +22,35 @@ def courbes_solo():
 def influence_detecteur():
     detecteurs = ['diode', 'microdiamant', 'semiflex', 'pinpoint']
     etude = ['Rendement', 'Inline', 'Crossline']
-    for det in detecteurs:
-        for et in etude:
-            df_10 = pd.read_excel('../mesures/export_excel/' + det + '.xlsx', et + ' 10x10')
-            df_3 = pd.read_excel('../mesures/export_excel/' + det + '.xlsx', et + ' 3x3')
-            df_cc13_10 = pd.read_excel('../mesures/export_excel/14_profils_rendements_cc13.xlsx',  et + ' 10cm')
-            df_cc13_3 = pd.read_excel('../mesures/export_excel/14_profils_rendements_cc13.xlsx',  et + ' 3cm')
-            plt.figure(figsize=(12, 7))
-            plt.plot(df_10.iloc[:, 0], df_10.iloc[:, 1], label= det + ' 10x10 cm2')
-            plt.plot(df_3.iloc[:, 0], df_3.iloc[:, 1], label= det + ' 3x3 cm2')
-            plt.plot(df_cc13_10.iloc[:, 0], df_cc13_10.iloc[:, 1], ':', label='CC13 10x10 cm2')
-            plt.plot(df_cc13_3.iloc[:, 0], df_cc13_3.iloc[:, 1], ':', label='CC13 3x3 cm2')
-            plt.xlabel(df_10.columns[0] + ' (mm)')
-            plt.ylabel('Dose (%)')
-            plt.legend(loc='upper right', fontsize=8)
-            plt.title(det)
-            plt.grid(ls='--')
-            plt.savefig('figures/dose_relative/detecteurs/' + det + '_' + et + '.png', dpi=250)
-
-        df_crossline_10 = pd.read_excel('../mesures/export_excel/' + det + '.xlsx', 'Crossline 10x10')
-        df_inline_10 = pd.read_excel('../mesures/export_excel/' + det + '.xlsx', 'Inline 10x10')
-        df_crossline_3 = pd.read_excel('../mesures/export_excel/' + det + '.xlsx', 'Crossline 3x3')
-        df_inline_3 = pd.read_excel('../mesures/export_excel/' + det + '.xlsx', 'Inline 3x3')
+    for et in etude:
         plt.figure(figsize=(12, 7))
-        plt.plot(df_crossline_10.iloc[:, 0], df_crossline_10.iloc[:, 1], label='Crossline 10x10 cm2')
-        plt.plot(df_inline_10.iloc[:, 0], df_inline_10.iloc[:, 1], label='Inline 10x10 cm2')
-        plt.plot(df_crossline_3.iloc[:, 0], df_crossline_3.iloc[:, 1], label='Crossline 3x3 cm2')
-        plt.plot(df_inline_3.iloc[:, 0], df_inline_3.iloc[:, 1], label='Inline 3x3 cm2')
-        plt.grid(ls='--')
+        df_cc13_10 = pd.read_excel('../mesures/export_excel/14_profils_rendements_cc13.xlsx',  et + ' 10cm')
+        # df_cc13_3 = pd.read_excel('../mesures/export_excel/14_profils_rendements_cc13.xlsx',  et + ' 3cm')
+        plt.plot(df_cc13_10.iloc[:, 0], df_cc13_10.iloc[:, 1], ':', label='CC13')
+        for det in detecteurs:
+            df_10 = pd.read_excel('../mesures/export_excel/' + det + '.xlsx', et + ' 10x10')
+            plt.plot(df_10.iloc[:, 0], df_10.iloc[:, 1], lw=0.75, label= det)
+        plt.xlabel(df_10.columns[0] + ' (mm)')
+        plt.ylabel('Dose (%)')
         plt.legend(loc='upper right', fontsize=8)
+        plt.title(et + r' pour un champ 10x10 cm$^2$')
+        plt.grid(ls='--')
+        plt.savefig('figures/dose_relative/test/' + et + '.png', dpi=250)
+
+    for champ in ['10x10', '3x3']:
+        df_CC13 = pd.read_excel('../mesures/export_excel/14_profils_rendements_cc13.xlsx', 'Crossline ' + champ.split('x')[0] + 'cm')
+        plt.figure(figsize=(12, 7))
+        plt.plot(df_CC13.iloc[:, 0], df_CC13.iloc[:, 1], lw=0.75, label='CC13')
+        for det in detecteurs:
+            df_crossline = pd.read_excel('../mesures/export_excel/' + det + '.xlsx', 'Crossline ' + champ)
+            df_inline_10 = pd.read_excel('../mesures/export_excel/' + det + '.xlsx', 'Inline ' + champ)
+            plt.plot(df_crossline.iloc[:, 0], df_crossline.iloc[:, 1],label=det, lw=0.75)
         plt.xlabel('Distance (mm)')
         plt.ylabel('Dose (%)')
-        plt.title('Profils Inline Crossline ' + det)
-        plt.savefig('figures/dose_relative/profils/profils_' + det + '.png', dpi=250)
+        plt.title('Influence du détecteur')
+        plt.legend()
+        plt.grid(ls='--')
+        plt.savefig('figures/dose_relative/test/profils_' + champ + '.png', dpi=250)
 
 def chambre_ref():
     plt.figure(figsize=(12, 7))
@@ -66,33 +62,24 @@ def chambre_ref():
     plt.ylabel('Dose (%)')
     plt.legend(['Avec référence', 'Sans référence'])
     plt.grid(ls='--')
-    plt.savefig('figures/chambre_ref.png', dpi=250)
+    plt.savefig('figures/dose_relative/chambre_ref.png', dpi=250)
 
 def DSP():
     for et in ['Crossline X6 DSP ', 'Rendement X6 DSP ']:
         plt.figure(figsize=(12, 7))
+        df_100 = pd.read_excel('../mesures/export_excel/14_profils_rendements_cc13.xlsx', et[:-7] + '10cm')
         for dsp in ['85cm', '110cm']:
             df = pd.read_excel('/Volumes/LEXAR/Fiches_DQ/RT/RT3/mesures/export_excel/6_DSP.xlsx', sheet_name=et + dsp)
             plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=dsp)
+        plt.plot(df_100.iloc[:, 0], df_100.iloc[:, 1], label='100cm')
         plt.grid(ls='--')
         plt.legend()
         plt.xlabel(df.columns[0])
         plt.ylabel('Dose (%)')
         plt.title('Influence de la DSP')
-        plt.savefig('figures/dose_relative/DSP/' + et.split(' ')[0] + '_DSP_' + dsp + '.png', dpi=250)
+        plt.savefig('figures/dose_relative/DSP/' + et.split(' ')[0] + '_DSP.png', dpi=250)
 
 def rendement_X6_X23():
-    # plt.figure(figsize=(12, 7))
-    # for x in ['14_profils_rendements_cc13.xlsx', '5_X23_RP.xlsx']:
-    #     df = pd.read_excel('../mesures/export_excel/' + x, sheet_name=2)
-    #     plt.plot(df.iloc[:, 0], df.iloc[:, 1])
-    # plt.grid(ls='--')
-    # plt.legend(['X6', 'X23'])
-    # plt.xlabel('Profondeur (mm)')
-    # plt.ylabel('Dose (%)')
-    # plt.title('Influence de l\'énergie sur le rendement en profondeur')
-    # plt.savefig('figures/dose_relative/rdt_X6_X23.png', dpi=250)
-
     for energie in ['14_profils_rendements_cc13.xlsx', '5_X23_RP.xlsx']:
         plt.figure(figsize=(12, 7))
         df = pd.read_excel('../mesures/export_excel/' + energie, sheet_name=2)
@@ -105,9 +92,6 @@ def rendement_X6_X23():
         plt.ylabel('Dose (%)')
         plt.title('RTM et RDT')
         plt.savefig('figures/dose_relative/RTM/' + energie.split('.')[0] + '.png', dpi=250)
-        # plt.plot(df.iloc[:, 0], df['RTM'], label='RTM')
-        # plt.plot(df.iloc[:, 0], df.iloc[:, 1], label='RDT')
-        # plt.show()
 
 def champs():
     for champ in ['3x3', '6x6', '8x8', '12x12', '15x15', '20x20']:
@@ -124,6 +108,30 @@ def champs():
         plt.savefig('figures/dose_Relative/profils_ouv_fer/profils_' + champ + '.png', dpi=250)
 
     plt.figure(figsize=(12, 7))
+    for energie in ['X6', 'X23']:
+        df = pd.read_excel('../mesures/export_excel/2_profils_ouverture_fermeture.xlsx', 'Ouverture Crossline ' + energie)
+        plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=energie)
+    plt.title('Influence de l\'énergie sur les profils')
+    plt.xlabel('Distance (mm)')
+    plt.ylabel('Dose (%)')
+    plt.grid(ls='--')
+    plt.legend()
+    plt.savefig('figures/dose_relative/profils/profils_energie.png', dpi=250)
+
+    plt.figure(figsize=(12, 7))
+    for champ in ['3x3', '6x6', '20x20']:
+        df = pd.read_excel('../mesures/export_excel/champ_' + champ + '.xlsx', 'Rendement X6')
+        plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=champ + r' cm$^2$')
+    df = pd.read_excel('../mesures/export_excel/14_profils_rendements_cc13.xlsx', 'Rendement 10cm')
+    plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=r'10x10 cm$^2$')
+    plt.grid(ls='--')
+    plt.legend()
+    plt.title('Influence de la taille de champ')
+    plt.xlabel('Distance (mm)')
+    plt.ylabel('Dose (%)')
+    plt.savefig('figures/dose_relative/rendement_champs.png', dpi=250)
+
+    plt.figure(figsize=(14, 7))
     for champ in ['3x3', '6x6', '8x8', '12x12', '15x15', '20x20']:
         df = pd.read_excel('../mesures/export_excel/champ_' + champ + '.xlsx', 'Crossline X6 Ouverture')
         plt.plot(df.iloc[:, 0], df.iloc[:, 1], label='Champ ' + champ)
@@ -132,6 +140,9 @@ def champs():
     plt.xlabel('Distance (mm)')
     plt.ylabel('Dose (%)')
     plt.title('Tailles de champ')
+    plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(15))
+    plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(5))
+    plt.gca().xaxis.set_minor_locator(ticker.MultipleLocator(5))
     plt.savefig('figures/dose_relative/profils_champs/comp_champs.png', dpi=250)
 
 def perturbations_chambre_ref():
@@ -148,7 +159,26 @@ def perturbations_chambre_ref():
         plt.ylabel('Dose (%)')
         plt.savefig('figures/dose_relative/perturbations_chambre/perturbations_' + energie + '.png', dpi=250)
 
+def vitesse():
+    plt.figure(figsize=(12, 7))
+    for vit in ['Continu Lent', 'Continu Rapide', 'SS5']:
+        df = pd.read_excel('../mesures/export_excel/1_continu_SS.xlsx', vit)
+        plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=vit)
+    plt.grid(ls='--')
+    plt.legend()
+    plt.show()
 
+def inline_crossline():
+    plt.figure(figsize=(12, 7))
+    for profil in ['Inline', 'Crossline']:
+        df = pd.read_excel('../mesures/export_excel/14_profils_rendements_cc13.xlsx', profil + ' 10cm')
+        plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=profil)
+    plt.legend()
+    plt.grid(ls='--')
+    plt.xlabel('Distance (mm)')
+    plt.ylabel('Dose (%)')
+    plt.title('Orientation du profil de dose')
+    plt.savefig('figures/dose_relative/orientation_profil.png', dpi=250)
 
 def main():
     # courbes_solo()
@@ -158,6 +188,7 @@ def main():
     # rendement_X6_X23()
     champs()
     # perturbations_chambre_ref()
-
+    # vitesse()
+    # inline_crossline()
 
 main()
