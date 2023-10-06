@@ -10,4 +10,15 @@
 \newblock Number 398 in Technical Reports Series. INTERNATIONAL ATOMIC ENERGY
   AGENCY, Vienna, 2001.
 
+\bibitem{ProtocolesCamille}
+Camille Llagostera.
+\newblock {\em Protocoles de dosimétrie}.
+\newblock Cours Master 2 Nantes.
+
+\bibitem{RobertDoseAbs}
+Charlotte Robert.
+\newblock {\em Détermination de la dose absolue dans les faisceaux de photons
+  et d'électrons}.
+\newblock Cours Master 2 Paris.
+
 \end{thebibliography}

@@ -74,7 +74,7 @@ def DSP():
         plt.plot(df_100.iloc[:, 0], df_100.iloc[:, 1], label='100cm')
         plt.grid(ls='--')
         plt.legend()
-        plt.xlabel(df.columns[0])
+        plt.xlabel('Profondeur (mm)')
         plt.ylabel('Dose (%)')
         plt.title('Influence de la DSP')
         plt.savefig('figures/dose_relative/DSP/' + et.split(' ')[0] + '_DSP.png', dpi=250)
@@ -180,15 +180,44 @@ def inline_crossline():
     plt.title('Orientation du profil de dose')
     plt.savefig('figures/dose_relative/orientation_profil.png', dpi=250)
 
+def SS():
+    # for i in range(7):
+    df = pd.ExcelFile('../mesures/export_excel/1_continu_SS.xlsx')
+    with df as xlsx:
+        plt.subplots(1, 4, figsize=(18, 5))
+        for i in range(4):
+            df_sheet = pd.read_excel(xlsx, sheet_name=i)
+            plt.subplot(1, 4, i+1)
+            if i < 2:
+                plt.title(df.sheet_names[i])
+            else:
+                plt.title('Pas ' +  df.sheet_names[i].split('_')[0] + 'mm ' + df.sheet_names[i].split('_')[1] + 'mm ' + df.sheet_names[i].split('_')[2] + 's')
+            plt.scatter(df_sheet.iloc[:, 0], df_sheet.iloc[:, 1], marker='x')
+            plt.xlabel('Distance (mm)')
+            plt.ylabel('Dose (%)')
+            plt.grid(ls='--')
+        plt.savefig('figures/dose_relative/step_by_step/step_by_step_1.png', dpi=250)
+        plt.subplots(1, 3, figsize=(14, 5))
+        for i in range(4, 7, 1):
+            df_sheet = pd.read_excel(xlsx, sheet_name=i)
+            plt.subplot(1, 3, i-3)
+            plt.title('Pas ' +  df.sheet_names[i].split('_')[0] + 'mm ' + df.sheet_names[i].split('_')[1] + 'mm ' + df.sheet_names[i].split('_')[2] + 's')
+            plt.scatter(df_sheet.iloc[:, 0], df_sheet.iloc[:, 1], marker='x')
+            plt.xlabel('Distance (mm)')
+            plt.ylabel('Dose (%)')
+            plt.grid(ls='--')
+        plt.savefig('figures/dose_relative/step_by_step/step_by_step_2.png', dpi=250)
+
 def main():
     # courbes_solo()
     # influence_detecteur()
     # chambre_ref()
     # DSP()
     # rendement_X6_X23()
-    champs()
+    # champs()
     # perturbations_chambre_ref()
     # vitesse()
     # inline_crossline()
+    SS()
 
 main()
