@@ -429,7 +429,7 @@ La pénombre augmente avec l'énergie, comme nous pouvons le voir sur la figure 
   \label{fig_profils_DSP}
 \end{figure}
 
-Ayant adapté la taille de champ pour chacune des DSP, la figure \ref*{fig_profils_DSP} et le tableau \ref*{table_profils_dsp} montre très peu de différence. Cela s'explique par le fait que l'air est un milieu très peu diffusant et atténuant pour des photons de haute énergie. Nous pouvons donc considérer que la mesure de profils à profondeur constante en faisant varier la DSP n'influe pas sur la mesure.
+Ayant adapté la taille de champ pour chacune des DSP, la figure \ref*{fig_profils_DSP} et le tableau \ref*{table_profils_dsp} montre très peu de différence. Cela s'explique par le fait que l'air est un milieu très peu diffusant et atténuant pour des faisceaux de photons de haute énergie. Nous pouvons donc considérer que la mesure de profils à profondeur constante en faisant varier la DSP n'influe que très peu sur la mesure.
 
 
 \begin{table}[h]
@@ -584,11 +584,41 @@ Pour observer l'impact du mode d'acquisition sur les profils de dose, nous avons
 
 Premièrement, concernant le mode continu, nous voyons sur le tableau \ref*{table_ss} que la différence de pénombre entre les vitesses lentes et rapides est relativement faible (0,015 cm de différence en moyenne). Choisir une vitesse intermédiaire est satisfaisant pour des mesures rapides et précises. De plus, nous pouvons voir que le mode pas à pas avec une mesure tous les 0,05 cm sur les côtés du profils et tous les 0,2 cm au centre permet d'obtenir la plus petite pénombre mais n'est pas significatif pour les mode intermédiaires. Cependant, choisir un pas d'intégration trop grand n'est pas non plus optimal car la pénombre mesurée est plus grande mais également non symétrique car le logiciel doit interpoler entre les points pour obtenir les abscisses des points à 20\% et à 80\% de la dose, ce qui fausse la mesure de la pénombre.
 
-\subsection{Facteurs d'ouverture du collimateur (FOC)}
+\subsection{Perturbations liées à la chambre de référence}
 
-Le tableau \ref*{table_resultats_foc} et la figure \ref*{fig_foc} nous montre les FOC mesurés pour des champs allant de 3x3 cm$^2$ à 20x20 cm$^2$. Premièrement, nous voyons que pour des champs inférieurs à 10$\times$10 cm$^2$ les FOC sont plus imortants pour le faisceau de 6 MV que pour celui de 23 MV. Cela peu s'expliquer par le fait qu'à plus faible énergie la quantité d'électrons rétrodiffusés vers les chambres monitrices est plus importante (pour de petits champs), la dose mesurée par les chambres monitrices sera plus importante que la réalité et la coupure du faisceau sera donc prématurée. A contrario, pour une grande taille de champ, ce phénomène devient de plus en plus négligeable et la quantité de photons diffusés dans le fantôme d'eau à plus faible énergie prend le dessus. Ceci explique pourquoi les FOC sont plus faible pour une énergie de 23 MV plutôt qu'à 6 MV pour les grandes tailles de champ (et inversement).
+La figure \ref*{fig_perturbations_chambre_ref_profils} et le tableau \ref*{table_resultats_perturb_chambre_ref} nous montrent les résultats de l'influence de la position de la chambre de référence dans le champ d'irradiation. Comme nous pouvons le voir sur le graphe et le tableau, le fait que la chambre de référence soit placée dans le coin ou presque au centre du champ ne change rien sur les résultats de l'acquisition puisque les résultats fournis par le tableau \ref*{table_resultats_perturb_chambre_ref} nous montrent que la symétrie, l'homogénéité et la pénombre sont extêmement proches. Nous pouvons conclure que la position de la chambre de référence perturbe très peu la signal reccueilli par la chambre de mesure.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/dose_relative/perturbations_chambre/perturbations_X6.png}
+  \caption{Influence de la localisation de la chambre de référence sur les profils de dose}
+  \label{fig_perturbations_chambre_ref_profils}
+\end{figure}
 
 \begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{1.1cm}>{\centering\arraybackslash}m{1.1cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2.5cm}}
+    \toprule
+    \textbf{Position chambre ref} & \textbf{S (\%)} & \textbf{H (\%)} & \textbf{Centre du champ (cm)} & \textbf{Pénombre G-D (cm)} & \textbf{Taille de champ (cm)} \\
+    \toprule
+    Coin & 100,43 & 2,37 & 0,01 & 0,68 - 0,68 & 11,07 \\
+    Centre & 100,69 & 2,29 & 0 & 0,68 - 0,68 & 11,12 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Influence de la position de la chambre de référence sur les profils de dose (résultats MyQA)}
+  \label{table_resultats_perturb_chambre_ref}
+\end{table}
+
+\subsection{Facteurs d'ouverture du collimateur (FOC)}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.45]{../scripts/figures/dose_relative/FOC.png}
+  \caption{Facteurs d'ouverture du collimateur (FOC)}
+  \label{fig_foc}
+\end{figure}
+
+\begin{table}[h!]
   \centering
   \begin{tabular}{>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1.8cm}>{\centering\arraybackslash}m{1.8cm}>{\centering\arraybackslash}m{1.8cm}>{\centering\arraybackslash}m{1.8cm}>{\centering\arraybackslash}m{1.8cm}>{\centering\arraybackslash}m{1.8cm}}
   \toprule
@@ -611,16 +641,11 @@ Le tableau \ref*{table_resultats_foc} et la figure \ref*{fig_foc} nous montre le
   \label{table_resultats_foc}
 \end{table}
 
+Le tableau \ref*{table_resultats_foc} et la figure \ref*{fig_foc} nous montre les FOC mesurés pour des champs allant de 3x3 cm$^2$ à 20x20 cm$^2$. Premièrement, nous voyons que pour des champs inférieurs à 10$\times$10 cm$^2$ les FOC sont plus imortants pour le faisceau de 6 MV que pour celui de 23 MV. Cela peu s'expliquer par le fait qu'à plus faible énergie la quantité d'électrons rétrodiffusés vers les chambres monitrices est plus importante (pour de petits champs), la dose mesurée par les chambres monitrices sera plus importante que la réalité et la coupure du faisceau sera donc prématurée. A contrario, pour une grande taille de champ, ce phénomène devient de plus en plus négligeable et la quantité de photons diffusés dans le fantôme d'eau à plus faible énergie prend le dessus. Ceci explique pourquoi les FOC sont plus faible pour une énergie de 23 MV plutôt qu'à 6 MV pour les grandes tailles de champ (et inversement).
+
 Lorsqu'on utilise une chambre d'ionisation avec un volume sensible élevé (chambre de type Farmer), les résultats des FOC sont quasiment identiques par rapport à la chambrer CC13, à l'exception du champ 3x3 cm$^2$. Cela est dû au trop grand volume sensible du détecteur par rapport aux dimensions du champ, la mesure est donc sous-estimée avec la chambre Farmer.
 
 Enfin,  nous observons que le rôle de la DSP n'est pas significatif. En effet, la taille de champ ayant été adaptée, nous pouvons considérer que l'interaction du faisceau avec l'air (entre la source et le fantôme) est négligeable.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.45]{../scripts/figures/dose_relative/FOC.png}
-  \caption{Facteurs d'ouverture du collimateur (FOC)}
-  \label{fig_foc}
-\end{figure}
 
 \clearpage
 \bibliography{biblio}

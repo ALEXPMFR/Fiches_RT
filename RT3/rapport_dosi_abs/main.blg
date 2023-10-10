@@ -3,8 +3,8 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: biblio.bib
-Warning--to sort, need author, editor, or key in internationaliaea
 Warning--to sort, need author, editor, or key in international2001iaea
+Warning--to sort, need author, editor, or key in internationaliaea
 Warning--empty author and editor in internationaliaea
 Warning--empty author and editor in international2001iaea
 Warning--empty year in ProtocolesCamille

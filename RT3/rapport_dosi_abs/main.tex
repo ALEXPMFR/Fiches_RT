@@ -80,24 +80,24 @@
 \clearpage
 \section{Introduction}
 
-La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuse tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
+La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
 
-Ce rapport traitera des faisceaux de photons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilsiées lors des mesures des doses absolues basées sur les protocoles internationnaux fournis par l'Agence Internationale de l'Énergie Atomique (AIEA) seront explicités, puis les résultats seront présentés. 
+Ce rapport traitera des faisceaux de photons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilsiés lors des mesures des doses absolues basées sur les protocoles internationaux fournis par l'Agence Internationale de l'Énergie Atomique (AIEA) seront explicités, puis les résultats seront présentés. 
 
 \section{Matériels et méthodes}
 
-Cette partie est consacrée à la mesure de la dose absorbée dans les conditions de référence, telles que décrites dans le protocole TRS-398 de l'AIEA. De plus, nous développerons également la méthodologie du protocole TRS-277.
+Cette partie est consacrée à la mesure de la dose absorbée dans les conditions de référence, telles que décrites dans le protocole TRS-398 de l'AIEA \cite{international2001iaea}. De plus, nous développerons également la méthodologie du protocole TRS-277 \cite{internationaliaea}.
 
 \subsection{Facteurs correctifs}
 
-L'utilisation d'une chambre d'ionnisation à cavité d'air étanche engendre une fluctuation de la réponse du système de mesure en fonction de plusieurs paramètres. Il faut donc appliquer une correction de la mesure :
+L'utilisation d'une chambre d'ionnisation à cavité d'air étanche pour la mesure de la dose absolue engendre une fluctuation de la réponse du système de mesure en fonction de plusieurs paramètres. Il faut donc appliquer une correction de la mesure grâce à l'équation suivante :
 
 \begin{equation}
-  M_{Q'} = M_Q \times k_{T,P} \times k_{pol} \times k_{rec} \times k_H
+  M_{Q}^{'} = M_Q \times k_{T,P} \times k_{pol} \times k_{rec} \times k_H
   \label{eq_corr_charge}
 \end{equation}
 
-Avec $M_Q$ la charge mesurée sur l'électromètre, $k_{T,P}$ le facteur correctif de la pression et de la température, $k_{pol}$ le facteur correctif de la polarisation de la chambre, $k_{rec}$ le facteur correctif de la recombinaison ionique 
+Avec $M_Q$ la charge mesurée sur l'électromètre, $k_{T,P}$ le facteur correctif de la pression et de la température, $k_{pol}$ le facteur correctif de la polarisation de la chambre, $k_{rec}$ le facteur correctif de la recombinaison ionique et $k_H$ le facteur correctif des conditions hygrométriques.
 
 \subsubsection{Pression et température}
 
@@ -112,7 +112,7 @@ Avec $P_0$ et $T_0$ la pression et la température de référence, respectivemen
 
 \subsubsection{Polarisation}
 
-Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polarité appliquée à la chambre lors de la mesure
+Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polarité appliquée à la chambre lors de la mesure :
 
 \begin{equation}
   k_{pol} = \dfrac{|M_+| + |M_-|}{2M}
@@ -123,74 +123,18 @@ Avec $M_+$ et $M_-$ les charges mesurées pour les tensions $V_+$ et $V_-$ respe
 
 \subsubsection{Recombinaisons ioniques}
 
-Le facteur de recombinaison permet de corriger la réponse de la chambre d'ionisation sur le nombre de charges collectées. La mesure est sous estimée car des paires d'ions sont recombinées et ne rentre pas en compte dans la mesure.
+Le facteur de recombinaison permet de corriger la réponse de la chambre d'ionisation sur le nombre de charges collectées. La mesure est sous estimée car des paires d'ions sont recombinées et ne rentrent pas en compte dans la mesure.
 
 \begin{equation}
   k_{rec} = a_0 + a_1 \left(\dfrac{M_1}{M_2}\right) + a_2 \left(\dfrac{M_1}{M_2}\right) ^2
   \label{eq_rec}
 \end{equation}
 
-Avec $M_1$ et $M_2$ les réponses aux tensions $V_1$ et $V_2$ respectivement, et $a_0$, $a_1$ et $a_2$ sont les facteurs tabulés en fonction du rapport $\frac{V_1}{V_2}$.
+Avec $M_1$ et $M_2$ les réponses aux tensions $V_1$ et $V_2$ respectivement, et $a_0$, $a_1$ et $a_2$ sont les facteurs tabulés en fonction du rapport $\frac{V_1}{V_2}$ fournis par le protocole TRS-398 \cite{international2001iaea}.
 
 \subsubsection{Humidité}
 
 Ce facteur est égale à 1 lorsque l'humidité de la salle est comprise entre 20\% et 80\%, sinon il faut lui attribuer la valeur de 0,997.
-
-\subsection{Protocole TRS-277}
-
-La mesure de la dose absolue est définie, selon le protocole TRS 277 de l'AIEA \cite{internationaliaea}, à partir de l'équation suivante :
-
-\begin{equation}
-  D_{eau, Q} = M_Q N_{K_{air, \, Co}} k_{att} k_{m} (1-g) \left(\dfrac{S}{\rho}\right)^{eau}_{air} p_u p_{cel}
-  \label{eq_dose_277}
-\end{equation}
-
-Avec :
-
-\begin{itemize}
-  \item[$\bullet$] $M_Q$ la charge mesurée par la chambre
-  \item[$\bullet$] $N_{K_{air, \, Q_0}}$ le coefficient d'étalonnage de la chambre en kerma dans l'air pour un faisceau de qualité $Q_0$ (généralement $Q_0  =\: ^{60}$Co)
-  \item[$\bullet$] $k_{att}$ le facteur corrigeant de l'atténuation et de la diffusion dues à la paroi de la chambre
-  \item[$\bullet$] $k_m$ le facteur correctif de la non-équivalence à l'air de la paroi et du capuchon de mise en équilibre électronique
-  \item[$\bullet$] $g$ la fraction d'énergie perdue par radiation (rayonnement de freinage des particules secondaires)
-  \item[$\bullet$] $\left(\dfrac{S}{\rho}\right) ^{eau}_{air}$ le rapport des pouvoirs d'arrêt massiques de l'air sur l'air pour les particules primaires
-  \item[$\bullet$] $p_u$ facteur de correction de perturbation
-  \item[$\bullet$] $p_{cel}$ facteur de correction de l'électrode centrale
-\end{itemize}
-
-Le facteur $p_u$ peut se décomposer en un produit de facteurs :
-
-\begin{equation}
-  p_{u,\, Q} = p_{wall,\, Q} p_{cav,\, Q} p_{dist,\, Q}
-  \label{eq_pu}
-\end{equation}
-
-Avec :
-\begin{itemize}
-  \item[$\bullet$] $p_{wall,\, Q}$ facteur correctif de la non équivalence à l'eau de la paroi
-  \item[$\bullet$] $p_{cav,\, Q}$ facteur corrigeant de la non homogénéité de la cavité
-  \item[$\bullet$] $p_{dist,\, Q}$ facteur permettant de corriger le déplacement d'un volume d'eau provoqué par la présence de la chambre
-\end{itemize}
-
-\subsection{Protocole TRS-398}
-
-Le protocole TRS 398 de l'AIEA \cite{international2001iaea} permet de calculer la dose absorbée dans l'eau dans les conditions de référence tout en simplifiant le formalisme de calcul du TRS 277.
-
-\begin{equation}
-  D_{eau,\, Q} = M_{Q'} \times N_{D_{eau},\, Q_0} \times k_{Q,\, Q_0}
-  \label{eq_dose_398}
-\end{equation}
-
-Avec :
-\begin{itemize}
-  \item[$\bullet$] $M_{Q'}$ la mesure de la charge corrigée des facteurs $k_{T,P}$ $k_{pol}$ $k_{rec}$ et $k_H$
-  \item[$\bullet$] $N_{D_{eau},\, Q_0}$ le coefficient d'étalonnage de la chambre en dose dans l'eau à l'aide d'un faisceau de qualité $Q_0$ 
-  \item[$\bullet$] $k_{Q,\, Q_0}$ le coefficient de correction de la qualité faisceau
-\end{itemize}
-
-\begin{equation}
-  k_{Q,\, Q_0} = \dfrac{N_{D_{eau},\, Q}}{N_{D_{eau},\, Q_0}} = \dfrac{D_{air,\, Q} \left[\left(\dfrac{S}{\rho}\right) ^{eau}_{air}\right]_Q p_Q M_{Q_0}}{D_{air,\, Q_0 } \left[\left(\dfrac{S}{\rho}\right) ^{eau}_{air}\right]_{Q_0} p_{Q_0} M_Q}
-\end{equation}
 
 \subsection{Indice de qualité}
 
@@ -203,30 +147,136 @@ L'indice de qualité est calculé de la manière suivante :
 
 Avec $D_{10 \, cm}$ la dose mesurée à 10 cm de profondeur et $D_{20 \, cm}$ la dose mesurée à 20 cm de profondeur.
 
-La distance source détecteur (DSD) doit être constante entre les deux mesures, comme le montre la figure 
+La distance source détecteur (DSD) doit être constante entre les deux mesures, comme le montre la figure \ref*{fig_tpr} :
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.3 ]{figures/iq_schema.png}
+  \includegraphics[scale=0.27]{figures/iq_schema.png}
   \caption{Conditions géométriques pour la mesure du l'indice de qualité}
   \label{fig_tpr}
 \end{figure}
 
+\subsection{Protocole TRS-277}
+
+La mesure de la dose absolue est définie, selon le protocole TRS 277 de l'AIEA \cite{internationaliaea}, à partir de l'équation suivante :
+
+\begin{equation}
+  D_{eau, Q} = M_Q N_{K_{air, \, Q_0}} k_{att} k_{m} (1-g) \left(\dfrac{S}{\rho}\right)^{eau}_{air} p_u p_{cel}
+  \label{eq_dose_277}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+  \item[$\bullet$] $M_Q$ la charge mesurée par la chambre
+  \item[$\bullet$] $N_{K_{air, \, Q_0}}$ le coefficient d'étalonnage de la chambre en kerma dans l'air pour un faisceau de qualité $Q_0$ (généralement $Q_0  =\: ^{60}$Co)
+  \item[$\bullet$] $k_{att}$ le facteur corrigeant de l'atténuation et de la diffusion dues à la paroi de la chambre
+  \item[$\bullet$] $k_m$ le facteur correctif de la non-équivalence à l'air de la paroi et du capuchon de mise en équilibre électronique
+  \item[$\bullet$] $g$ la fraction d'énergie perdue par radiation (rayonnement de freinage des particules secondaires)
+  \item[$\bullet$] $\left(\dfrac{S}{\rho}\right) ^{eau}_{air}$ le rapport entre le pouvoir d'arrêt massique de l'eau et celui de l'air pour les particules primaires
+  \item[$\bullet$] $p_u$ facteur de correction de perturbation
+  \item[$\bullet$] $p_{cel}$ facteur de correction de l'électrode centrale
+\end{itemize}
+
+Le facteur $p_u$ peut se décomposer en un produit de facteurs :
+
+\begin{equation}
+  p_{u,\, Q} = p_{wall,\, Q} \times p_{cav,\, Q} \times p_{dist,\, Q}
+  \label{eq_pu}
+\end{equation}
+
+Avec :
+\begin{itemize}
+  \item[$\bullet$] $p_{wall,\, Q}$ facteur correctif de la non équivalence à l'eau de la paroi
+  \item[$\bullet$] $p_{cav,\, Q}$ facteur corrigeant de la non homogénéité de la cavité
+  \item[$\bullet$] $p_{dist,\, Q}$ facteur permettant de corriger le déplacement d'un volume d'eau provoqué par la présence de la chambre
+\end{itemize}
+
+\subsection{Protocole TRS-398}
+
+Le protocole TRS 398 de l'AIEA \cite{international2001iaea} permet de calculer la dose absorbée dans l'eau dans les conditions de référence tout en simplifiant le formalisme de calcul du TRS 277. La dose absorbée est donnée par la formule suivante :
+
+\begin{equation}
+  D_{eau,\, Q} = M_{Q}^{'} \times N_{D_{eau},\, Q_0} \times k_{Q,\, Q_0}
+  \label{eq_dose_398}
+\end{equation}
+
+Avec :
+\begin{itemize}
+  \item[$\bullet$] $M_{Q}^{'}$ la mesure de la charge corrigée des facteurs $k_{T,P}$ $k_{pol}$ $k_{rec}$ et $k_H$
+  \item[$\bullet$] $N_{D_{eau},\, Q_0}$ le coefficient d'étalonnage de la chambre en dose dans l'eau à l'aide d'un faisceau de qualité $Q_0$ 
+  \item[$\bullet$] $k_{Q,\, Q_0}$ le coefficient de correction de la qualité faisceau
+\end{itemize}
+
+\begin{equation}
+  k_{Q,\, Q_0} = \dfrac{N_{D_{eau},\, Q}}{N_{D_{eau},\, Q_0}} = \dfrac{D_{air,\, Q} \left[\left(\dfrac{S}{\rho}\right) ^{eau}_{air}\right]_Q p_Q M_{Q_0}}{D_{air,\, Q_0 } \left[\left(\dfrac{S}{\rho}\right) ^{eau}_{air}\right]_{Q_0} p_{Q_0} M_Q}
+\end{equation}
+
+L'estimation du facteur $k_{Q,\, Q_0}$ est donné en fonction du type de chambre et de la qualité du faisceau en Annexe \ref*{fig_table_kQQ0}.
+
 \newpage
 \subsection{Erreurs de positionnement}
 
-Nous avons également réalisé des mesures pour mesurer l'impacte d'un mauvais positionnement de la chambre. Pour cela, nous avons appliqué un déplacement de 1 mm dans la direction latérale de part et d'autre du point de référence, puis 1 mm en profondeur au dessus et en dessous de ce même point. Dix mesures on été faites pour chaque énergie et chaque position pour ensuite calculer la charge moyenne. La dose est ensuite calculée selon le protocole TRS-398 de l'AIEA \cite{international2001iaea} puis un écart relatif est calculé entre la dose de référence et celle calculée avec le déplacement de 1 mm.
+Nous avons également réalisé des mesures pour mesurer l'impact d'un mauvais positionnement de la chambre. Pour cela, nous avons appliqué un déplacement de 1 mm dans la direction latérale de part et d'autre du point de référence, puis de 1 mm en profondeur au dessus et en dessous de ce même point. Dix mesures on été faites pour chaque énergie et chaque position pour ensuite calculer la charge moyenne. La dose est ensuite calculée selon le protocole TRS-398 de l'AIEA \cite{international2001iaea} puis un écart relatif est calculé entre la dose de référence et celle calculée avec le déplacement de 1 mm.
+
+\subsection{Incertitudes}
+
+\subsubsection{Incertitudes de type A}
+
+Les incertitudes de type A sont liées à l'analyse d'une série d'observations qui se répètent en se fondant sur la distribution statistique des résultats. L'incertitude-type $u(x)$ associé à une série de $n$ résultats $x_i$ est donnée par :
+
+\begin{equation}
+  u(x) = \sqrt{\dfrac{\sum\limits_{i=1}^n (x_i - \overline{x})^2}{n-1}}
+\end{equation}
+
+Si le résultat recherché est la moyenne arithmétique de $n$ observations indépendantes répétées, l'incertitude-type sur la moyenne est donné par l'estimateur $s(\overline{x})$, qui est l'écart-type expérimental de la moyenne :
+
+\begin{equation}
+  u(\overline{x}) = \dfrac{u(x)}{\sqrt{n}} = \sqrt{\dfrac{\sum\limits_{i=1}^n (x_i - \overline{x})^2}{n(n-1)}}
+\end{equation}
+
+\subsubsection{Incertitudes de type B}
+
+Les incertitudes de type B sont basées sur des connaissances scientifiques du phénomène observé qui peuvent être :
+
+\begin{itemize}
+  \item[$\bullet$] des données antérieures mesurées
+  \item[$\bullet$] des spécifications du constructeur
+  \item[$\bullet$] des données fournies lors d'un étalonnage ou d'autres certifications
+  \item[$\bullet$] des incertitudes issues de données de références extraites de tables
+  \item[$\bullet$] des propriétés du matériel utilisé
+\end{itemize}
+
+Pour donner quelques exemples, si la grandeur $X$ observée peut prendre des valeurs restreintes dans un intervalle [$x - a$, $x + a$] et que la distribution est uniforme, alors l'u-incertitude-type associée est :
+
+\begin{equation}
+  u(x) = \dfrac{a}{\sqrt{3}}
+\end{equation}
+
+Si la grandeur $X$ observée est dans un intervalle bien défini mais qui n'est pas au centre de celui-ci, l'incertitude-type associée est donnée par :
+
+\begin{equation}
+  u(x) = \dfrac{a}{12}
+\end{equation}
+
+Cette deuxième situation est le cas d'une lecture de la température ou de la pression sur un thermomètre ou un baromètre respectivement et $a$ correspond à la graduation de l'outil de mesure.
+
+\subsubsection{Propagation des incertitudes}
+
+Dans notre cas, la dose absorbée se calcule en pultipliant plusieurs facteurs entre eux. Dans cette situation, l'incertitude-type associée à la dose absolue est régie par l'éuation suivante :
+
+\begin{equation}
+  \dfrac{u(y)}{y} = \sqrt{\sum\limits_i^n \left( \dfrac{u(x_i)}{x_i} \right) ^2}
+\end{equation}
+
+\subsubsection{Incertitude élargie}
+
+Pour répondre à certaines exigences, l'incertitude-type peut être multipliée par un coefficent d'élargissement $k$. Cette pratique sert à fournir un intervalle à l'interieur duquel se situe une large pproportion de la distribution des valeurs qui peuvent être associées au mesurande. Dans ce travail, le facteur d'élargissement $k$ sera pris égal à 2 pour s'assurer que la vraie valeur se trouve dans l'intervalle défini par les incertitudes-types calculées avec une probabilité de 95 \%.
+
 
 \subsection{Contrôle du débit de référence (TOP)}
 
-Quotidiennement, un contôle qualité est réalisé sur les accélérateurs, communément appelé TOP. Ce contrôle permet de vérifier la dérive du débit dans le temps sur un faisceau fixe dans les conditions de référence (champ 10x10 cm$^2$, mesure faite à 10 cm de profondeur et DSD = 100 cm). La dose dans ces conditions est d'abord mesurée dans la cuve à eau, puis un facteur de passage entre l'eau et le bloc TOP est appliqué pour mesurer la dose dans le bloc lors des contrôles quotidiens. Ce facteur $f$ est défini comme suit :
-
-\begin{equation}
-  f = \dfrac{D_0}{M_0}
-  \label{eq_facteur_top}
-\end{equation}
-
-Avec $D_0$ la dose mesurée dans les conditions de référence (Gy) et $M_0$ la mesure de la charge (nC) dans la boîte à TOP.
+Quotidiennement, un contôle qualité est réalisé sur les accélérateurs, communément appelé TOP. Ce contrôle permet de vérifier la dérive du débit dans le temps sur un faisceau fixe dans les conditions de référence (champ 10x10 cm$^2$, mesure faite à 10 cm de profondeur et DSD = 100 cm comme le montre la figure \ref*{fig_top}). 
 
 \begin{figure}[h]
   \centering
@@ -234,6 +284,15 @@ Avec $D_0$ la dose mesurée dans les conditions de référence (Gy) et $M_0$ la 
   \caption{Conditions de mesures de la dose absorbée dans la cuve à eau (à gauche) et dans le bloc TOP (à droite)}
   \label{fig_top}
 \end{figure}
+
+La dose dans ces conditions est d'abord mesurée dans la cuve à eau, puis un facteur de passage entre l'eau et le bloc TOP est appliqué pour mesurer la dose dans le bloc lors des contrôles quotidiens. Ce facteur $f$ est défini comme suit :
+
+\begin{equation}
+  f = \dfrac{D_0}{M_0}
+  \label{eq_facteur_top}
+\end{equation}
+
+Avec $D_0$ la dose mesurée dans les conditions de référence (Gy) et $M_0$ la mesure de la charge (nC) dans la boîte à TOP.
 
 La dose du jour lors du contrôle qualité se calcule de la façon suivante :
 
@@ -244,7 +303,7 @@ La dose du jour lors du contrôle qualité se calcule de la façon suivante :
 
 Avec $M_j$ la mesure de la charge du jour $j$ dans la boîte à TOP, $f = \frac{D_0}{M_0}$ le facteur de passage de la cuve à eau à la boîte à TOP et $k_{TP}$ le facteur de correction de la pression et de la température donné par la formule \ref*{eq_k_TP}.
 
-\newpage
+\clearpage
 \section{Résultats}
 \subsection{Détermination des facteurs correctifs}
 
@@ -280,7 +339,7 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
   \multicolumn{1}{|c|}{\textbf{Écart relatif} $\mathbf{k_{pol}}$ \textbf{\%}} & \multicolumn{4}{c|}{0,05} & \multicolumn{4}{c|}{0} \\
   \hline
   \end{tabular}
-  \caption{Série de mesures avec la  pour le calcul du $k_{rec}$ et du $k_{pol}$ pour des faisceaux de photons de 6 MV et 23 MV (Clinac 2)}
+  \caption{Série de mesures pour le calcul du $k_{rec}$ et du $k_{pol}$ pour des faisceaux de photons de 6 MV et 23 MV (Clinac 2)}
   \label{table_kpol}
 \end{table}
 
@@ -311,34 +370,23 @@ Le calcul des différents facteurs de correction de la mesure ont été calculé
 
 L'indice de qualité est calculé pour les deux énergies disponibles sur le Clinac 2 (6 MV et 23 MV). Il a été calculé à l'aide de l'équation \ref*{eq_iq}. Nous avons réalisé 10 mesures de charge pour chaque énergie et chaque profondeur. Les valeurs moyennes ont été utilisées pour le calcul de l'indice de qualité, comme le montre le tableau \ref*{table_resultats_tpr}.
 
-\begin{table}[h!]
+\begin{table}[h]
   \centering
   \begin{tabular}{c|cc|cc|}
   \cline{2-5}
-                                                                                     & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \hline
-  \multicolumn{1}{|c|}{\multirow{11}{*}{\textbf{Charge (nC)}}}                      & \textbf{10 cm}           & \textbf{20 cm}          & \textbf{10 cm}           & \textbf{20 cm}           \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{} & 29,70 & 19,70 & 36,58 & 28,60 \\
-  \multicolumn{1}{|c|}{} & 29,66 & 19,67 & 36,57 & 28,54 \\
-  \multicolumn{1}{|c|}{} & 29,66 & 19,66 & 36,58 & 28,51 \\
-  \multicolumn{1}{|c|}{} & 29,69 & 19,70 & 36,57 & 28,52 \\
-  \multicolumn{1}{|c|}{} & 29,66 & 19,66 & 36,58 & 28,52 \\
-  \multicolumn{1}{|c|}{} & 29,63 & 19,65 & 36,62 & 28,53 \\
-  \multicolumn{1}{|c|}{} & 29,63 & 19,66 & 36,58 & 28,53 \\
-  \multicolumn{1}{|c|}{} & 29,63 & 19,68 & 36,60 & 28,53 \\
-  \multicolumn{1}{|c|}{} & 29,64 & 19,65 & 36,58 & 28,54 \\
-  \multicolumn{1}{|c|}{} & 29,69 & 19,66 & 36,59 & 28,53 \\
+  \textbf{} & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \cline{2-5} 
+  \textbf{} & \textbf{10 cm} & \textbf{20 cm} & \textbf{10 cm} & \textbf{20 cm} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}} & 29,66 & 19,67 & 36,59 & 28,54 \\
   \hline
-  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}}                               & 29,66           & 19,67          & 36,59           & 28,54           \\
-  \hline
-  \multicolumn{1}{|c|}{$\mathbf{TPR^{20}_{10}}$ \textbf{mesuré}}  & \multicolumn{2}{c|}{0,663}       & \multicolumn{2}{c|}{0,780}        \\
-  \multicolumn{1}{|c|}{$\mathbf{TPR^{20}_{10}}$ \textbf{recette}} & \multicolumn{2}{c|}{0,664}       & \multicolumn{2}{c|}{0,781}        \\
-  \multicolumn{1}{|c|}{\textbf{Écart relatif (\%)}}                                           & \multicolumn{2}{c|}{0,125}       & \multicolumn{2}{c|}{0,133}        \\ \hline
+  \multicolumn{1}{|c|}{$\mathbf{TPR^{20}_{10}}$ \textbf{mesuré}} & \multicolumn{2}{c|}{0,663} & \multicolumn{2}{c|}{0,780} \\
+  \multicolumn{1}{|c|}{$\mathbf{TPR^{20}_{10}}$ \textbf{recette}} & \multicolumn{2}{c|}{0,664} & \multicolumn{2}{c|}{0,781} \\
+  \multicolumn{1}{|c|}{\textbf{ER (\%)}} & \multicolumn{2}{c|}{0,125} & \multicolumn{2}{c|}{0,133} \\ \hline
   \end{tabular}
   \caption{Résultats de la mesure du $TPR^{20}_{10}$ pour des faisceaux de photons de 6 MV et de 23 MV (Clinac 2)}
   \label{table_resultats_tpr}
 \end{table}
 
-L'indice de qualité est très légerment sous estimé quelle que soit l'énergie du faisceau avec des écarts relatif de 0,125 \% et de 0,133 \% respectivement pour les faisceaux X6 et X23.
+L'indice de qualité est très légèrement sous estimé quelle que soit l'énergie du faisceau avec des écarts relatif de 0,125 \% et de 0,133 \% respectivement pour les faisceaux X6 et X23.
 
 \subsection{Mesure de la dose absolue de référence}
 
@@ -357,11 +405,11 @@ La messure de la dose absolue se base, dans nos manipulations, sur le protocole 
   \multicolumn{1}{|c|}{\textbf{Dose recette (Gy)}}             & \multicolumn{2}{c|}{1,589}    & \multicolumn{2}{c|}{1,907}                        \\
   \multicolumn{1}{|c|}{\textbf{Écart relatif (\%)}}            & 0,35                  & 0,44  & 1,35                  & \multicolumn{1}{l|}{1,21} \\ \hline
   \end{tabular}
-  \caption{Résultats de la dose absolue dans les conditions de référence avec les chambre Farmer et Pinpoint pour des faisceaux de 6 MV et 23 MV (Clinac 2)}
+  \caption{Résultats de la dose absolue dans les conditions de référence avec les chambres Farmer et Pinpoint pour des faisceaux de 6 MV et 23 MV (Clinac 2)}
   \label{table_dose_abs_resultats}
 \end{table}
 
-Les résultats que nous obtenons sont proches de ceux obtenus lors de la recette, quelle que soit l'énergie du faisceau ainsi que la chambre d'ionisation utilisée lors de la mesure.
+Les résultats que nous obtenons sont proches de ceux obtenus lors de la recette, quelle que soit l'énergie du faisceau ainsi que la chambre d'ionisation utilisée lors de la mesure bien que les volumes sensibles des deux chambres utilisées soient très différents.
 
 \newpage
 \subsection{Incertitudes}
@@ -380,7 +428,7 @@ Le tableau \ref*{table_incertitudes_abs} synthétise les incertitudes associées
     \multicolumn{2}{c|}{\textbf{X23}} &
     \multicolumn{2}{c|}{\textbf{X6}} &
     \multicolumn{2}{c|}{\textbf{X23}} \\ \hline
-  \multicolumn{1}{|c|}{\textbf{type d'incertitude}} &
+  \multicolumn{1}{|c|}{\textbf{Type d'incertitude}} &
     \textbf{A} &
     \multicolumn{1}{c|}{\textbf{B}} &
     \textbf{A} &
@@ -446,7 +494,7 @@ Le tableau \ref*{table_incertitudes_abs} synthétise les incertitudes associées
   \multicolumn{1}{|c|}{\textbf{Incertiture totale (\%)}} &
     \multicolumn{2}{c|}{1,185} &
     \multicolumn{2}{c|}{1,182} &
-    \multicolumn{2}{c|}{1,183} &
+    \multicolumn{2}{c|}{1,182} &
     \multicolumn{2}{c|}{1,182} \\ \hline
   \multicolumn{1}{|c|}{\textbf{Incertitude totale élargie (\%)}} &
     \multicolumn{2}{c|}{2,371} &
@@ -462,34 +510,24 @@ Concernant les incertitudes associées aux mesures, le tableau \ref*{table_incer
 
 \subsection{Erreurs de positionnement}
 
-Les tableaux \ref*{table_erreur_lat} et \ref*{table_erreur_profondeur} rendent compte de l'impact sur la dose d'un mauvais positionnement de 1 mm que ce soit dans les directons parallèle ou perpendiculaire au faisceau. Nous pouvons voir qu'un tel déplacement reste presque négligeable dans les deux directions même si l'effet d'un déplacement en profondeur est un peu plus important puisque la loi de l'inverse carré de la distance rentre en jeu ici.  
+Les tableaux \ref*{table_erreur_lat} et \ref*{table_erreur_profondeur} rendent compte de l'impact sur la dose d'un mauvais positionnement de 1 mm que ce soit dans les directons parallèle ou perpendiculaire au faisceau. Les tableaux \ref*{table_mesure_dep_lat} et \ref*{table_mesure_dep_prof}, en annexe, fournissent l'ensemble des valeurs mesurées ainsi que leur moyenne. Nous pouvons voir qu'un tel déplacement reste presque négligeable dans les deux directions même si l'effet d'un déplacement en profondeur est un peu plus important puisque la loi de l'inverse carré de la distance rentre en jeu ici.  
 
 \begin{table}[h]
   \centering
   \begin{tabular}{c|cc|cc|}
   \cline{2-5}
-                                                           & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \hline
-  \multicolumn{1}{|c|}{\multirow{11}{*}{\textbf{Mesures brutes (nC)}}} & \textbf{1 mm} & \textbf{-1 mm} & \textbf{1 mm} & \textbf{-1 mm} \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & 29,76           & 29,75          & 36,66           & 36,66           \\
-  \multicolumn{1}{|c|}{}                                   & 29,76           & 29,79          & 36,66           & 36,66           \\
-  \multicolumn{1}{|c|}{}                                   & 29,8            & 29,75          & 36,68           & 36,61           \\
-  \multicolumn{1}{|c|}{}                                   & 29,78           & 29,8           & 36,69           & 36,63           \\
-  \multicolumn{1}{|c|}{}                                   & 29,8            & 29,78          & 36,69           & 36,65           \\
-  \multicolumn{1}{|c|}{}                                   & 29,79           & 29,8           & 36,7            & 36,65           \\
-  \multicolumn{1}{|c|}{}                                   & 29,79           & 29,8           & 36,7            & 36,66           \\
-  \multicolumn{1}{|c|}{}                                   & 29,78           & 29,79          & 36,71           & 36,66           \\
-  \multicolumn{1}{|c|}{}                                   & 29,79           & 29,79          & 36,71           & 36,67           \\
-  \multicolumn{1}{|c|}{}                                   & 29,8            & 29,78          & 36,7            & 36,67           \\ \hline
-  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}}     & 29,785          & 29,783         & 36,69           & 36,652          \\
-  \multicolumn{1}{|c|}{\textbf{Écart-type (nC)}}           & 0,015           & 0,019          & 0,018           & 0,019           \\ \hline
-  \multicolumn{1}{|c|}{\textbf{Dose (Gy)}}                 & 1,600           & 1,600          & 1,937           & 1,935           \\
-  \multicolumn{1}{|c|}{\textbf{Incertitude absolue (Gy)}}  & 0,019           & 0,019          & 0,023           & 0,023           \\
-  \multicolumn{1}{|c|}{\textbf{Incertitude relative (\%)}} & 1,182           & 1,182          & 1,178           & 1,182           \\
-  \multicolumn{1}{|c|}{\textbf{Incertitude k=2 (\%)}}      & 2,364           & 2,365          & 2,356           & 2,363           \\
-  \multicolumn{1}{|c|}{\textbf{Écart (mGy)}}               & 5,798           & 5,691          & 4,366           & 2,359           \\
-  \multicolumn{1}{|c|}{\textbf{Écart relatif (\%)}}                   & 0,364           & 0,357          & 0,226           & 0,122           \\ \hline
+  \textbf{} & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \cline{2-5} 
+  \textbf{} & \textbf{1 mm} & \textbf{-1 mm} & \textbf{1 mm} & \textbf{-1 mm} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}} & 29,785 & 29,783 & 36,69 & 36,652 \\
+  \multicolumn{1}{|c|}{\textbf{Ecart type (nC)}} & 0,015 & 0,019 & 0,018 & 0,019 \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Dose (Gy)}} & 1,600 & 1,600 & 1,937 & 1,935 \\
+  \multicolumn{1}{|c|}{\textbf{Incertitude absolue (Gy)}} & 0,019 & 0,019 & 0,023 & 0,023 \\
+  \multicolumn{1}{|c|}{\textbf{Incertitude relative (\%)}} & 1,182 & 1,182 & 1,178 & 1,182 \\
+  \multicolumn{1}{|c|}{\textbf{Incertitude k=2 (\%)}} & 2,364 & 2,365 & 2,356 & 2,363 \\
+  \multicolumn{1}{|c|}{\textbf{Ecart (mGy)}} & 5,798 & 5,691 & 4,366 & 2,359 \\
+  \multicolumn{1}{|c|}{\textbf{Écart relatif (\%)}} & 0,364 & 0,357 & 0,226 & 0,122 \\ \hline
   \end{tabular}
-  \caption{Erreurs de positionnement engendré par un déplacement latéral de la chambre}
+  \caption{Erreurs de positionnement engendrées par un déplacement latéral de la chambre}
   \label{table_erreur_lat}
 \end{table}
 
@@ -497,48 +535,139 @@ Les tableaux \ref*{table_erreur_lat} et \ref*{table_erreur_profondeur} rendent c
   \centering
   \begin{tabular}{c|cc|cc|}
   \cline{2-5}
-                                                           & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \hline
-  \multicolumn{1}{|c|}{\multirow{11}{*}{\textbf{Mesures brutes (nC)}}} & \textbf{101 mm} & \textbf{109 mm} & \textbf{101 mm} & \textbf{109 mm} \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & 29,53           & 29,88          & 36,46           & 36,76           \\
-  \multicolumn{1}{|c|}{}                                   & 29,55           & 29,83          & 36,45           & 36,75           \\
-  \multicolumn{1}{|c|}{}                                   & 29,56           & 29,88          & 36,46           & 36,76           \\
-  \multicolumn{1}{|c|}{}                                   & 29,57           & 29,89          & 36,46           & 36,75           \\
-  \multicolumn{1}{|c|}{}                                   & 29,54           & 29,87          & 36,47           & 36,75           \\
-  \multicolumn{1}{|c|}{}                                   & 29,56           & 29,86          & 36,48           & 36,76           \\
-  \multicolumn{1}{|c|}{}                                   & 29,56           & 29,88          & 36,47           & 36,76           \\
-  \multicolumn{1}{|c|}{}                                   & 29,52           & 29,84          & 36,48           & 36,75           \\
-  \multicolumn{1}{|c|}{}                                   & 29,57           & 29,87          & 36,48           & 36,76           \\
-  \multicolumn{1}{|c|}{}                                   & 29,57           & 29,88          & 36,49           & 36,76           \\ \hline
-  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}}     & 29,553          & 29,868         & 36,470          & 36,756          \\
-  \multicolumn{1}{|c|}{\textbf{É cart-type (nC)}}           & 0,018           & 0,019          & 0,012           & 0,005           \\ \hline
-  \multicolumn{1}{|c|}{\textbf{Dose (Gy)}}                 & 1,588           & 1,605          & 1,925           & 1,941           \\
-  \multicolumn{1}{|c|}{\textbf{Incertitude absolue (Gy)}}  & 0,019           & 0,019          & 0,023           & 0,023           \\
-  \multicolumn{1}{|c|}{\textbf{Incertitude relative (\%)}} & 1,182           & 1,182          & 1,179           & 1,181           \\
-  \multicolumn{1}{|c|}{\textbf{Incertitude k=2 (\%)}}      & 2,364           & 2,365          & 2,357           & 2,361           \\
-  \multicolumn{1}{|c|}{\textbf{Écart (mGy)}}               & 6,667           & 10,258         & 7,249           & 7,850           \\
-  \multicolumn{1}{|c|}{\textbf{ER (\%)}}                   & 0,418           & 0,643          & 0,375           & 0,406           \\ \hline
+  \textbf{} & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \cline{2-5} 
+  \textbf{} & \textbf{101 mm} & \textbf{109 mm} & \textbf{101 mm} & \textbf{109 mm} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}} & 29,553 & 29,868 & 36,470 & 36,756 \\
+  \multicolumn{1}{|c|}{\textbf{Ecart type (nC)}} & 0,018 & 0,019 & 0,012 & 0,005 \\
+  \multicolumn{1}{|c|}{\textbf{Dose (Gy)}} & 1,588 & 1,605 & 1,925 & 1,941 \\
+  \multicolumn{1}{|c|}{\textbf{Incertitude absolue (Gy)}} & 0,019 & 0,019 & 0,023 & 0,023 \\
+  \multicolumn{1}{|c|}{\textbf{Incertitude relative (\%)}} & 1,182 & 1,182 & 1,179 & 1,181 \\
+  \multicolumn{1}{|c|}{\textbf{Incertitude k=2 (\%)}} & 2,364 & 2,365 & 2,357 & 2,361 \\
+  \multicolumn{1}{|c|}{\textbf{Écart (mGy)}} & 6,667 & 10,258 & 7,249 & 7,850 \\
+  \multicolumn{1}{|c|}{\textbf{Écart relatif (\%)}} & 0,418 & 0,643 & 0,375 & 0,406 \\ \hline
   \end{tabular}
-  \caption{Erreurs de positionnement engendré par un déplacement en profondeur de la chambre}
+  \caption{Erreurs de positionnement engendrées par un déplacement en profondeur de la chambre}
   \label{table_erreur_profondeur}
 \end{table}
 
+\newpage
 \subsection{Contrôle du débit de référence (TOP)}
 
 Le tableau \ref*{table_coeff_passage} résume les résultats obtenus pour le calcul de la dose dans la boîte à TOP. La dose dans l'eau mesurée dans la cuve à eau a été utilsée pour calculer le coefficient de passage pour chacune des énergies du Clinac 2. 
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{cccc}
+  \begin{tabular}{>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2cm}}
     \toprule
-    \textbf{Énergie (MV)} & \textbf{Dose eau (Gy)} & \textbf{Charge TOP (nC)} & \textbf{Coefficient (Gy/nC)}\\
+    \textbf{Date} & \textbf{Énergie (MV)} & \textbf{Dose eau (Gy)} & \textbf{Charge TOP (nC)} & \textbf{Coefficient (Gy/nC)} & \textbf{Écart (\%)}\\
     \toprule
-    6 & 1,601 & 25,88 & 6,19$\times$ 10$^{-2}$ \\
-    23 & 1,974 & 32,06 & 6,16$\times$ 10$^{-2}$ \\
+    14/09/2023 & 6 & 1,601 & 25,88 & 6,19$\times$ 10$^{-2}$ & \\
+    24/02/2023 & 6 & 1,589 & / & 6,065$\times$ 10$^{-2}$ & 2,06 \\
+    \hline
+    14/09/2023 & 23 & 1,974 & 32,06 & 6,16$\times$ 10$^{-2}$ & \\
+    24/02/2023 & 23 & 1,907 & / & 5,908$\times$ 10$^{-2}$ & 4,27 \\
     \bottomrule
   \end{tabular}
   \caption{Résultats des coefficients de passage pour les deux faisceaux de photons disponibles sur le Clinac 2}
   \label{table_coeff_passage}
 \end{table}
+
+Nous observons un écart jusqu'à 4,27 \% entre le coefficient calculé lors des mesures et celui du mois de février. Cette différence s'explique par le fait que pour le coefficient du mois de février, la dose dans l'eau choisie pour le calcul était celle de la recette (1,589 Gy) alors que la dose sélectionnée pour celui de septembre est la dose dans l'eau mesurée lors de nos mesures (1,601 Gy). Si nous calculons l'écart entre les deux coefficient en prenant toujours la dose de la recette comme référence, nous obtenons les résultats donnés dans le tableau \ref*{table_vrai_ecart_coeff}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    \textbf{Date} & \textbf{Énergie (MV)} & \textbf{Coefficient (Gy/nC)} & \textbf{Écart (\%)} \\
+    \toprule
+    14/09/2023 & 6 & 6,14$\times$ 10$^{-2}$ & \\
+    24/09/2023 & 6 & 6.07$\times$ 10$^{-2}$ & 1,15 \\
+    \hline
+    14/09/2023 & 23 & 5,95$\times$ 10$^{-2}$ & \\
+    24/02/2023 & 23 & 5,91$\times$ 10$^{-2}$ & 0,68 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Écart entre le coefficient de février et celui de septembre à partir de la dose de la recette}
+  \label{table_vrai_ecart_coeff}
+\end{table}
+
+L'écart entre les deux coefficients fournis par le tableau \ref*{table_vrai_ecart_coeff} est en dessous des 2\% pour les faisceaux de 6 MV et de 23 MV. La dose délivrée par le faisceau est donc stable dans le temps quelle que soit l'énergie de celui-ci.
+
+\clearpage
+\section{Annexe}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{figures/tableau_corr_faisceau.png}
+  \caption{Valeurs calculées du $k_{Q,\, Q_0}$ pour les faisceaux de photons de haute énergie}
+  \label{fig_table_kQQ0}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|cc|cc|}
+  \cline{2-5}
+                                                                & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \cline{2-5} 
+  \textbf{}                                                     & \textbf{10 cm}  & \textbf{20 cm} & \textbf{10 cm}  & \textbf{20 cm}  \\ \hline
+  \multicolumn{1}{|c|}{\multirow{10}{*}{\textbf{Mesures (nC)}}} & 29,7            & 19,7           & 36,58           & 28,6            \\
+  \multicolumn{1}{|c|}{}                                        & 29,66           & 19,67          & 36,57           & 28,54           \\
+  \multicolumn{1}{|c|}{}                                        & 29,66           & 19,66          & 36,58           & 28,51           \\
+  \multicolumn{1}{|c|}{}                                        & 29,69           & 19,7           & 36,57           & 28,52           \\
+  \multicolumn{1}{|c|}{}                                        & 29,66           & 19,66          & 36,58           & 28,52           \\
+  \multicolumn{1}{|c|}{}                                        & 29,63           & 19,65          & 36,62           & 28,53           \\
+  \multicolumn{1}{|c|}{}                                        & 29,63           & 19,66          & 36,58           & 28,53           \\
+  \multicolumn{1}{|c|}{}                                        & 29,63           & 19,68          & 36,6            & 28,53           \\
+  \multicolumn{1}{|c|}{}                                        & 29,64           & 19,65          & 36,58           & 28,54           \\
+  \multicolumn{1}{|c|}{}                                        & 29,69           & 19,66          & 36,59           & 28,53           \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}}          & 29,66           & 19,67          & 36,59           & 28,54           \\ \hline
+  \end{tabular}
+  \caption{Ensemble des valeurs mesurées pour le calcul de l'indice de qualité}
+  \label{table_mesures_IQ}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|cc|cc|}
+  \cline{2-5}
+  \textbf{}                                                     & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \cline{2-5} 
+  \textbf{}                                                     & \textbf{1 mm}     & \textbf{-1 mm}     & \textbf{1 mm}      & \textbf{-1 mm}     \\ \hline
+  \multicolumn{1}{|c|}{\multirow{10}{*}{\textbf{Mesures (nC)}}} & 29,76          & 29,75           & 36,66           & 36,66           \\
+  \multicolumn{1}{|c|}{} & 29,76 & 29,79 & 36,66 & 36,66 \\
+  \multicolumn{1}{|c|}{} & 29,80 & 29,75 & 36,68 & 36,61 \\
+  \multicolumn{1}{|c|}{} & 29,78 & 29,80 & 36,69 & 36,63 \\
+  \multicolumn{1}{|c|}{} & 29,80 & 29,78 & 36,69 & 36,65 \\
+  \multicolumn{1}{|c|}{} & 29,79 & 29,80 & 36,70 & 36,65 \\
+  \multicolumn{1}{|c|}{} & 29,79 & 29,80 & 36,70 & 36,66 \\
+  \multicolumn{1}{|c|}{} & 29,78 & 29,79 & 36,71 & 36,66 \\
+  \multicolumn{1}{|c|}{} & 29,79 & 29,79 & 36,71 & 36,67 \\
+  \multicolumn{1}{|c|}{} & 29,80 & 29,78 & 36,70 & 36,67 \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}}          & 29,785         & 29,783          & 36,69           & 36,652          \\ \hline
+  \end{tabular}
+  \caption{Ensemble des valeurs mesurées pour le calcul des incertitudes de déplacement latéral}
+  \label{table_mesure_dep_lat}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|cc|cc|}
+  \cline{2-5}
+  \textbf{} & \multicolumn{2}{c|}{\textbf{X6}} & \multicolumn{2}{c|}{\textbf{X23}} \\ \cline{2-5} 
+  \textbf{} & \textbf{101 mm} & \textbf{109 mm} & \textbf{101 mm} & \textbf{109 mm} \\ \hline
+  \multicolumn{1}{|c|}{\multirow{10}{*}{\textbf{Mesures (nC)}}} & 29,53 & 29,88 & 36,46 & 36,76 \\
+  \multicolumn{1}{|c|}{} & 29,55 & 29,83 & 36,45 & 36,75 \\
+  \multicolumn{1}{|c|}{} & 29,56 & 29,88 & 36,46 & 36,76 \\
+  \multicolumn{1}{|c|}{} & 29,57 & 29,89 & 36,46 & 36,75 \\
+  \multicolumn{1}{|c|}{} & 29,54 & 29,87 & 36,47 & 36,75 \\
+  \multicolumn{1}{|c|}{} & 29,56 & 29,86 & 36,48 & 36,76 \\
+  \multicolumn{1}{|c|}{} & 29,56 & 29,88 & 36,47 & 36,76 \\
+  \multicolumn{1}{|c|}{} & 29,52 & 29,84 & 36,48 & 36,75 \\
+  \multicolumn{1}{|c|}{} & 29,57 & 29,87 & 36,48 & 36,76 \\
+  \multicolumn{1}{|c|}{} & 29,57 & 29,88 & 36,49 & 36,76 \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Charge moyenne   (nC)}} & 29,553 & 29,868 & 36,470 & 36,756 \\ \hline
+  \end{tabular}
+  \caption{Ensemble des valeurs mesurées pour le calcul des incertitudes de déplacement en profondeur}
+  \label{table_mesure_dep_prof}
+  \end{table}
 
 \clearpage
 \bibliography{biblio}
