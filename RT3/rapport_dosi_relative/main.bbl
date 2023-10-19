@@ -1,9 +1,26 @@
 \begin{thebibliography}{1}
 
+\bibitem{ChoixDetecteursCoursBellec}
+Julien Bellec.
+\newblock {\em Choix et utilisation des systèmes de mesure associés aux
+  contrôles dosimétriques en radiothérapie}.
+\newblock Cours DQPRM.
+
+\bibitem{chauvenetutilisation}
+B~Chauvenet, F~Delaunay, JM~Dolo, G~Le~Roy, A~Bridier, P~Francois, and
+  R~Sabattier.
+\newblock Utilisation des r{\'e}f{\'e}rences m{\'e}trologiques nationales de
+  dose absorb{\'e}e dans l'eau et application du protocole de dosim{\'e}trie
+  aiea trs n 398 aux faisceaux de photons de haute {\'e}nergie.
+
 \bibitem{coste2020}
 Frédéric Coste.
 \newblock {\em Définition de la qualité des faisceaux de photons}.
 \newblock Cours Master 2 Nantes.
+
+\bibitem{UtilisationMyQA}
+IBA Dosimetry.
+\newblock {\em MyQA Accept User's Guide}.
 
 \bibitem{mayles2007handbook}
 Philip Mayles, Alan Nahum, and Jean-Claude Rosenwald.
