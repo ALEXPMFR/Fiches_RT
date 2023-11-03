@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{esint}
+\usepackage{geometry}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{ctable}
+\usepackage{fancybox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[french]{babel}
+\usepackage{dsfont}
+\usepackage{setspace}
+\usepackage[french]{minitoc}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+
+\addtocounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{white}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% PRÉSENTATION %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{presentation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% STYLE %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\onehalfspacing
+
+%Style  du corps
+\pagestyle{fancy}
+	\renewcommand\headrulewidth{0.5pt}
+	\renewcommand\footrulewidth{0.5pt}
+	\fancyfoot[L]{\textsc{A. Rintaud}}
+	\fancyfoot[C]{\textsc{ICO Nantes}}
+	\fancyfoot[R]{\thepage}
+
+\tableofcontents
+\clearpage
+\section{Introduction}
+
+La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
+
+Ce rapport traitera des faisceaux de photons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilsiés lors des mesures des doses absolues basées sur les protocoles internationaux fournis par l'Agence Internationale de l'Énergie Atomique (AIEA) seront explicités, puis les résultats seront présentés. 
+
+\section{Matériels et méthodes}
+
+Cette partie est consacrée à la mesure de la dose absorbée dans les conditions de référence, telles que décrites dans le protocole TRS-398 de l'AIEA \cite{international2001iaea}. De plus, nous développerons également la méthodologie du protocole TRS-277 \cite{internationaliaea}.
+
+\subsection{Facteurs correctifs}
+
+L'utilisation d'une chambre d'ionnisation à cavité d'air étanche pour la mesure de la dose absolue engendre une fluctuation de la réponse du système de mesure en fonction de plusieurs paramètres. Il faut donc appliquer une correction de la mesure grâce à l'équation suivante :
+
+\begin{equation}
+  M_{Q}^{'} = M_Q \times k_{T,P} \times k_{pol} \times k_{rec} \times k_H
+  \label{eq_corr_charge}
+\end{equation}
+
+Avec $M_Q$ la charge mesurée sur l'électromètre, $k_{T,P}$ le facteur correctif de la pression et de la température, $k_{pol}$ le facteur correctif de la polarisation de la chambre, $k_{rec}$ le facteur correctif de la recombinaison ionique et $k_H$ le facteur correctif des conditions hygrométriques.
+
+\subsubsection{Pression et température}
+
+Le facteur $k_{T,P}$ permet de corriger de la pression et de la température et se calcule de la manière suivante :
+
+\begin{equation}
+  k_{T,P} = \dfrac{P_0T}{T_0P}
+  \label{eq_k_TP}
+\end{equation}
+
+Avec $P_0$ et $T_0$ la pression et la température de référence, respectivement égales à 1013,25 hPa et 273,15 K, $P$ et $T$ sont la pression et la température de la salle lors de la mesure.
+
+\subsubsection{Polarisation}
+
+Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polarité appliquée à la chambre lors de la mesure :
+
+\begin{equation}
+  k_{pol} = \dfrac{|M_+| + |M_-|}{2M}
+  \label{eq_pol}
+\end{equation}
+
+Avec $M_+$ et $M_-$ les charges mesurées pour les tensions $V_+$ et $V_-$ respectivement et $M$ est la réponse pour la tension utilisée en clinique.
+
+\subsubsection{Recombinaisons ioniques}
+
+Le facteur de recombinaison permet de corriger la réponse de la chambre d'ionisation sur le nombre de charges collectées. La mesure est sous estimée car des paires d'ions sont recombinées et ne rentrent pas en compte dans la mesure.
+
+\begin{equation}
+  k_{rec} = a_0 + a_1 \left(\dfrac{M_1}{M_2}\right) + a_2 \left(\dfrac{M_1}{M_2}\right) ^2
+  \label{eq_rec}
+\end{equation}
+
+Avec $M_1$ et $M_2$ les réponses aux tensions $V_1$ et $V_2$ respectivement, et $a_0$, $a_1$ et $a_2$ sont les facteurs tabulés en fonction du rapport $\frac{V_1}{V_2}$ fournis par le protocole TRS-398 \cite{international2001iaea}.
+
+\subsubsection{Humidité}
+
+Ce facteur est égale à 1 lorsque l'humidité de la salle est comprise entre 20\% et 80\%, sinon il faut lui attribuer la valeur de 0,997.
+
+\clearpage
+\bibliography{biblio}
+\addcontentsline{toc}{section}{Références}
+\bibliographystyle{plain}
+\nocite{*}
+
+\end{document}
