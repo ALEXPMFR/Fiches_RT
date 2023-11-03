@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import matplotlib.ticker as ticker
 
 excel_files = list(Path('../export_excel/').rglob('*.xlsx'))
 
@@ -33,14 +34,7 @@ def rendements_energies():
     plt.figure(figsize=(12, 7))
     for sheet in df.sheet_names:
         if sheet.split('_')[2] == '10' and sheet.split('_')[3] == 'DSP100' and sheet.split('_')[4] == 'ROOS':
-            orientation = sheet.split('_')[0]
             energie = str(int(sheet.split('_')[1][:2]))
-            taille_champ = sheet.split('_')[2] + 'x' + sheet.split('_')[2] + r' cm$^2$'
-            dsp = sheet.split('_')[3][3:] + ' cm'
-            if orientation == 'cr':
-                orientation = 'Crossline'
-            elif orientation == 'in':
-                orientation = 'Inline'
             df = pd.read_excel('../export_excel/rendements.xlsx', sheet)
             plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=energie + ' MeV')
             plt.grid(ls='--')
@@ -57,16 +51,8 @@ def rendements_DSP():
     plt.figure(figsize=(12, 7))
     for sheet in df.sheet_names:
         if sheet.split('_')[2] == '10' and sheet.split('_')[1] == '09MeV' and sheet.split('_')[4] == 'ROOS':
-            # orientation = sheet.split('_')[0]
-            # energie = str(int(sheet.split('_')[1][:2]))
-            # taille_champ = sheet.split('_')[2] + 'x' + sheet.split('_')[2] + r' cm$^2$'
-            # dsp = sheet.split('_')[3][3:] + ' cm'
-            # if orientation == 'cr':
-            #     orientation = 'Crossline'
-            # elif orientation == 'in':
-            #     orientation = 'Inline'
             df = pd.read_excel('../export_excel/rendements.xlsx', sheet)
-            plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=sheet.split('_')[3][3:])
+            plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=sheet.split('_')[3][3:] + ' cm')
     plt.grid(ls='--')
     plt.xlabel('Profondeur (mm)')
     plt.ylabel('Dose relative (%)')
@@ -82,7 +68,7 @@ def rendements_champs():
     for sheet in sorted(df.sheet_names):
         df = pd.read_excel('../export_excel/rendements.xlsx', sheet)
         if sheet.split('_')[1] == '09MeV' and sheet.split('_')[3] == 'DSP100' and sheet.split('_')[4] == 'CC13':
-            plt.plot(df.iloc[:, 0], df.iloc[:, 1], lw=1, label=sheet.split('_')[2] + r' cm$^2$')
+            plt.plot(df.iloc[:, 0], df.iloc[:, 1], lw=1, label=str(int(sheet.split('_')[2])) + r' cm$^2$')
     plt.xlim(0, 75)
     plt.ylim(0, 102)
     plt.grid(ls='--')
@@ -104,9 +90,9 @@ def rendements_detecteurs():
     plt.title('Rendement en profondeur en fonction du détecteur')
     plt.legend()
     plt.grid(ls='--')
-    plt.savefig('figures/rendements_detecteurs.png', dpi=250)
-    plt.xlim(0, 75)
+    plt.xlim(0, 60)
     plt.ylim(0, 102)
+    plt.savefig('figures/rendements_detecteurs.png', dpi=250)
 
 def profils_energies():
     df = pd.ExcelFile('../export_excel/profils.xlsx')
@@ -150,7 +136,7 @@ def profils_detecteurs():
     plt.ylabel('Dose relative (%)')
     plt.title('Profil de dose en fonction du détecteur')
     plt.legend()
-    plt.show()
+    plt.savefig('figures/profils_detecteurs.png', dpi=250)
 
 def profils_orientation():
     df = pd.ExcelFile('../export_excel/profils.xlsx')
@@ -182,16 +168,52 @@ def profils_vitesse():
     plt.grid(ls='--')
     plt.show()
 
+def profils_taille_champ():
+    df = pd.ExcelFile('../export_excel/profils.xlsx')
+    plt.figure(figsize=(12, 7))
+    for sheet in sorted(df.sheet_names):
+        df = pd.read_excel('../export_excel/profils.xlsx', sheet)
+        if sheet.split('_')[0] == 'CR' and sheet.split('_')[1] == '09MeV' and sheet.split('_')[3] == 'DSP100' and sheet.split('_')[4] == 'CC13' and len(sheet.split('_')) == 5:
+            plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=str(int(sheet.split('_')[2])) + 'x' + str(int(sheet.split('_')[2])) + r' cm$^2$')
+    plt.grid(ls='--')
+    plt.legend()
+    plt.xlabel('Distance (mm)')
+    plt.ylabel('Dose relative (%)')
+    plt.title('Profil de dose en fonction de la taille de champ')
+    plt.xlim(-150, 150)
+    plt.ylim(0, 102)
+    plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(15))
+    plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(10))
+    plt.gca().xaxis.set_minor_locator(ticker.MultipleLocator(5))
+    plt.savefig('figures/profils_taille_champ.png', dpi=250)
+
+def FOC():
+    plt.figure(figsize=(12, 7))
+    for ene in ['6 MeV', '15 MeV']:
+        df = pd.read_excel('../export_excel/FOC_electrons.xlsx', ene)
+        df = df.dropna()
+        df['FOC (%)'] = df['Charge moyenne (nC)'] / float(df.loc[df['Taille de champ (cm2)'] == 10, 'Charge moyenne (nC)']) * 100
+
+        plt.scatter(df['Taille de champ (cm2)'], df['FOC (%)'], marker='x', label=ene)
+    plt.grid(ls='--')
+    plt.xlabel(r'Taille de champ (cm$^2$)')
+    plt.ylabel('FOC (%)')
+    plt.title('FOC en fonction de la taille de champ')
+    plt.legend()
+    plt.savefig('figures/FOC.png', dpi=250)
+
 def main():
-    unique()
-    rendements_energies()
-    rendements_DSP()
-    rendements_champs()
-    rendements_detecteurs()
-    profils_energies()
-    profils_DSP()
+    # unique()
+    # rendements_energies()
+    # rendements_DSP()
+    # rendements_champs()
+    # rendements_detecteurs()
+    # profils_energies()
+    # profils_DSP()
     profils_detecteurs()
-    profils_orientation()
-    profils_vitesse()
+    # profils_orientation()
+    # profils_vitesse()
+    # FOC()
+    # profils_taille_champ()
 
 main()

@@ -81,10 +81,136 @@
 \clearpage
 \section{Introduction}
 
-% \clearpage
-% \bibliography{biblio}
-% \addcontentsline{toc}{section}{Références}
-% \bibliographystyle{plain}
-% \nocite{*}
+\section{Matériels et méthodes}
+
+\subsection{Profils de dose}
+
+Les profils de dose permettent d'évaluer la répartition de la dose suivant les axes perpendiculaires à l'axe du faisceau. Les profils sont composés de trois régions principales (voir figure \ref*{fig_regions_profil}) :
+
+\begin{itemize}
+  \item[$\bullet$] zone centrale
+  \item[$\bullet$] pénombre
+  \item[$\bullet$] dose hors champ
+\end{itemize}
+
+Pour évaluer les différents profils, plusieurs métriques sont à notre disposition :
+
+\begin{itemize}
+  \item[$\bullet$] L'homogénéité permet d'évaluer la planéité de la zone centrale du profil. Cette métrique se calcule comme suit :
+  
+  \begin{equation}
+    H = \dfrac{D_{max} - D_{min}}{D_{max} + D_{min}}
+    \label{eq_homogeneite}
+  \end{equation}
+  
+  \item[$\bullet$] La symétrie est définie de la manière suivante :
+  
+  \begin{equation}
+    S = \max\left(\dfrac{D(-x)}{D(+x)}; \dfrac{D(+x)}{D(-x)}\right)
+    \label{eq_symetrie}
+  \end{equation}
+  
+  \item[$\bullet$] La pénombre est la distance séparant le point à 20 \% de la dose maximale et celui à 80 \%. Il y a donc une valeur pour chacun des côtés du faisceau.  
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.8]{figures/regions_profil.PNG}
+  \caption{Différentes régions d'un profil de dose}
+  \label{fig_regions_profil}
+\end{figure}
+
+\newpage
+\section{Résultats}
+\subsection{Rendements en profondeur}
+
+\subsubsection{Influence de l'énergie}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/rendements_energies.png}
+  \caption{Inlfuence de l'énergie du faisceau d'électrons sur le rendement en profondeur}
+  \label{fig_rdt_energie}
+\end{figure}
+
+\subsubsection{Influence de la taille de champ}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/rendements_taille_champ.png}
+  \caption{Inlfuence de la taille de champ du faisceau d'électrons sur le rendement en profondeur}
+  \label{fig_rdt_champ}
+\end{figure}
+
+\subsubsection{Inlfuence de la DSP}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/rendements_DSP.png}
+  \caption{Influence de la DSP sur le rendement en profondeur}
+  \label{fig_rdt_DSP}
+\end{figure}
+
+\subsubsection{Influence du détecteur}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/rendements_detecteurs.png}
+  \caption{Influence du détecteur sur le rendement en profondeur}
+  \label{fig_rdt_detecteur}
+\end{figure}
+
+\subsection{Profils de dose}
+\subsubsection{Inlfuence de l'énergie}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_energies.png}
+  \caption{Influence de l'énergie du faisceau d'électrons sur le profil de dose}
+  \label{fig_profil_energie}
+\end{figure}
+
+\subsubsection{Inlfuence de la taille de champ}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_taille_champ.png}
+  \caption{Inluence de la taille de champ du faisceau d'électrons sur le profil de dose}
+  \label{fig_profils_taille}
+\end{figure}
+
+\subsubsection{Inlfuence de la DSP}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_DSP.png}
+  \caption{Influence de la DSP sur le profil de dose}
+  \label{fig_profil_DSP}
+\end{figure}
+
+\subsubsection{Influence du détecteur}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_detecteurs.png}
+  \caption{Influence du détecteur sur le profil de dose}
+  \label{fig_profils_detecteur}
+\end{figure}
+
+\newpage
+\subsection{Facteurs d'ouvertur du collimateur}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/FOC.png}
+  \caption{Facteurs d'ouverture du collimateur}
+  \label{fig_foc}
+\end{figure}
+
+\clearpage
+\bibliography{biblio}
+\addcontentsline{toc}{section}{Références}
+\bibliographystyle{plain}
+\nocite{*}
 
 \end{document}
