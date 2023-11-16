@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex main"] 1696955889 "main.aux" "main.bbl" "main" 1696955970
+["bibtex main"] 1699458855 "main.aux" "main.bbl" "main" 1699951203
   "/usr/local/texlive/2022/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
   "biblio.bib" 1696587981 1038 5936182c72e686af1bb48b56620d5417 ""
-  "main.aux" 1696955970 11972 d8991e39bae5e830eda7bfe20d82e341 "pdflatex"
+  "main.aux" 1699951203 12478 f6b15ba43bca0e50b3428dbede9c59b1 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1696955968 "/Volumes/LEXAR/Fiches_DQ/RT/RT3/rapport_dosi_abs/main.tex" "main.pdf" "main" 1696955970
-  "/Volumes/LEXAR/Fiches_DQ/RT/RT3/rapport_dosi_abs/main.tex" 1696955968 34564 bbdc44b8e5a7f42f4f335369dc4d9c9e ""
+["pdflatex"] 1699951201 "/Volumes/LEXAR/Fiches_DQ/RT/RT3/rapport_dosi_abs/main.tex" "main.pdf" "main" 1699951203
+  "/Volumes/LEXAR/Fiches_DQ/RT/RT3/rapport_dosi_abs/main.tex" 1699951200 36724 24234843df64349326217e7b69c959e4 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -380,18 +380,19 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1677069820 2826435 70edb732251adf69ed4794e55dd38c2f ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "figures/coeff_krec.png" 1694600040 76121 e12072852c40d3a1f1600d4bba02824d ""
+  "figures/certificat_ref1.PNG" 1699346518 93446 9cf15ee6664f2dec71e94555cef6607f ""
+  "figures/coeff_krec.png" 1699344907 48194 f3df4cecace5e5ed07e94f0c6fb3efe2 ""
   "figures/conditions_ref_top.png" 1694694237 68710 59fb10c9793d1a846aa1ab37ddfc7056 ""
   "figures/iq_schema.png" 1696499931 51669 223e7a522bf15566ae0ba3eef30ac3de ""
   "figures/logo_ico.png" 1691505281 89366 2ff5053c0b6b550c110e156e9bb700a9 ""
   "figures/tableau_corr_faisceau.png" 1696853763 253380 1836294f6d99f371b0e0096396bed6e2 ""
-  "main.aux" 1696955970 11972 d8991e39bae5e830eda7bfe20d82e341 "pdflatex"
-  "main.bbl" 1696955889 744 d93da1ce69b415069ef947921749423a "bibtex main"
+  "main.aux" 1699951203 12478 f6b15ba43bca0e50b3428dbede9c59b1 "pdflatex"
+  "main.bbl" 1699458855 744 d93da1ce69b415069ef947921749423a "bibtex main"
   "main.mtc" 0 -1 0 "pdflatex"
   "main.mtc0" 0 -1 0 "pdflatex"
-  "main.out" 1696955970 4398 4e05422f64c94300880e8cfe6f7e1b56 "pdflatex"
-  "main.tex" 1696955968 34564 bbdc44b8e5a7f42f4f335369dc4d9c9e ""
-  "main.toc" 1696955970 2322 22b2012e11d88d937073112d6515b3f8 "pdflatex"
+  "main.out" 1699951203 4398 96eccd17f3064795e746c112adf5213a "pdflatex"
+  "main.tex" 1699951200 36724 24234843df64349326217e7b69c959e4 ""
+  "main.toc" 1699951203 2322 4be82ee7a2c12c50b3e7b1ef7a9bfd03 "pdflatex"
   "presentation.tex" 1696501139 1110 697129034c97e418eec4fecd3072aa84 ""
   (generated)
   "main.aux"

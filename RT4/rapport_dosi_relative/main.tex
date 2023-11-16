@@ -83,6 +83,45 @@
 
 \section{Matériels et méthodes}
 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cc|c|c|}
+  \cline{3-4}
+   &  & \textbf{Référence} & \textbf{Comparaisons} \\ \hline
+  \multicolumn{1}{|c|}{\multirow{4}{*}{\textbf{Rendement}}} & \textbf{Champ (cm2)} & 10x10 & 6x6, 15x15, 20x20 \\
+  \multicolumn{1}{|c|}{} & \textbf{DSP (cm)} & 100 & 105, 110 \\
+  \multicolumn{1}{|c|}{} & \textbf{Energie (MV)} & 9 & 6, 12, 15, 18 \\
+  \multicolumn{1}{|c|}{} & \textbf{Détecteur} & ROOS & CC13 \\ \hline
+  \multicolumn{1}{|c|}{\multirow{5}{*}{\textbf{Profils}}} & \textbf{Champ (cm2)} & 10x10 & 6x6, 15x15, 20x20 \\
+  \multicolumn{1}{|c|}{} & \textbf{Energie (MV)} & 9 & 6, 12, 15, 18 \\
+  \multicolumn{1}{|c|}{} & \textbf{Détecteur} & CC13 & ROOS \\
+  \multicolumn{1}{|c|}{} & \textbf{Orientation du profil} & Crossline & Inline \\
+  \multicolumn{1}{|c|}{} & \textbf{DSP (cm)} & 100 & 105, 110 \\ \hline
+  \multicolumn{1}{|c|}{\textbf{FOC}} & \textbf{Energie (MV)} & 6 & 15 \\ \hline
+  \end{tabular}
+  \caption{Différentes meures réalisées pour la dosimétrie relative}
+  \label{table_mesures}
+  \end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccc}
+    \toprule
+    \textbf{Matériel} & \textbf{Volulme sensible (cm} $\mathbf{^2}$\textbf{)} & Matériau & \textbf{Constructeur} & \textbf{N$^{\circ}$ de série}\\
+    \toprule
+    Chambre Farmer 30013 & 0,6 & Air & PTW & 011924 \\
+    Chambre ROOS & 0,35 & Air & PTW & 002030 \\
+    Electromètre Unidos & / & / & PTW & 20505 \\
+    Cuve à eau Blue Phantom 2 & / & / & IBA & 8173 \\
+    Clinac iX 2300 (Clinac 3) & / & / & Varian & H141033 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Matériel utilisé lors des mesures}
+  \label{table_matos}
+\end{table}
+
+
+
 \subsection{Profils de dose}
 
 Les profils de dose permettent d'évaluer la répartition de la dose suivant les axes perpendiculaires à l'axe du faisceau. Les profils sont composés de trois régions principales (voir figure \ref*{fig_regions_profil}) :

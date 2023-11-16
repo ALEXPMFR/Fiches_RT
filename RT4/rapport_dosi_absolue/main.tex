@@ -82,7 +82,7 @@
 
 La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
 
-Ce rapport traitera des faisceaux de photons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilsiés lors des mesures des doses absolues basées sur les protocoles internationaux fournis par l'Agence Internationale de l'Énergie Atomique (AIEA) seront explicités, puis les résultats seront présentés. 
+Ce rapport traitera des faisceaux de photons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilisés lors des mesures des doses absolues basées sur les protocoles internationaux fournis par l'Agence Internationale de l'Énergie Atomique (AIEA) seront explicités, puis les résultats seront présentés. 
 
 \section{Matériels et méthodes}
 
@@ -110,6 +110,8 @@ Le facteur $k_{T,P}$ permet de corriger de la pression et de la température et 
 
 Avec $P_0$ et $T_0$ la pression et la température de référence, respectivement égales à 1013,25 hPa et 273,15 K, $P$ et $T$ sont la pression et la température de la salle lors de la mesure.
 
+\paragraph*{N.B. :} La température de référence lors de l'étalonnage de la chambre d'ionisation n'est pas forcément 273,15 K. Il faut utiliser celle mentionnée sur le certificat d'étalonnage.
+
 \subsubsection{Polarisation}
 
 Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polarité appliquée à la chambre lors de la mesure :
@@ -119,7 +121,7 @@ Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polar
   \label{eq_pol}
 \end{equation}
 
-Avec $M_+$ et $M_-$ les charges mesurées pour les tensions $V_+$ et $V_-$ respectivement et $M$ est la réponse pour la tension utilisée en clinique.
+Avec $M_+$ et $M_-$ les charges mesurées pour les tensions $V_+$ et $V_-$ respectivement et $M$ est la réponse pour la tension utilisée en clinique. Si la tension appliquée lors des mesures est la même que celle pour laquelle la chambre a été étalonnée, le facteur $k_{pol}$ n'est pas à appliquer.
 
 \subsubsection{Recombinaisons ioniques}
 
@@ -132,9 +134,65 @@ Le facteur de recombinaison permet de corriger la réponse de la chambre d'ionis
 
 Avec $M_1$ et $M_2$ les réponses aux tensions $V_1$ et $V_2$ respectivement, et $a_0$, $a_1$ et $a_2$ sont les facteurs tabulés en fonction du rapport $\frac{V_1}{V_2}$ fournis par le protocole TRS-398 \cite{international2001iaea}.
 
+\paragraph*{N.B. :} le facteur $k_{rec}$ n'est pas appliqué si la tension utilisée lors des mesures est la même tension qui a été appliqué lors de l'étalonnage par le laboratoire primaire.
+
 \subsubsection{Humidité}
 
 Ce facteur est égale à 1 lorsque l'humidité de la salle est comprise entre 20\% et 80\%, sinon il faut lui attribuer la valeur de 0,997.
+
+\subsection{Protocole TRS-277}
+
+La dose en un point est donnée par la formule \ref*{eq_dose_397}, tirée du formalisme TRS-277 :
+
+\begin{equation}
+  D_{eau,\, Q} = M_Q^{'} N_{K_{air, Q_0}} k_{att} k_m (1-g) \left( \dfrac{S}{\rho} \right)^{eau}_{air} p_u p_{cel}
+  \label{eq_dose_397}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+  \item[$\bullet$] $M_Q^{'}$ la mesure de la charge corrigée mesurée avec la chambre d'ionisation 
+  \item[$\bullet$] $N_{K_{air, Q_0}}$ le coefficient d'étalonnage de la chambre d'ionisation fourni par le laboratoire primaire
+  \item[$\bullet$] $g$ la fraction de la perte d'énergie des particules secondaires par radiations(rayonnement de freinage)
+  \item[$\bullet$] $k_m$ 
+  \item[$\bullet$] $\left( \dfrac{S}{\rho} \right)^{eau}_{air}$ le rapport des pouvoirs d'arrêt massiques de l'eau sur celui de l'air
+  \item[$\bullet$] $p_u$ le facteur de correction des perturbations
+\end{itemize}
+
+\subsection{Protocole TRS-398}
+
+Le protocole TRS-398 de l'AIEA \cite{international2001iaea} nous donne l'équation pour le cacul de la dose absorbée de référence pour les faisceaux d'électrons :
+
+\begin{equation}
+  D_{eau, \, Q} = M_Q^{'} N_{D_{eau}, \, Q_0} k_{Q,\, Q_0}
+  \label{eq_dose_398}
+\end{equation}
+
+Avec :
+\begin{itemize}
+  \item[$\bullet$] $M_Q^{'}$ la mersure de la charge corrigée des facteurs correctifs
+  \item[$\bullet$] $N_{D_{eau} Q_0}$ le coefficient d'étalonnage en terme de dose dans l'eau
+  \item[$\bullet$] $k_{Q,\, Q_0}$ le facteur correctif permettant de passer de l'indice de qualité $Q_0$ à la qualité du faisceau clinique $Q$
+\end{itemize}
+
+Pour les faisceaux d'électrons, l'indice de qualité de faisceau est représenté par le $R_{50}$, ce qui correspond au parcour des électrons où 50\% de la dose maximale est déposée dans le fantôme d'intérêt.
+
+Dans le cas où la chambre d'ionisation utilisée n'est pas étalonnée, un étalonnage croisé à l'aide d'une autre chambre étalonnée dans un laboratoire primaire à partir d'un faisceau de $^{60}$Co de qualité $Q_0$. Pour cela, il est recommandé par le TRS-398 d'utiliser un faisceau ayant un $R_{50}$ > 7 g.cm$^2$ (soit une énergie moyenne du faisceau d'électrons $\overline{E}_0$ > 16 MeV). La formule \ref*{eq_cross_calib} permet d'obtenir le coefficient d'étalonnage de la chambre utilisée pour mesurer la dose de référence :
+
+\begin{equation}
+  N_{D_{eau, \, Q_{cross}}}^x = \dfrac{M_{Q_{cross}}^{ref}}{M_{Q_{cross}}^x} N_{D_{eau,\, Q_0}}^{ref} k_{Q_{cross},\, Q_0}^{ref}
+  \label{eq_cross_calib}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+  \item[$\bullet$] $M_{Q_{cross}}^{ref}$ la mesure de la charge à l'aide de la chambre de référence étalonnée par le laboratoire primaire
+  \item[$\bullet$] $M_{Q_{cross}}^x$ la mesure de la charge à l'aide de la chambre d'ionisation non étalonnée
+  \item[$\bullet$] $N_{D_{eau,\, Q_0}}^{ref}$ le coefficient d'étalonnage de la chambre de référence
+  \item[$\bullet$] $k_{Q_{cross},\, Q_0}^{ref}$ le facteur permettant de passer de la chambre de référence à la chambre d'intérêt tabulé dans le TRS-398
+\end{itemize}
 
 \clearpage
 \bibliography{biblio}
