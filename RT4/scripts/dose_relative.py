@@ -68,7 +68,7 @@ def rendements_champs():
     for sheet in sorted(df.sheet_names):
         df = pd.read_excel('../export_excel/rendements.xlsx', sheet)
         if sheet.split('_')[1] == '09MeV' and sheet.split('_')[3] == 'DSP100' and sheet.split('_')[4] == 'CC13':
-            plt.plot(df.iloc[:, 0], df.iloc[:, 1], lw=1, label=str(int(sheet.split('_')[2])) + r' cm$^2$')
+            plt.plot(df.iloc[:, 0], df.iloc[:, 1], lw=1, label=str(int(sheet.split('_')[2])) +'x' + str(int(sheet.split('_')[2])) + r' cm$^2$')
     plt.xlim(0, 75)
     plt.ylim(0, 102)
     plt.grid(ls='--')
@@ -159,14 +159,17 @@ def profils_vitesse():
     for sheet in df.sheet_names:
         df = pd.read_excel('../export_excel/profils.xlsx', sheet)
         if len(sheet.split('_')) == 6:
-            plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=sheet.split('_')[-1])
+            if sheet.split('_')[-1] == 'lent':
+                plt.plot(df.iloc[:, 0], df.iloc[:, 1], label='0,3 cm/s')
+            else:
+                plt.plot(df.iloc[:, 0], df.iloc[:, 1], label='2,5 cm/s')
     plt.legend()
     plt.xlabel('Distance (mm)')
     plt.ylabel('Dose relative (%)')
     plt.title('Profil de dose en fonction de la vitesse d\'acquisition')
     plt.xlim(-100, 100)
     plt.grid(ls='--')
-    plt.show()
+    plt.savefig('figures/profils_vitesses.png', dpi=250)
 
 def profils_taille_champ():
     df = pd.ExcelFile('../export_excel/profils.xlsx')
@@ -204,16 +207,16 @@ def FOC():
 
 def main():
     # unique()
-    # rendements_energies()
-    # rendements_DSP()
-    # rendements_champs()
-    # rendements_detecteurs()
-    # profils_energies()
-    # profils_DSP()
+    rendements_energies()
+    rendements_DSP()
+    rendements_champs()
+    rendements_detecteurs()
+    profils_energies()
+    profils_DSP()
     profils_detecteurs()
-    # profils_orientation()
-    # profils_vitesse()
-    # FOC()
-    # profils_taille_champ()
+    profils_orientation()
+    profils_vitesse()
+    FOC()
+    profils_taille_champ()
 
 main()
