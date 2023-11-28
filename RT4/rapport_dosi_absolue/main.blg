@@ -8,46 +8,47 @@ Warning--to sort, need author, editor, or key in internationaliaea
 Warning--empty author and editor in internationaliaea
 Warning--empty author and editor in international2001iaea
 Warning--empty year in ProtocolesCamille
+Warning--empty publisher in podgorsak2005radiation
 Warning--empty year in RobertDoseAbs
-You've used 4 entries,
+You've used 6 entries,
             2118 wiz_defined-function locations,
-            518 strings with 4455 characters,
-and the built_in function-call counts, 854 in all, are:
-= -- 78
-> -- 16
+            527 strings with 4666 characters,
+and the built_in function-call counts, 1352 in all, are:
+= -- 120
+> -- 41
 < -- 2
-+ -- 8
-- -- 4
-* -- 56
-:= -- 135
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 10
++ -- 18
+- -- 12
+* -- 83
+:= -- 222
+add.period$ -- 18
+call.type$ -- 6
+change.case$ -- 18
 chr.to.int$ -- 0
-cite$ -- 10
-duplicate$ -- 50
-empty$ -- 93
-format.name$ -- 4
-if$ -- 187
+cite$ -- 13
+duplicate$ -- 74
+empty$ -- 137
+format.name$ -- 12
+if$ -- 290
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 6
-newline$ -- 21
-num.names$ -- 4
-pop$ -- 28
+int.to.str$ -- 6
+missing$ -- 10
+newline$ -- 31
+num.names$ -- 8
+pop$ -- 47
 preamble$ -- 1
-purify$ -- 10
+purify$ -- 18
 quote$ -- 0
-skip$ -- 20
+skip$ -- 32
 stack$ -- 0
-substring$ -- 20
-swap$ -- 6
+substring$ -- 30
+swap$ -- 8
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
-warning$ -- 6
-while$ -- 4
-width$ -- 5
-write$ -- 40
-(There were 6 warnings)
+type$ -- 12
+warning$ -- 7
+while$ -- 8
+width$ -- 7
+write$ -- 59
+(There were 7 warnings)

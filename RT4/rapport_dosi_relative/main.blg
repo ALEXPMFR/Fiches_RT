@@ -5,46 +5,47 @@ The style file: plain.bst
 Database file #1: biblio.bib
 Warning--to sort, need author, editor, or key in international2001iaea
 Warning--empty author and editor in international2001iaea
+Warning--empty publisher in podgorsak2005radiation
 Warning--empty year in Robert2021
-You've used 2 entries,
+You've used 6 entries,
             2118 wiz_defined-function locations,
-            509 strings with 4282 characters,
-and the built_in function-call counts, 437 in all, are:
-= -- 39
-> -- 8
+            534 strings with 5035 characters,
+and the built_in function-call counts, 1845 in all, are:
+= -- 167
+> -- 98
 < -- 1
-+ -- 4
-- -- 2
-* -- 29
-:= -- 72
-add.period$ -- 6
-call.type$ -- 2
-change.case$ -- 5
++ -- 40
+- -- 34
+* -- 138
+:= -- 318
+add.period$ -- 18
+call.type$ -- 6
+change.case$ -- 30
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 25
-empty$ -- 47
-format.name$ -- 2
-if$ -- 94
+cite$ -- 10
+duplicate$ -- 71
+empty$ -- 145
+format.name$ -- 34
+if$ -- 372
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 3
-newline$ -- 12
-num.names$ -- 2
-pop$ -- 14
+int.to.str$ -- 6
+missing$ -- 9
+newline$ -- 32
+num.names$ -- 10
+pop$ -- 46
 preamble$ -- 1
-purify$ -- 5
+purify$ -- 28
 quote$ -- 0
-skip$ -- 10
+skip$ -- 37
 stack$ -- 0
-substring$ -- 10
-swap$ -- 3
+substring$ -- 83
+swap$ -- 7
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
-warning$ -- 3
-while$ -- 2
-width$ -- 3
-write$ -- 21
-(There were 3 warnings)
+type$ -- 16
+warning$ -- 4
+while$ -- 14
+width$ -- 7
+write$ -- 62
+(There were 4 warnings)

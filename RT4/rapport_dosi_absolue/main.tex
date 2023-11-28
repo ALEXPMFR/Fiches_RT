@@ -80,13 +80,13 @@
 \clearpage
 \section{Introduction}
 
-La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
+La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Cependant, et de façon de plus en plus rares, les faisceaux d'électrons sont également utilisés pour des tumeurs plutôt superficielles au vu du faible parcours dans la matière, contrairement aux photons. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
 
-Ce rapport traitera des faisceaux de photons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilisés lors des mesures des doses absolues basées sur les protocoles internationaux fournis par l'Agence Internationale de l'Énergie Atomique (AIEA) seront explicités, puis les résultats seront présentés. 
+Ce rapport traitera des faisceaux d'électrons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilisés lors des mesures des doses absolues basées sur les protocoles internationaux fournis par l'Agence Internationale de l'Énergie Atomique (AIEA) seront explicités, puis les résultats seront présentés. 
 
 \section{Matériel et méthodes}
 
-Cette partie est consacrée à la mesure de la dose absorbée dans les conditions de référence, telles que décrites dans le protocole TRS-398 de l'AIEA \cite{international2001iaea}. De plus, nous développerons également la méthodologie de l'ancien protocole international, le TRS-277 \cite{internationaliaea}.
+Cette partie est consacrée à la méthode permettant de mesurer de la dose absorbée dans les conditions de référence, telles que décrites dans le protocole TRS-398 de l'AIEA \cite{international2001iaea}. De plus, nous développerons également la méthodologie de l'ancien protocole international, le TRS-277 \cite{internationaliaea}.
 
 \subsection{Matériel utilisé}
 
@@ -150,7 +150,7 @@ Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polar
   \label{eq_pol}
 \end{equation}
 
-Avec $M_+$ et $M_-$ les charges mesurées pour les tensions $V_+$ et $V_-$ respectivement et $M$ est la réponse pour la tension utilisée en clinique. Si la tension appliquée lors des mesures est la même que celle pour laquelle la chambre a été étalonnée, le facteur $k_{pol}$ n'est pas à appliquer.
+Avec $M_+$ et $M_-$ les charges mesurées pour les tensions $V_+$ et $V_-$ respectivement et $M$ est la réponse pour la tension utilisée en clinique. Si le signe de la tension appliquée lors des mesures est le même que celui pour laquelle la chambre a été étalonnée, le facteur $k_{pol}$ n'est pas à appliquer.
 
 \subsubsection{Recombinaisons ioniques}
 
@@ -162,8 +162,6 @@ Le facteur de recombinaison permet de corriger la réponse de la chambre d'ionis
 \end{equation}
 
 Avec $M_1$ et $M_2$ les réponses aux tensions $V_1$ et $V_2$ respectivement, et $a_0$, $a_1$ et $a_2$ sont les facteurs tabulés en fonction du rapport $\frac{V_1}{V_2}$ fournis par le protocole TRS-398 \cite{international2001iaea}.
-
-\paragraph*{N.B. :} le facteur $k_{rec}$ n'est pas appliqué si la tension utilisée lors des mesures est la même tension qui a été appliqué lors de l'étalonnage par le laboratoire primaire.
 
 \subsubsection{Humidité}
 
@@ -179,7 +177,7 @@ Dans le cas où la chambre adaptée aux faisceaux d'électrons n'est pas étalon
 
 \subsection{Protocole TRS-277}
 
-La dose en un point est donnée par la formule \ref*{eq_dose_397}, tirée du protocole TRS-277 :
+Ce protocole permet de calculer la dose absorbée dans les conditions de références à partir d'un étalonnage en terme de kerma dans l'air. Il fallait donc corriger aussi de cette différence entre le laboratoire et les conditions dans le centre (dose dans l'eau).v La dose en un point, dans un fantôme d'eau, est donnée par la formule \ref*{eq_dose_397}, tirée du protocole TRS-277 :
 
 \begin{equation}
   D_{eau,\, Q} = M_Q^{'} N_{K_{air, Q_0}} k_{att} k_m (1-g) \left( \dfrac{S}{\rho} \right)^{eau}_{air} p_u p_{cel}
@@ -193,7 +191,7 @@ Avec :
   \item[$\bullet$] $N_{K_{air, Q_0}}$ le coefficient d'étalonnage de la chambre d'ionisation fourni par le laboratoire primaire
   \item[$\bullet$] $g$ la fraction de la perte d'énergie des particules secondaires par radiations (rayonnement de freinage)
   \item[$\bullet$] $k_m$ 
-  \item[$\bullet$] $\left( \dfrac{S}{\rho} \right)^{eau}_{air}$ le rapport des pouvoirs d'arrêt massiques de l'eau sur celui de l'air
+  \item[$\bullet$] $\left( \dfrac{S}{\rho} \right)^{eau}_{air}$ le rapport entre le pouvoir d'arrêt massique de l'eau et celui de l'air
   \item[$\bullet$] $p_u$ le facteur de correction des perturbations
 \end{itemize}
 
@@ -229,7 +227,7 @@ La profondeur de référence dépend donc du $R_{50}$ pour la mesure de dose :
   z_{ref} = 0,6 R_{50} - 0,1 \, \text{g/cm}^2
 \end{equation}
 
-Concernant le point de mesure, il n'est pas au centre géométrique de la chambre utilisée. Le point de mesure dépend du type de chambre (cylindrique ou plate) et se calcule à partir des équations \ref*{eq_zmes_ROOS} et \ref*{eq_zmes_Farmer}.
+Concernant le point de mesure, il n'est pas au centre géométrique de la chambre utilisée. Le point de mesure dépend du type de chambre (cylindrique ou plate) et se calcule à partir des équations \ref*{eq_zmes_ROOS} et \ref*{eq_zmes_Farmer}. Il est important de noter que la formule \ref*{eq_zmes_ROOS} n'est valable que pour la chambre ROOS.
 
 \begin{equation}
   z_{mes} = z_{ref} - 0,11
@@ -265,7 +263,7 @@ Une fois que le facteur d'étalonnage $N_{D_{eau, \, Q_{cross}}}^x$ obtenu pour 
 
 Avec $k_{Q,\, Q_{int}}$ et $k_{Q_{cross},\, Q_{int}}$ fournis dans la table 7.IV du TRS-398 \cite{international2001iaea}. Le facteur $k_{Q_{cross},\, Q_{int}}$ est obtenu par interpolation linéaire pour la chambre d'intérêt (chambre ROOS ici) des facteurs $k_{Q,\, Q_{int}}$ correspondant à l'indice de qualité du faisceau utilisé pour l'étalonnage croisé.
 
-La dose est donc fournie par la fomrule suivante, pour un faisceau d'énergie quelconque :
+La dose est donc fournie par la formule suivante, pour un faisceau d'énergie quelconque :
 
 \begin{equation}
   D_{eau,\, Q} = M_Q^x N_{D_{eau},\, Q_{cross}} k_{Q,\, Q_{cross}}^x
@@ -517,13 +515,13 @@ Les incertitudes élargies associées aux mesures sont au maximum de 4,61\%. Bie
   \cline{2-9}
   \multicolumn{1}{c|}{} & \multicolumn{2}{c|}{\textbf{6 MeV}} & \multicolumn{2}{c|}{\textbf{9 MeV}} & \multicolumn{2}{c|}{\textbf{12 MeV}} & \multicolumn{2}{c|}{\textbf{15 MeV}} \\ \hline
   \multicolumn{1}{|c|}{\textbf{Tension (V)}} & \textbf{50} & \multicolumn{1}{c|}{\textbf{200}} & \textbf{50} & \multicolumn{1}{c|}{\textbf{200}} & \textbf{50} & \multicolumn{1}{c|}{\textbf{200}} & \textbf{50} & \multicolumn{1}{c|}{\textbf{200}} \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{\textbf{Charge collectée (nC)}}} & 24,90 & \multicolumn{1}{c|}{25,64} & 25,49 & \multicolumn{1}{c|}{26,27} & 25,70 & \multicolumn{1}{c|}{26,45} & 26,16 & \multicolumn{1}{c|}{26,83} \\
+  \multicolumn{1}{|c|}{\multirow{3}{*}{\textbf{Charges collectées (nC)}}} & 24,90 & \multicolumn{1}{c|}{25,64} & 25,49 & \multicolumn{1}{c|}{26,27} & 25,70 & \multicolumn{1}{c|}{26,45} & 26,16 & \multicolumn{1}{c|}{26,83} \\
   \multicolumn{1}{|c|}{} & 24,89 & \multicolumn{1}{c|}{25,62} & 25,51 & \multicolumn{1}{c|}{26,26} & 25,69 & \multicolumn{1}{c|}{26,45} & 26,15 & \multicolumn{1}{c|}{26,84} \\
   \multicolumn{1}{|c|}{} & 24,87 & \multicolumn{1}{c|}{25,64} & 25,51 & \multicolumn{1}{c|}{26,27} & 25,68 & \multicolumn{1}{c|}{26,48} & 26,15 & \multicolumn{1}{c|}{26,87} \\ \hline
   \multicolumn{1}{|c|}{\textbf{Charge Moyenne (nC)}} & 24,89 & \multicolumn{1}{c|}{25,63} & 25,50 & \multicolumn{1}{c|}{26,27} & 25,69 & \multicolumn{1}{c|}{26,46} & 26,15 & \multicolumn{1}{c|}{26,85} \\ \hline
-  \multicolumn{1}{|c|}{\textbf{krec}} & \multicolumn{2}{c|}{\textbf{1,0099}} & \multicolumn{2}{c|}{\textbf{1,0099}} & \multicolumn{2}{c|}{\textbf{1,0099}} & \multicolumn{2}{c|}{\textbf{1,0087}} \\ \hline
+  \multicolumn{1}{|c|}{$\mathbf{k_{rec}}$} & \multicolumn{2}{c|}{\textbf{1,0099}} & \multicolumn{2}{c|}{\textbf{1,0099}} & \multicolumn{2}{c|}{\textbf{1,0099}} & \multicolumn{2}{c|}{\textbf{1,0087}} \\ \hline
   \end{tabular}
-  \caption[short]{Séries de mesures pour le calcul du $k_{rec}$ pour les faisceaux d'électrons de 6 à 15 MeV}
+  \caption{Séries de mesures pour le calcul du $k_{rec}$ pour les faisceaux d'électrons de 6 à 15 MeV}
 \end{table}
 
 \newpage
