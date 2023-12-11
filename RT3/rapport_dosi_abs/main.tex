@@ -582,37 +582,20 @@ Le tableau \ref*{table_coeff_passage} résume les résultats obtenus pour le cal
     \toprule
     \textbf{Date} & \textbf{Énergie (MV)} & \textbf{Dose eau (Gy)} & \textbf{Charge TOP (nC)} & \textbf{Coefficient (Gy/nC)} & \textbf{Écart (\%)}\\
     \toprule
-    14/09/2023 & 6 & 1,601 & 25,88 & 6,19$\times$ 10$^{-2}$ & \\
-    24/02/2023 & 6 & 1,589 & / & 6,065$\times$ 10$^{-2}$ & 2,06 \\
+    14/09/2023 & 6 & 1,601 & 25,88 & 6,17$\times$ 10$^{-2}$ & \\
+    24/02/2023 & 6 & 1,589 & / & 6,07$\times$ 10$^{-2}$ & 1,65 \\
     \hline
     14/09/2023 & 23 & 1,974 & 32,06 & 6,16$\times$ 10$^{-2}$ & \\
-    24/02/2023 & 23 & 1,907 & / & 5,908$\times$ 10$^{-2}$ & 4,27 \\
+    24/02/2023 & 23 & 1,907 & / & 6,01$\times$ 10$^{-2}$ & 1,70 \\
     \bottomrule
   \end{tabular}
   \caption{Résultats des coefficients de passage pour les deux faisceaux de photons disponibles sur le Clinac 2}
   \label{table_coeff_passage}
 \end{table}
 
-Nous observons un écart jusqu'à 4,27 \% entre le coefficient calculé lors des mesures et celui du mois de février. Cette différence s'explique par le fait que pour le coefficient du mois de février, la dose dans l'eau choisie pour le calcul était celle de la recette (1,589 Gy) alors que la dose sélectionnée pour celui de septembre est la dose dans l'eau mesurée lors de nos mesures (1,601 Gy). Si nous calculons l'écart entre les deux coefficient en prenant toujours la dose de la recette comme référence, nous obtenons les résultats donnés dans le tableau \ref*{table_vrai_ecart_coeff}.
+L'écart relatif entre les deux coefficients de passages obtenus sont inférieurs à 2\%. Cependant, cet écart nous sert juste à nous rassurer concernant les mesures réalisées puisque le coefficient est un rapport entre la dose absolue mesurée dans les conditions de référence et la mesure de charge dans la boîte à TOP. L'écart observé peut tout à fait venir de l'une ou l'autre mesure, ou bien les deux.
 
-\begin{table}[h]
-  \centering
-  \begin{tabular}{cccc}
-    \toprule
-    \textbf{Date} & \textbf{Énergie (MV)} & \textbf{Coefficient (Gy/nC)} & \textbf{Écart (\%)} \\
-    \toprule
-    14/09/2023 & 6 & 6,14$\times$ 10$^{-2}$ & \\
-    24/09/2023 & 6 & 6.07$\times$ 10$^{-2}$ & 1,15 \\
-    \hline
-    14/09/2023 & 23 & 5,95$\times$ 10$^{-2}$ & \\
-    24/02/2023 & 23 & 5,91$\times$ 10$^{-2}$ & 0,68 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Écart entre le coefficient de février et celui de septembre à partir de la dose de la recette}
-  \label{table_vrai_ecart_coeff}
-\end{table}
-
-L'écart entre les deux coefficients fournis par le tableau \ref*{table_vrai_ecart_coeff} est en dessous des 2\% pour les faisceaux de 6 MV et de 23 MV. La dose délivrée par le faisceau est donc stable dans le temps quelle que soit l'énergie de celui-ci.
+Il est donc primordial de regarder l'évolution des résultats du contrôle quotidien avec le même coefficient de passage. Cela permet de s'affranchir des incertitudes de mesures liées au coefficient de passage.
 
 \clearpage
 \section{Annexe}

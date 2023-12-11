@@ -105,7 +105,7 @@ Les mesures de dose relative ont été réalisées à l'aide du logiciel MyQA du
     \multicolumn{1}{|c|}{}                              & \textbf{Energie (MV)}         & 6                  & 23                                      \\
     \multicolumn{1}{|c|}{}                              & \textbf{DSP (cm)}             & 100                & 85, 110                                 \\
     \multicolumn{1}{|c|}{}                              & \textbf{Détecteur}            & CC13               & Pinpoint, MicroDiamant, Diode, Semiflex \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Orientation}          & Crosssline         & Inline                                  \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Orientation}          & Crossline         & Inline                                  \\
     \multicolumn{1}{|c|}{}                              & \textbf{Mode d'acquisition}   & Continu & Step by step \\ \hline
     \multicolumn{1}{|c|}{\multirow{3}{*}{\textbf{FOC}}} & \textbf{Energie (MV)}         & 6                  & 23                                      \\
     \multicolumn{1}{|c|}{}                              & \textbf{Détecteur}            & CC13               & Farmer                                  \\
@@ -142,10 +142,10 @@ Premièrement, les résultats concernant les rendements en profondeur seront pr�
 \newpage
 \subsection{Rendement en profondeur}
 
-Le rendement en profondeur (RDT) permet de connaître l'évolution de la dose dans le milieu de référence en fonction de la profondeur $z$ du point de mesure. Il est donné par la formule suivante :
+Le rendement en profondeur ($RDT$) permet de connaître l'évolution de la dose dans le milieu de référence en fonction de la profondeur $z$ du point de mesure, le long de l'axe du faisceau. Il est donné par la formule suivante :
 
 \begin{equation}
-    RDT(z, A, E) = \dfrac{D_z}{D_{max}}
+    RDT(z, A, E) = \dfrac{D_z}{D_{max}} \times 100
     \label{eq_rdt}
 \end{equation}
 
@@ -153,8 +153,8 @@ Avec :
 
 \begin{itemize}
     \item[$\bullet$] $z$ la profondeur
-    \item[$\bullet$] $A$ la taille de champ
-    \item[$\bullet$] $DSP$ la distance source-patient
+    \item[$\bullet$] $A$ la taille de champ au niveau de la surface
+    \item[$\bullet$] $DSP$ la distance source-peau
     \item[$\bullet$] $E$ l'énergie du faisceau
     \item[$\bullet$] $D_z$ la dose à la profondeur $z$
     \item[$\bullet$] $D_{max}$ la dose à la profondeur du maximum
@@ -169,7 +169,7 @@ Avec :
 
 \subsection{Rapport tissu-fantôme}
 
-Le rapport tiussu-fantôme (TPR) représente la dose en fonction de la profondeur. Le RTM est normalisé par rapport à la dose maximum. Contrairement au rendement en profondeur, la distance source-détecteur est fixe comme le montre la figure \ref*{fig_tpr}. Le TPR s'exprime à l'aide de la formule \ref{eq_tpr} :
+Le rapport tissu-fantôme (TPR) représente la dose en fonction de la profondeur. Le RTM est normalisé par rapport à la dose maximum. Contrairement au rendement en profondeur, la distance source-détecteur est fixe comme le montre la figure \ref*{fig_tpr}. Le TPR s'exprime à l'aide de la formule \ref{eq_tpr} :
 
 \begin{equation}
     TPR(z, A, DSP, E) = \dfrac{D_z}{D_{ref}}
@@ -187,8 +187,6 @@ Avec $D_{ref}$ la dose au point de référence.
 
 \subsection{Rapport tissu-maximum}
 
-Le rapport tissu-maximum (RTM) est la normalisation par rapport à la dose à la profondeur $z_{max}$. Comme le TPR, la distance source-détecteur est constante (figure \ref*{fig_tpr}). 
-
 Le RTM est un cas particulier du TPR puisqu'il est normalisé par rapport à la dose du maximum $z_{max}$. Il est défini par la fomule qui suit :
 
 \begin{equation}
@@ -196,7 +194,7 @@ Le RTM est un cas particulier du TPR puisqu'il est normalisé par rapport à la 
     \label{eq_rtm}
 \end{equation}
 
-Comme la distance entre la source et le détecteur est constante, la mesure du RTM est difficile à réaliser. La formule \ref{eq_calcul_rtm} permet de calculer le RTM à partir du rendement en profondeur :
+Comme la distance entre la source et le détecteur est constante, la mesure du RTM est difficile à réaliser. La formule \ref{eq_calcul_rtm} permet de calculer le RTM à partir du rendement en profondeur \cite{podgorsak2005radiation} :
 
 \begin{equation}
     RTM(z, c, E) \approx RDT(z, c, DSP, E) \times \left(\dfrac{DSP + z}{DSP + z_{max}}\right)^2
@@ -205,7 +203,7 @@ Comme la distance entre la source et le détecteur est constante, la mesure du R
 
 \subsection{Facteur d'ouverture du collimateur}
 
-Le facteur d'ouverture du collimateur (FOC) est le rapport de la dose à une taille de champ $A$ quelconque et de la dose au champ de référence $A_{ref}$ :
+Le facteur d'ouverture du collimateur (FOC) est le rapport de la dose à une taille de champ $A$ quelconque et de la dose au champ de référence $A_{ref}$ \footnote{La DSP et la profondeur de mesure $z$ sont fixes} (voir figure \ref*{fig_foc}):
 
 \begin{equation}
     FOC(A, E, z) = \dfrac{D(A, E, z)}{D(c_{ref}, E, z)}
@@ -228,12 +226,12 @@ Avec :
 
 \subsection{Profils de dose}
 
-Les profils de dose permettent d'évaluer la répartition de la dose suivant les axes perpendiculaires à l'axe du faisceau. Les profils sont composés de trois régions principales (voir figure \ref*{fig_regions_profil}) :
+Les profils de dose permettent d'évaluer la répartition de la dose suivant les axes perpendiculaires à l'axe du faisceau. Les profils sont composés de trois régions principales (voir figure \ref*{fig_regions_profil}) pour des faisceaux avec un filtre égaliseur :
 
 \begin{itemize}
-  \item[$\bullet$] zone centrale
-  \item[$\bullet$] pénombre
-  \item[$\bullet$] dose hors champ
+  \item[$\bullet$] la zone centrale
+  \item[$\bullet$] les régions de pénombre
+  \item[$\bullet$] les zones hors champ
 \end{itemize}
 
 Pour évaluer les différents profils, plusieurs métriques sont à notre disposition :
@@ -263,16 +261,16 @@ Pour évaluer les différents profils, plusieurs métriques sont à notre dispos
   \label{fig_regions_profil}
 \end{figure}
 
-\section{Résultats}
+\section{Résultats et discussions}
 \subsection{Rendement en profondeur}
 \subsubsection{Influence de l'énergie}
 
-L'influence de l'énergie sur le rendement en profondeur pour un faisceau de photons est multiple. En effet, nous voyons tout d'abord sur la figure \ref*{fig_rdt_energie} que la zone de mise en équilibre électronique est plus grande pour un faisceau de 23 MV que pour un faisceau de 6 MV. Cela s'explique par le fait que plus les particules primaires sont énergétiques, plus l'énergie transférée aux électrons secondaires sera importante. Il faut donc une profondeur d'eau plus importante pour que la mise en équilibre électronique soit faite, donc la position du maximum de dépôt de dose est plus profonde. De plus, nous observons que le rendement est plus important, à une profondeur donnée, pour des photons de 23 MV par rapport aux photons de 6 MV pour une profondeur supérieure au $z_{max}$. Cela est engendré par l'atténuation du milieu qui diminue pour une énergie qui augmente. Pour terminer, la dose à l'entrée est plus faible pour le faisceau le plus énergétique car la probabilité d'interaction est plus faible à la surface d'entrée.
+L'influence de l'énergie sur le rendement en profondeur pour un faisceau de photons est multiple. En effet, nous voyons tout d'abord sur la figure \ref*{fig_rdt_energie} et dans le tabelau \ref*{table_profils_energie} que la zone de mise en équilibre électronique est plus grande pour un faisceau de 23 MV que pour un faisceau de 6 MV. Cela s'explique par le fait que plus les particules primaires sont énergétiques, plus l'énergie transférée aux électrons secondaires sera importante. La zone de mise en équilibre électronique est donc plus grande (position du maximum de dépôt de dose plus profonde). De plus, nous observons que le rendement est plus important, à une profondeur donnée, pour des photons de 23 MV par rapport aux photons de 6 MV pour une profondeur supérieure au $z_{max}$. Cela est engendré par l'atténuation du milieu qui diminue pour une énergie qui augmente. Pour terminer, la dose à l'entrée est plus faible pour le faisceau le plus énergétique car la probabilité d'interaction est plus faible à la surface d'entrée.
 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.45]{../scripts/figures/dose_relative/rdt_X6_X23.png}
-  \caption{Influence de l'énergie du faisceau sur le rendement en profondeur}
+  \caption{Rendements en profondeur pour les différentes énergies de l'accélérateur utilisé pour une taille de champ de 10$\times$10 cm$^2$ et une DSP de 100 cm}
   \label{fig_rdt_energie}
 \end{figure}
 
@@ -294,12 +292,14 @@ L'influence de l'énergie sur le rendement en profondeur pour un faisceau de pho
 
 La figure \ref*{fig_rdt_dsp} nous montre l'influence de la DSP (distance source patient) sur le rendement en profondeur \footnote{La taille de champ à été adaptée pour qu'il y ait toujours un champ de 10x10 cm$^2$ à 10 cm de profondeur}. Nous pouvons voir que plus la DSP augmente, plus la dose relative est élevée.
 
-La DSP agît surtout en profondeur. La pente du rendement en profondeur est plus faible pour l'acquisition à 110 cm de DSP. Cela peut s'expliquer par l'effet de la loi d'inverse carrée de la distance, qui est plus important à distance plus faible, d'où une dose plus faible pour une DSP plus petite pour une même profondeur.
+L'influence de la DSP agît surtout en profondeur. La pente du rendement en profondeur est plus faible pour l'acquisition à 110 cm de DSP. Cela peut s'expliquer par l'effet de la loi d'inverse carrée de la distance, qui est plus important à distance plus faible, d'où une dose plus faible pour une DSP plus petite pour une même profondeur. 
+
+Dans le tableau \ref*{table_profils_dsp}, nous voyons que la dose à la surface est plus importante pour une DSP qui diminue. Plus la DSP diminue, plus il y a des électrons de contamination émergeant de la tête de l'accélérateur puisque ces particules chargées légères diffusent dans l'air.
 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.44]{../scripts/figures/dose_relative/DSP/Rendement_DSP.png}
-  \caption{Influence de la DSP sur le rendement en profondeur}
+  \caption{Rendements en profondeur en faisant varier la DSP pour une taille de champ de 10$\times$10 cm$^2$ et une énergie de 6 MV}
   \label{fig_rdt_dsp}
 \end{figure}
 
@@ -320,12 +320,12 @@ La DSP agît surtout en profondeur. La pente du rendement en profondeur est plus
 
 \subsubsection{Influence de la taille de champ}
 
-La taille de champ influence d'une part la dose en profondeur, une fois que l'équilibre électronique est atteint. En effet, nous voyons que plus la taille de champ augmente, plus la dose en profondeur augmente. Ce phénomène est expliqué par l'augmentation du volume du milieu diffusant. D'autre part, la dose à l'entrée augmente avec la taille de champ. Cela s'explique par une quantité plus importante de rayonnement diffusé dans la tête de l'accélérateur (surface du cône égalisateur irradiée plus importante et surface apparente des machoires plus grande).
+La taille de champ influence la dose en profondeur, une fois que l'équilibre électronique est atteint. En effet, nous voyons sur la figure \ref*{fig_champs_profils} et le tableau \ref*{table_profils_champ} que plus la taille de champ augmente, plus la dose en profondeur augmente. Ce phénomène est expliqué par l'augmentation du volume du milieu diffusant. De plus, la dose à l'entrée augmente avec la taille de champ. Cela s'explique par une quantité plus importante de rayonnement diffusé dans la tête de l'accélérateur (surface du cône égalisateur irradiée plus importante et surface apparente des machoires plus grande).
 
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.45]{../scripts/figures/dose_relative/rendement_champs.png}
-  \caption{Influence de la la taille de champ sur le rendement en profondeur}
+  \caption{Rendements en profondeur pour différentes tailles champs. DSP de 100 cm et énergie de faisceau de 6 MV}
   \label{fig_rdt_champ}
 \end{figure}
 
@@ -347,16 +347,6 @@ La taille de champ influence d'une part la dose en profondeur, une fois que l'é
 
 \newpage
 \subsubsection{Influence du détecteur}
-
-Les mesures ont été faites avec plusieurs détecteurs qui sont :
-
-\begin{itemize}
-  \item[$\bullet$] CC13
-  \item[$\bullet$] Diode SRS
-  \item[$\bullet$] MicroDiamant
-  \item[$\bullet$] Semiflex
-  \item[$\bullet$] Pinpoint
-\end{itemize}
 
 La figure \ref*{fig_rdt_detecteurs} montre l'influence du détecteur choisi sur le rendement en profondeur. Nous pouvons voir que la diode mesure une plus grande dose à la surface. Cela est dû au $Z$ effectif du détecteur qui est plus important que les autres détecteurs ($Z$ = 14). Concernant les chambres d'ionisation Semiflex et CC13, leur volume sensible est très proche (0,013 cm$^3$ pour la CC13 et 0,125 cm$^3$ pour la Semiflex) ce qui explique leurs très fortes similarités. Nous observons que le signal de la Pinpoint et du MicroDiamant sont bruités. Leur volume sensible étant très petits (0,015 cm$^3$ et 0,004 mm$^3$ respectivement) la statistique de comptage est plus faible sur ces deux détecteurs puisque la vitesse d'acquisition est identique entre chacun des détecteurs.
 
@@ -395,6 +385,8 @@ La figure \ref*{fig_rdt_detecteurs} montre l'influence du détecteur choisi sur 
 \end{figure}
 
 Pour s'affranchir de la fluctuation du débit de dose du faisceau lors de la mesure de dose relative, une chambre dite de référence est placée dans l'air, dans un coin du champ d'irradiation pour ne pas perturber la mesure avec la chambre dans la cuve à eau. Nous avons donc réalisé une mesure de rendement en profondeur pour observer ce rendement sans que la chambre de référence soit placée dans le champ. La figure \ref*{fig_sanss_chambre_ref} permet de voir l'importance de la présence de la chambre de référence. En effet, nous voyons que le signal est très bruité et ne permet donc pas d'analyser correctement les résultats.
+
+Cependant, la chambre de référence ne devait pas être déconnectée du logiciel, ce qui amplifie énormément les fluctuations du signal réceptionné.
 
 \subsection{Profils de dose}
 \subsubsection{Influence de l'énergie}
