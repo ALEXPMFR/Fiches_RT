@@ -79,9 +79,9 @@
 
 \tableofcontents
 \clearpage
-\section*{Introduction}
+\chapter*{Introduction}
 
-La radiothérapie externe utilise, de manière prépondérante, les faisceaux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires dans l'optique de fournir ces caractéristiques au TPS (\textit{treatment Planning System}) utilisé en clinique pour le calcul des plans de traitement des patients, ou encore pour l'installation des machines lors de leur commissionning.
+La radiothérapie externe utilise, de manière prépondérante, les faisceaux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires dans l'optique de fournir ces caractéristiques au TPS (\textit{Treatment Planning System}) utilisé en clinique pour le calcul des plans de traitement des patients, ou encore pour l'installation des machines lors de leur commissionning.
 
 Ce rapport traitera des faisceaux de photons utilisés en radiothérapie externe. Sera étudié l'impact de certains paramètres d'acquisition sur la distribution de dose (dose relative), ainsi que des paramètres d'influence (énergie du faisceau, tailles de champ, DSP, détecteurs etc).
 
@@ -135,6 +135,7 @@ Cette partie traitera de l'installation de la cuve à eau (représentée sur la 
   \label{fig_cuve}
 \end{figure}
 
+\newpage
 \subsection{Mesures réalisées}
 
 Pour chacune des grandeurs dosimétriques étudiées, nous allons réaliser plusieurs mesures en faisant varier plusieurs paramètres d'influences et d'aquisition comme le montre la figure \ref*{table_mesures}.
@@ -163,6 +164,27 @@ Pour chacune des grandeurs dosimétriques étudiées, nous allons réaliser plus
   \end{tabular}
   \caption{Différentes mesures réalisées pour la dosimétrie relative}
   \label{table_mesures}
+\end{table}
+
+Pour les acquisitions en modes continu et pas à pas, plusieurs combinaisons ont été étudiés. Le tableau \ref*{table_ss_presentation}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{3cm}}
+    \toprule
+    \textbf{Mode acquisition} & \textbf{Vitesse (cm/s)} & \textbf{Pas G-D (cm)} & \textbf{Pas centre (cm)} & \textbf{Temps d'intégration (s)} \\
+    \toprule
+    Continu & 0,3 & / & / & / \\
+    Continu & 2,5 & / & / & / \\
+    Steb by Step & / & 0,1 & 0,5 & 1 \\
+    Step by Step & / & 0,1 & 0,5 & 0,5 \\
+    Step by step & / & 0,1 & 0,5 & 3 \\
+    Step by Step & / & 0,5 & 1 & 1 \\
+    Step by step & / & 0,05 & 0,2 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Inlfuence du mode d'acquisition sur les profils (résultats MyQA)}
+  \label{table_ss_presentation}
 \end{table}
 
 Premièrement, les résultats concernant les rendements en profondeur seront présentés puis analysés. Il en sera de même pour les profils de dose et les facteurs d'ouverture du collimateur.
@@ -240,31 +262,6 @@ Comme la distance entre la source et le détecteur est constante, la mesure du R
     \label{eq_calcul_rtm}
 \end{equation}
 
-\subsection{Facteur d'ouverture du collimateur}
-
-Le facteur d'ouverture du collimateur (FOC) est le rapport de la dose à une taille de champ $A$ quelconque et de la dose au champ de référence $A_{ref}$ \footnote{La DSP et la profondeur de mesure $z$ sont fixes} (voir figure \ref*{fig_foc}):
-
-\begin{equation}
-    FOC(A, E, z) = \dfrac{D(A, E, z)}{D(A_{ref}, E, z)}
-    \label{eq_foc}
-\end{equation}
-
-Avec :
-
-\begin{itemize}
-    \item[$\bullet$] $D(A, E, z)$ la dose à la taille de champ $A$, l'énergie $E$ et à la profondeur $z$
-    \item[$\bullet$] $D(A_{ref}, E, z)$ la dose à la taille de champ de référence $A_{ref}$, à l'énergie $E$ et à la profondeur $z$
-\end{itemize}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.6]{figures/foc_schema.png}
-  \caption{Géométrie de mesure des FOC \cite{mayles2007handbook}}
-  \label{fig_foc}
-\end{figure}
-
-Comme l'indique la formule \ref*{eq_foc}, les FOC sont normalisés par rapport à la mesure avec un champ de 10$\times$10 cm$^2$. De plus, la profondeur et la DSP sont respectivement 10 cm et 90 cm lors des mesures de FOC.
-
 \subsection{Profils de dose}
 
 Les profils de dose permettent d'évaluer la répartition de la dose suivant les axes perpendiculaires à l'axe du faisceau. Les profils sont composés de trois régions principales (voir figure \ref*{fig_regions_profil}) pour des faisceaux avec un filtre égaliseur et sont normalisés par rapport à l'axe du faisceau :
@@ -301,6 +298,31 @@ Pour évaluer les différents profils, plusieurs métriques sont à notre dispos
   \caption{Différentes régions d'un profil de dose}
   \label{fig_regions_profil}
 \end{figure}
+
+\subsection{Facteur d'ouverture du collimateur}
+
+Le facteur d'ouverture du collimateur (FOC) est le rapport de la dose à une taille de champ $A$ quelconque et de la dose au champ de référence $A_{ref}$ \footnote{La DSP et la profondeur de mesure $z$ sont fixes} (voir figure \ref*{fig_foc}):
+
+\begin{equation}
+    FOC(A, E, z) = \dfrac{D(A, E, z)}{D(A_{ref}, E, z)}
+    \label{eq_foc}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+    \item[$\bullet$] $D(A, E, z)$ la dose à la taille de champ $A$, l'énergie $E$ et à la profondeur $z$
+    \item[$\bullet$] $D(A_{ref}, E, z)$ la dose à la taille de champ de référence $A_{ref}$, à l'énergie $E$ et à la profondeur $z$
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.55]{figures/foc_schema.png}
+  \caption{Géométrie de mesure des FOC \cite{mayles2007handbook}}
+  \label{fig_foc}
+\end{figure}
+
+Comme l'indique la formule \ref*{eq_foc}, les FOC sont normalisés par rapport à la mesure avec un champ de 10$\times$10 cm$^2$. De plus, la profondeur et la DSP sont respectivement 10 cm et 90 cm lors des mesures de FOC.
 
 \chapter{Résultats et discussions}
 \section{Rendement en profondeur}
@@ -365,7 +387,7 @@ Concernant la profondeur du dépôt de dose, nous observons que le $R_{100}$ aug
 
 La taille de champ influence la dose en profondeur, une fois que l'équilibre électronique est atteint. En effet, nous voyons sur la figure \ref*{fig_champs_profils} et le tableau \ref*{table_profils_champ} que plus la taille de champ augmente, plus la dose en profondeur augmente. Ce phénomène est expliqué par l'augmentation du volume du milieu diffusant. De plus, la dose à l'entrée augmente avec la taille de champ. Cela s'explique par une quantité plus importante de rayonnement diffusé dans la tête de l'accélérateur (surface du cône égalisateur irradiée plus importante et surface apparente des machoires plus grande).
 
-Nous voyons que plus la taille de champ augmente, plus le $R_{100}$ diminue. Le fait d'augmenter la taille de champ augmente le nombre de photons diffusés. L'énergie moyenne du faisceau 
+Nous voyons que plus la taille de champ augmente, plus le $R_{100}$ diminue. Le fait d'augmenter la taille de champ augmente le nombre de photons diffusés. L'énergie moyenne du faisceau est donc plus faible, ce qui diminue la profondeur de mise en équilibre électronique. Il y a tout de même un souci sur la taille de champ de 20$\times$20 cm$^2$ sur la valeur du $R_{100}$. Il y a du y avoir un problème d'interpolation par le logiciel puisque sur la figure \ref*{fig_rdt_champ} nous voyons que le $z_{max}$ est la plus petite valeur des quatre courbes.
 
 \begin{figure}[h!]
   \centering
@@ -393,7 +415,7 @@ Nous voyons que plus la taille de champ augmente, plus le $R_{100}$ diminue. Le 
 \newpage
 \subsection{Influence du détecteur}
 
-La figure \ref*{fig_rdt_detecteurs} et le tableau \ref*{table_rdt_detecteurs} montrent l'influence du détecteur choisi sur le rendement en profondeur. Nous pouvons voir que la diode mesure une plus grande dose à la surface. Cela est dû au $Z$ effectif du détecteur qui est plus important que les autres détecteurs ($Z$ = 14), ce qui favorise l'effet photoélectrique à basse énergie. Concernant les chambres d'ionisation Semiflex et CC13, leur volume sensible est très proche (0,13 cm$^3$ pour la CC13 et 0,125 cm$^3$ pour la Semiflex) ce qui explique leurs très fortes similarités (courbes quasiment superposées sur la figure \ref*{fig_rdt_detecteurs}). Nous observons que le signal de la Pinpoint et du MicroDiamant sont bruités. Leur volume sensible étant très petits (0,015 cm$^3$ et 0,004 mm$^3$ respectivement) la statistique de comptage est plus faible sur ces deux détecteurs puisque la vitesse d'acquisition est identique entre chacun des détecteurs.
+La figure \ref*{fig_rdt_detecteurs} et le tableau \ref*{table_rdt_detecteurs} montrent l'influence du détecteur choisi sur le rendement en profondeur. Nous pouvons voir que la diode mesure une plus grande dose à la surface. Cela est dû au $Z$ effectif du détecteur qui est plus important que les autres détecteurs ($Z$ = 14), ce qui favorise l'effet photoélectrique à basse énergie donc un signal plus important. Concernant les chambres d'ionisation Semiflex et CC13, leur volume sensible est très proche (0,13 cm$^3$ pour la CC13 et 0,125 cm$^3$ pour la Semiflex) ce qui explique leurs très fortes similarités (courbes quasiment superposées sur la figure \ref*{fig_rdt_detecteurs}). Nous observons que le signal de la Pinpoint et du MicroDiamant sont bruités. Leur volume sensible étant très petits (0,015 cm$^3$ et 0,004 mm$^3$ respectivement) la statistique de comptage est plus faible sur ces deux détecteurs puisque la vitesse d'acquisition est identique entre chacun des détecteurs. Il aurait donc fallu diminuer la vitesse d'acquisition pour ces détecteurs pour obtenir une meilleure statistique de comptage.
 
 \begin{figure}[h]
   \centering
@@ -425,7 +447,7 @@ La figure \ref*{fig_rdt_detecteurs} et le tableau \ref*{table_rdt_detecteurs} mo
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/dose_relative/chambre_ref.png}
-  \caption{Rendement en profondeur avec et sans chambre de référence pour une taille de champ de 10$\times$10 cm$^2$ et une DSP de 100 cm}
+  \caption{Rendements en profondeur avec et sans chambre de référence pour une taille de champ de 10$\times$10 cm$^2$ et une DSP de 100 cm}
   \label{fig_sanss_chambre_ref}
 \end{figure}
 
@@ -489,9 +511,13 @@ Ayant adapté la taille de champ pour chacune des DSP dans le but d'avoir la mê
   \label{table_profils_dsp}
 \end{table}
 
+\newpage
 \subsection{Influence de la taille de champ}
 
-Pour observer l'influence de la taille de champ sur les profils de dose, nous avons réalisé des acquisitions avec des champs allant de 3$\times$3 cm$^2$ à 20$\times$20 cm$^2$. Le tableau \ref*{table_profils_champ} montre que la pénombre augmente avec la taille de champ. Ce phénomène vient du fait que la surface apparente du cône égalisateur est plus élevée à grande ouverture par rapport à un petit champ, ce qui augmente le rayonnement diffusé dans la tête de l'accélérateur. De plus, le fait d'augmenter la taille de champ augmente la surface apparente du collimateur, ce qui implique une augmentation du diffusé et donc de la pénombre. Le volume diffusant dans le fantôme augmente avec la taille de champ, ce qui implique une plus grande contribution du rayonnnement diffusé dans la cuve d'eau, la pénombre augmente également avec le phénomène physique. Nous pouvons voir également sur le tableau \ref*{table_profils_champ} que l'homogénéité se dégrade lorsque la taille de champ diminue. Cette grandeur est mesurée sur la partie plane du profil. Or, pour des petits champs, le profil n'est plus vraiment plat mais se rapproche de la forme du gaussienne (voir figure \ref*{fig_champs_profils}), il est donc comprehensible que le résultat de l'homogénéité soit affecté pour de telles tailles de champ.
+Pour observer l'influence de la taille de champ sur les profils de dose, nous avons réalisé des acquisitions avec des champs allant de 3$\times$3 cm$^2$ à 20$\times$20 cm$^2$. Le tableau \ref*{table_profils_champ} montre que la pénombre augmente avec la taille de champ. Ce phénomène vient du fait que la surface apparente du cône égalisateur est plus élevée à grande ouverture par rapport à un petit champ, ce qui augmente le rayonnement diffusé dans la tête de l'accélérateur.
+
+De plus, le fait d'augmenter la taille de champ augmente la surface apparente du collimateur, ce qui implique une augmentation du diffusé et donc de la pénombre. Le volume diffusant dans le fantôme augmente avec la taille de champ, ce qui implique une plus grande contribution du rayonnnement diffusé dans la cuve d'eau, la pénombre augmente également avec le phénomène physique. Nous pouvons voir également sur le tableau \ref*{table_profils_champ} que l'homogénéité se dégrade lorsque la taille de champ diminue. Cette grandeur est mesurée sur la partie plane du profil. Or, pour des petits champs, le profil n'est plus vraiment plat mais se rapproche de la forme d'une gaussienne (voir figure \ref*{fig_champs_profils}), il est donc comprehensible que le résultat de l'homogénéité soit affecté pour de telles tailles de champ. 
+
 
 \begin{figure}[h]
   \centering
@@ -499,6 +525,8 @@ Pour observer l'influence de la taille de champ sur les profils de dose, nous av
   \caption{Profils de dose pour différentes tailles de champs. Orientation \textit{crossline}, profondeur de 10 cm et DSP de 100 cm}
   \label{fig_champs_profils}
 \end{figure}
+
+Nous pouvons voir que le champ de 20$\times$20 cm$^2$ est un peu plus épaulé que les champs de plus petites dimensions. Cela est certaienement dû au design du cône égalisateur et que sa surface apparente est plus grande que pour les autres tailles de champ.
 
 \begin{table}[h]
   \centering
@@ -525,6 +553,10 @@ Pour observer l'influence de la taille de champ sur les profils de dose, nous av
 La figure \ref*{fig_profils_detecteurs} et le tableau \ref{table_profils_detecteurs} nous montrent que la pénombre est très dépendante du détecteur. En effet, le choix du détecteur est crucial lorsqu'il y a de forts gradients de dose puisqu'en fonction du volume sensible du détecteur, les pentes des pénombres vont être modifiées. Nous pouvons voir qu'avec un détecteur possédant un volume sensible très petit (comme le MicroDiamant et la diode SRS) que la pénombre est petite. Si le volume sensible du détecteur est trop important, le signal reccueilli n'est pas représentatif de la réalité puisque le signal va être moyenné sur une trop grande distance. Cependant, nous remarquons que pour la chambre d'ionisation Pinpoint, qui possède un volume sensible très petit de 0,015 cm$^3$, la dose est surrestimée au niveau des queues de distribution. Le bruit engendré par l'irradiation du manche de la chambre n'est plus négligeable par rapport au faible signal reccueilli par le petit volume sensible. Cela a pour effet d'augmenter la pénombre, ce qui est observable dans le tableau \ref{table_profils_detecteurs} (0,65 cm de pénombre pour la Pinpoint contre 0,39 en moyenne pour le MicroDiamant).
 
 Nous voyons sur la figure \ref*{fig_profils_detecteurs} que certaines acquisitions sont bruitées (PinPoint, MicroDiamant et diode). La vitesse d'acquisition est sans doute trop importante, il aurait fallu ajuster la valeur lors des mesures.
+
+Concernant le signal hors champ de la diode, ce détecteur ayant un $Z$ effectif étant plus élevé que celui des autres détecteurs, le rayonnement diffusé hors champ est plus facilement détecté avec la diode (effet photoélectrique favorisé). De plus, cette diode n'étant pas blindée, les photons de basse énergie ne sont pas filtrés par le blindage, ce qui augmente le signal reçu.
+
+Pour le détecteur MicroDiamant nous voyons que sa réponse hors champ est plus faible que pour le reste des détecteurs. Cela peut s'expliquer par le très faible volume sensible (0,004 mm$^3$). Le signal détecté est bien plus faible que pour une chambre d'ionisation ou une diode par exemple.
 
 \begin{figure}[h]
   \centering
@@ -554,6 +586,8 @@ Nous voyons sur la figure \ref*{fig_profils_detecteurs} que certaines acquisitio
 \subsection{Influence de l'orientation du profil}
 
 Lors de l'acquisition des profils, nous pouvons choisir l'axe selon lequel le profil sera enregistré. Les résultats des deux profils sont donnés dans la tableau \ref*{table_profils_orientation} et sur la figure \ref*{fig_orientation_profil}. Les résultats montrent que la pénombre est modifiée entre ces deux acquistions. En effet, la pénombre est plus importante en \textit{inline} (tête-pieds) par rapport à l'orientation \textit{crossline} (droite-gauche). Ce sont les machoîres qui sont responsables de cette différence car les deux paires de machoîres ne sont pas sur le même plan. Celles qui définissent le champ en \textit{crossline} sont en-dessous de celles qui le définissent en \textit{inline}.
+
+De plus, le tableau \ref*{table_profils_orientation} montre une légère différence de symétrie entre les deux orientations de profils. Ceci peut s'expliquer par le fait que l'irradiation du détecteur n'est pas uniforme en \textit{inline} puisque la chambre est parallèle au profil acquis. Ce qui n'est pas le cas en \textit{crossline}.
 
 \begin{figure}[h]
   \centering
@@ -654,7 +688,7 @@ La figure \ref*{fig_perturbations_chambre_ref_profils} et le tableau \ref*{table
 
 \section{Facteurs d'ouverture du collimateur (FOC)}
 
-Le tableau \ref*{table_resultats_foc} et la figure \ref*{fig_foc} nous montre les FOC mesurés pour des champs allant de 3x3 cm$^2$ à 20x20 cm$^2$. Premièrement, nous voyons que pour des champs inférieurs à 10$\times$10 cm$^2$ les FOC sont plus importants pour le faisceau de 6 MV que pour celui de 23 MV pour un détecteur donné. Cela peu s'expliquer par le fait qu'à plus faible énergie la quantité d'électrons rétrodiffusés vers les chambres monitrices est plus importante (pour de petits champs), la dose mesurée par les chambres monitrices sera plus importante que la réalité et la coupure du faisceau sera donc prématurée. A contrario, pour une grande taille de champ (supérieure à 10$\times$10 cm$^2$), ce phénomène devient de plus en plus négligeable et la quantité de photons diffusés dans le fantôme d'eau à plus faible énergie prend le dessus. Ceci explique pourquoi les FOC sont plus faible pour une énergie de 23 MV plutôt qu'à 6 MV pour les grandes tailles de champ (et inversement).
+Le tableau \ref*{table_resultats_foc} et la figure \ref*{fig_foc} nous montre les FOC mesurés pour des champs allant de 3x3 cm$^2$ à 20x20 cm$^2$. Premièrement, nous voyons que pour des champs inférieurs à 10$\times$10 cm$^2$ les FOC sont plus importants pour le faisceau de 6 MV que pour celui de 23 MV pour un détecteur donné. Cela peu s'expliquer par le fait qu'à plus faible énergie la quantité d'électrons rétrodiffusés vers les chambres monitrices dans la tête de l'accélérateur est plus importante (pour de petits champs), la dose mesurée par les chambres monitrices sera plus importante que la réalité et la coupure du faisceau sera donc prématurée. A contrario, pour une grande taille de champ (supérieure à 10$\times$10 cm$^2$), ce phénomène devient de plus en plus négligeable et la quantité de photons diffusés dans le fantôme d'eau à plus faible énergie prend le dessus. Ceci explique pourquoi les FOC sont plus faible pour une énergie de 23 MV plutôt qu'à 6 MV pour les grandes tailles de champ (et inversement).
 
 Lorsqu'on utilise une chambre d'ionisation avec un volume sensible élevé (chambre de type Farmer), les résultats des FOC sont quasiment identiques par rapport à la chambrer CC13, à l'exception du champ 3x3 cm$^2$. Cela est dû au trop grand volume sensible du détecteur par rapport aux dimensions du champ, la mesure est donc sous-estimée avec la chambre Farmer.
 
@@ -704,7 +738,7 @@ Ces pourcentages sont ramenés à la valeur commune de 60\% pour les champs carr
 
 \clearpage
 \bibliography{biblio}
-\addcontentsline{toc}{section}{Références}
+\addcontentsline{toc}{chapter}{Références}
 \bibliographystyle{plain}
 \nocite{*}
 

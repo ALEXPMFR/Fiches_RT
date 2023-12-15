@@ -102,7 +102,7 @@ Pour les mesures de dose de référence, les chambres d'ionisation utilisées so
   \multicolumn{1}{|c|}{\textbf{Numéro de série}} & 011924 & 01689 \\
   \multicolumn{1}{|c|}{\textbf{Volume sensible (cm}$\mathbf{^3}$\textbf{)}} & 0,6 & 0,35 \\
   \multicolumn{1}{|c|}{\textbf{Tension appliquée (V)}} & 400 & 200 \\
-  \multicolumn{1}{|c|}{\textbf{Coefficient d'étalonnage (Gy/nC)}} & 5,365 $\times$ 10$^{-2}$ & 7,32 $\times$ 10$^{-2}$ (fasiceau de 18 MeV)\\
+  \multicolumn{1}{|c|}{\textbf{Coefficient d'étalonnage (Gy/nC)}} & 5,365 $\times$ 10$^{-2}$ & 7,32 $\times$ 10$^{-2}$ ($R_{50}$ = 7,48 g/cm$^{-2}$)\\
   \multicolumn{1}{|c|}{\textbf{Taille de champ recommandée (cm}$\mathbf{^2}$\textbf{)}} & 5x5 à 40x40 & 4x4 à 40x40 \\ \hline
   \end{tabular}
   \caption{Chambres d'ionisation utilisées lors des mesures de dose absolue dans des faisceaux d'électrons}
@@ -230,7 +230,7 @@ La profondeur de référence dépend donc du $R_{50}$ pour la mesure de dose :
 Concernant le point de mesure, il n'est pas au centre géométrique de la chambre utilisée. Le point de mesure dépend du type de chambre (cylindrique ou plate) et se calcule à partir des équations \ref*{eq_zmes_ROOS} et \ref*{eq_zmes_Farmer}. Il est important de noter que la formule \ref*{eq_zmes_ROOS} n'est valable que pour la chambre ROOS.
 
 \begin{equation}
-  z_{mes} = z_{ref} - 0,11
+  z_{mes} = z_{ref} - 0,11 \, [\text{g/cm$^2$}]
   \label{eq_zmes_ROOS}
 \end{equation}
 
