@@ -81,7 +81,9 @@
 \clearpage
 \section{Introduction}
 
+La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Cependant, et de façon de plus en plus rares, les faisceaux d'électrons sont également utilisés pour des tumeurs plutôt superficielles au vu du faible parcours dans la matière, contrairement aux photons. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
 
+Ce rapport traitera des faisceaux d'électrons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilisés lors des mesures des doses relatives concernant les rendements en profondeur, les profils de dose ainsi que les facteurs d'ouverture du collimateur (FOC), puis les résultats seront présentés et discutés.
 
 \section{Matériels et méthodes}
 
@@ -152,8 +154,7 @@ Avec :
   \label{fig_rdt}
 \end{figure}
 
-\newpage
-Pour les faisceaux d'électrons, le rendement en profondeur mesuré par le logiciel d'analyse n'est pas un rendement en dose mais un rendement en ionisations. Il faut donc appliquer une correction sur chacun des points de la courbe à l'aide de la formule suivante \cite{fm1991clinical}\cite{gerbi2009recommendations} :
+Pour les faisceaux d'électrons, le rendement en profondeur mesuré par le logiciel d'analyse n'est pas un rendement en dose mais un rendement en ionisations puisque le pouvoir d'arrêt des électrons chute avec la profondeur, ce qui n'est pas le cas pour les photons. Il faut donc appliquer une correction sur chacun des points de la courbe à l'aide de la formule suivante \cite{fm1991clinical}\cite{gerbi2009recommendations} :
 
 \begin{equation}
   \%dd_w(d) = \%di_w(d) \times \dfrac{(\overline{L}/\rho)^w_{air}(R_{50}, d) P_{fl}(E_d)}{(\overline{L}/\rho)^w_{air} (R_{50}, d_{max}) P_{fl}(E_{d_{max}})}
@@ -190,7 +191,7 @@ Les profils de dose permettent d'évaluer la répartition de la dose suivant les
 Pour évaluer les différents profils, plusieurs métriques sont à notre disposition :
 
 \begin{itemize}
-  \item[$\bullet$] L'homogénéité permet d'évaluer la planéité de la zone centrale du profil. Cette métrique se calcule comme suit :
+  \item[$\bullet$] L'homogénéité permet d'évaluer la planéité de la zone centrale du profil. L'homogénéité du faisceau est obtenue à l'aide de deux diffuseur. Le premier pour disperser le faisceau et le second pour l'homogénéisé. Cette métrique se calcule comme suit :
   
   \begin{equation}
     H = \dfrac{D_{max} - D_{min}}{D_{max} + D_{min}}
@@ -247,13 +248,13 @@ Nous pouvons observer plusieurs effets de l'énergie du faisceau sur les rendeme
 \begin{itemize}
   \item[$\bullet$] le parcours pratique $R_p$ augmente avec l'énergie puisque celle-ci permet une plus grande portée des électrons
   \item[$\bullet$] la dose à la surface augmente avec l'énergie car la diffusion des électrons est moins importante à haute énergie, ce qui diminue l'écart entre la dose déposée à l'entrée et celle du maximum
-  \item[$\bullet$] la dose en fin de parcours est plus importante à haute énergie car le rayonnement de freingage généré pour les particules primaires est lui-même plus énergétique
+  \item[$\bullet$] la dose en fin de parcours est plus importante à haute énergie car le rayonnement de freinage généré pour les particules primaires est lui-même plus énergétique
 \end{itemize}
 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/rendements_energies.png}
-  \caption{Influence de l'énergie du faisceau d'électrons sur le rendement en profondeur}
+  \caption{Rendements en profondeur pour plusieurs énergies de faisceaux. Taille de champ de 10$\times$10 cm$^2$, DSP de 100 cm}
   \label{fig_rdt_energie}
 \end{figure}
 
@@ -272,14 +273,33 @@ Nous pouvons observer plusieurs effets de l'énergie du faisceau sur les rendeme
   \label{table_rdt_energies}
 \end{table}
 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    \textbf{Énergie (MeV)} & $\mathbf{R_{50}}$ \textbf{recette (cm)} & $\mathbf{R_{50}}$ \textbf{mesures (cm)} & \textbf{Écart (mm)} \\
+    \toprule
+    6 & 2,08 & 2,33 & 2,5 \\
+    9 & 3,32 & 3,56 & 2,4 \\
+    12 & 4,73 & 4,99 & 2,6 \\
+    15 & 5,99 & 6,27 & 2,8 \\
+    18 & 7,18 & 7,48 & 3,0 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Écart entre le $R_{50}$ obtenu lors des mesures et celui obtenu lors de la recette pour l'ensemble des énergies de l'accélérateur utilisé}
+  \label{table_ecarts_R50}
+\end{table}
+
+Le tableau \ref*{table_ecarts_R50} donne les écarts relatifs du $R_{50}$ mesuré lors de la recette et celui mesuré lors des manipulations et nous voyons que les écarts sont hors tolérances. Lors de la recettes, les rendements en profondeur ont été acquis à l'aide de la chambre CC13, hors nous avons mesuré les rendements avec la chambre ROOS. Nous ne pouvons donc pas obtenir des résultats semblables puisque ces deux détecteurs n'ont pas du tout la même forme de volume sensible. Les résultats concernant la comparaison entre ces deux détecteurs (voir partie \ref*{partie_detecteurs_rdt}) nous rassurent à ce sujet puisque, pour un faisceau d'énergie de 9 MeV, l'écart entre les deux mesures est de 0,7 mm, ce qui est dans les tolérances.
+
 \subsubsection{Influence de la taille de champ}
 
-Nous pouvons voir que la taille de champ n'a quasiment aucun effet sur l'ensemble de la courbe de rendement en profondeur pour des tailles de champ allant de 6$\times$ cm$^2$ à 20$\times$20 cm$^2$ (cf figure \ref*{fig_rdt_champ} et tableau \ref*{table_rdt_champs}). Nous pouvons supposer que l'équilibre électronique latéral est suffisant pour ces tailles de champ. Certainement que ce ne serait pas le cas avec des petits champs et que cela impacterait le rendement en profondeur.
+Nous pouvons voir que la taille de champ n'a quasiment aucun effet sur l'ensemble de la courbe de rendement en profondeur pour des tailles de champ allant de 6$\times$6 cm$^2$ à 20$\times$20 cm$^2$ (cf figure \ref*{fig_rdt_champ} et tableau \ref*{table_rdt_champs}). Nous pouvons supposer que l'équilibre électronique latéral est suffisant pour ces tailles de champ. Certainement que ce ne serait pas le cas avec des petits champs et que cela impacterait le rendement en profondeur.
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.4]{../scripts/figures/rendements_taille_champ.png}
-  \caption{Influence de la taille de champ du faisceau d'électrons sur le rendement en profondeur}
+  \includegraphics[scale=0.39]{../scripts/figures/rendements_taille_champ.png}
+  \caption{Rendements en profondeur pour différentes tailles de champ. Energie de 9 MeV et DSP de 100 cm}
   \label{fig_rdt_champ}
 \end{figure}
 
@@ -302,7 +322,7 @@ Nous pouvons voir que la taille de champ n'a quasiment aucun effet sur l'ensembl
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/rendements_DSP.png}
-  \caption{Influence de la DSP sur le rendement en profondeur}
+  \caption{Rendements en profondeur pour plusieurs DSP. Taille de champ de 10$\times$10 cm$^2$ et énergie de 9 MeV}
   \label{fig_rdt_DSP}
 \end{figure}
 
@@ -319,16 +339,17 @@ Nous pouvons voir que la taille de champ n'a quasiment aucun effet sur l'ensembl
   \label{table_rdt_dsp}
 \end{table}
 
-La distance source patient influence le rendement en profondeur uniquement sur la dose à l'entrée et la profondeur du maximum de dose. En effet, nous pouvons voir que plus la DSP augmente, plus la dose à l'entrée ainsi que le $R_{100}$ augmentent. Cela peut s'expliquer par le fait que l'énergie moyenne du faisceau diminue pour une DSP qui augmente (voir \ref*{table_rdt_dsp}) car les électrons diffusent dans l'air, ce qui n'est pas le cas de façon sensible pour les photons.
+La distance source patient influence le rendement en profondeur uniquement sur la dose à l'entrée et la profondeur du maximum de dose. En effet, nous pouvons voir que plus la DSP augmente, plus la dose à l'entrée ainsi que le $R_{100}$ augmentent. Cela peut s'expliquer par le fait que l'énergie moyenne du faisceau diminue pour une DSP qui augmente (voir \ref*{table_rdt_dsp}) car les électrons diffusent dans l'air, ce qui n'est pas le cas de façon sensible pour les photons. En routine clinique, nous pouvons en conclure que les torlérances sur le placement du patient à la bonne DSP ne sont pas très strictes.
 
 \subsubsection{Influence du détecteur}
+\label{partie_detecteurs_rdt}
 
-Comme le parcours des électrons est très faible par rapport aux photons dans l'eau, la variation de la dose relative selon l'axe du faisceau est importante. Or la largeur du volume sensible de la chambre ROOS étant de 2 mm (contre 6 mm de diamètre pour la CC13), celle-ci permet d'avoir une meilleure représentation des rendements en profondeur pour les faisceaux d'électrons. La chambre CC13 sous-estime la dose dans la zone de build-up, comme nous pouvons le voir sur la figure \ref*{fig_rdt_detecteur} et le tableau \ref*{table_rdt_detecteurs}.
+Comme le parcours des électrons est très faible par rapport aux photons dans l'eau, la variation de la dose relative selon l'axe du faisceau est importante. Or la largeur du volume sensible de la chambre ROOS étant de 2 mm (contre 6 mm de diamètre pour la CC13), celle-ci permet d'avoir une meilleure représentation des rendements en profondeur pour les faisceaux d'électrons. La chambre CC13 sous-estime la dose dans la zone de build-up, comme nous pouvons le voir sur la figure \ref*{fig_rdt_detecteur} et le tableau \ref*{table_rdt_detecteurs}. Il est donc recommandé de choisir la chambre ROOS pour les acquisitions des rendements en profondeur.
 
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/rendements_detecteurs.png}
-  \caption{Influence du détecteur sur le rendement en profondeur}
+  \caption{Rendements en profondeur pour différents détecteurs. Taille de champ de 10$\times$10 cm$^2$, énergie ed 9 MeV et DSP de 10 cm}
   \label{fig_rdt_detecteur}
 \end{figure}
 
@@ -344,17 +365,16 @@ Comme le parcours des électrons est très faible par rapport aux photons dans l
   \label{table_rdt_detecteurs}
 \end{table}
 
-\clearpage
 \subsection{Profils de dose}
 \subsubsection{Inlfuence de l'énergie}
 
-Nous voyons que la pénombre augmente avec l'énergie, ce qui est contradictoire puisque l'angle de diffusion des électrons diminue avec l'énergie. Cependant, comme le $R_{100}$ n'est pas le même pour toutes les énergies, la profondeur de mesure est modifiée. Pour une énergie de 18 MeV, la profondeur est plus faible que certaines énergies et l'angle de diffusion des électrons est moindre puisque c'est l'énergie la plus élevée. Ces deux paramètres combinés donnent une pénombre qui est bien plus faible que pour les autres énergies. De plus, nous voyons que l'homogénéité se dégrade avec l'énergie (jusqu'à 12 MeV) car la profondeur de mesure augmente progressivement.
+Nous voyons que la pénombre augmente avec l'énergie, ce qui est contradictoire puisque l'angle de diffusion des électrons diminue avec l'énergie. Cependant, comme le $R_{100}$ n'est pas le même pour toutes les énergies, la profondeur de mesure est modifiée. Pour une énergie de 18 MeV, la profondeur est plus faible que certaines énergies et l'angle de diffusion des électrons est moindre puisque c'est l'énergie la plus élevée. Ces deux paramètres combinés donnent une pénombre qui est bien plus faible que pour les autres énergies. De plus, nous voyons que l'homogénéité se dégrade légèrement avec l'énergie (jusqu'à 12 MeV) car la profondeur de mesure augmente progressivement.
 
 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/profils_energies.png}
-  \caption{Influence de l'énergie du faisceau d'électrons sur le profil de dose}
+  \caption{Profils de dose pour différents énergies de faisceaux d'électrons. Taille de champ de 10$\times$10 cm$^2$ et DSP de 100 cm}
   \label{fig_profil_energie}
 \end{figure}
 
@@ -373,6 +393,7 @@ Nous voyons que la pénombre augmente avec l'énergie, ce qui est contradictoire
   \label{table_proflis_energies}
 \end{table}
 
+\newpage
 \subsubsection{Influence de la taille de champ}
 
 Plus la taille de champ augmente, plus l'homogénéité s'améliore. Cela est dû à l'effet d'équilibre électronique latéral qui se dégrade pour des petits champs. 
@@ -385,7 +406,7 @@ Pour finir, nous voyons que la pénombre pour un champ de 6$\times$6 cm$^2$ est 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/profils_taille_champ.png}
-  \caption{Influence de la taille de champ du faisceau d'électrons sur le profil de dose}
+  \caption{Profils de dose pour différentes tailles de champ. DSP de 100 cm et énergie de 9 MeV}
   \label{fig_profils_taille}
 \end{figure}
 
@@ -406,12 +427,12 @@ Pour finir, nous voyons que la pénombre pour un champ de 6$\times$6 cm$^2$ est 
 \newpage
 \subsubsection{Inlfuence de la DSP}
 
-Lorsque la DSP augmente, nous voyons tout d'abord que l'homogénéité se dégrade du fait de la diffusion plus importante dans l'air des électrons. De plus, l'effet de cette augmentation agit sur l'accroissement de la pénombre car l'énergie moyenne du faisceau à l'entrée du fantôme d'eau est plus faible, ce qui implique un plus grand angle de diffusion des électrons. Enfin, la taille de champ calculée par le logiciel d'analyse augmente pour une DSP qui augmente car la profondeur de mesure est fixe pour les trois mesures, du fait du faible parcours des électrons dans l'eau.
+Lorsque la DSP augmente, nous voyons tout d'abord que l'homogénéité se dégrade du fait de la diffusion plus importante dans l'air des électrons. Il est donc préférable en clinique de diminuer la DSP au maximum. De plus, l'effet de cette augmentation agit sur l'accroissement de la pénombre car l'énergie moyenne du faisceau à l'entrée du fantôme d'eau est plus faible, ce qui implique un plus grand angle de diffusion des électrons. Enfin, la taille de champ calculée par le logiciel d'analyse augmente pour une DSP qui augmente car la profondeur de mesure est fixe pour les trois mesures, du fait du faible parcours des électrons dans l'eau.
 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/profils_DSP.png}
-  \caption{Influence de la DSP sur le profil de dose}
+  \caption{Profils de dose pour différentes DSP. Taille de champ de 10$\times$10 cm$^2$, énergie de 9 MeV et énergie de 9 MeV}
   \label{fig_profil_DSP}
 \end{figure}
 
@@ -431,12 +452,12 @@ Lorsque la DSP augmente, nous voyons tout d'abord que l'homogénéité se dégra
 \newpage
 \subsubsection{Influence du détecteur}
 
-Le tableau \ref*{table_profils_detecteurs} donne une plus grande pénombre pour la chambre ROOS. Cela s'explique par le fait que cette chambre est plate et plus étalée dans le plan perpendiculaire  à l'axe du faisceau. La chambre CC13 est donc plus ponctuelle que la ROOS.
+Le tableau \ref*{table_profils_detecteurs} donne une plus grande pénombre pour la chambre ROOS. Cela s'explique par le fait que cette chambre est plate et plus étalée dans le plan perpendiculaire  à l'axe du faisceau. La chambre CC13 est plus adaptée pour les acquisitions des profils de dose car elle est plus ponctuelle que la ROOS. 
 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/profils_detecteurs.png}
-  \caption{Influence du détecteur sur le profil de dose}
+  \caption{Profils de dose pour différents détecteurs. Taille de champ de 10$\times$10 cm$2$, énergie de 9 MeV et DSP de 100 cm}
   \label{fig_profils_detecteur}
 \end{figure}
 
@@ -460,7 +481,7 @@ Nous voyons sur la figure \ref*{fig_profils_vitesse} que l'acquisition avec une 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/profils_vitesses.png}
-  \caption{Influence de la vitesse d'acquisition sur le profil de dose}
+  \caption{Profils de dose pour différentes vitesses d'acquisition. Taille de champ de 10$\times$10 cm$^2$, énergie de 9 MeV et DSP de 100 cm}
   \label{fig_profils_vitesse}
 \end{figure}
 
@@ -482,7 +503,7 @@ La taille de champ mesurée à l'aide de MyQA est quasiment la même entre les d
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/profils_orientation.png}
-  \caption{Influence de l'orientation de l'acquisition sur le profil de dose}
+  \caption{Profils de dose pour différentes orientations d'acquiqition. Taille de champ de 10$\times$10 cm$^2$, énergie de 9 MeV et DSP de 100 cm}
   \label{fig_profils_orientation}
 \end{figure}
 
@@ -500,12 +521,12 @@ La taille de champ mesurée à l'aide de MyQA est quasiment la même entre les d
 \newpage
 \subsection{Facteurs d'ouverture du collimateur}
 
-En fonction de l'énergie du faisceau choisie sur l'accélérateur, les machoires n'ont pas la même ouverture pour une même taille de champ au niveau de l'applicateur. Ces réglages étant imposés par Varian, il n'est pas possible d'obtenir des courbes de FOC croissantes comme pour les faisceaux de photons.
+En fonction de l'énergie du faisceau choisie sur l'accélérateur, les machoires n'ont pas la même ouverture pour une même taille de champ au niveau de l'applicateur. Ces réglages étant imposés par Varian, il n'est pas possible d'obtenir des courbes de FOC croissantes comme pour les faisceaux de photons puisque les conditions de diffusion sont différentes.
 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{../scripts/figures/FOC.png}
-  \caption{Facteurs d'ouverture du collimateur}
+  \caption{Facteurs d'ouverture du collimateur (FOC) pour différentes énergies. DSP de 100 cm.}
   \label{fig_foc}
 \end{figure}
 
