@@ -195,7 +195,20 @@ Avec :
   \item[$\bullet$] $p_u$ le facteur de correction des perturbations
 \end{itemize}
 
+Cette mesure de dose absorbée de référence se fait dans les conditions de référence suivantes :
+
+\begin{itemize}
+  \item[$\bullet$] fantôme d'eau
+  \item[$\bullet$] DSP = 100 cm
+  \item[$\bullet$] champ de 10$\times$10 cm$^2$
+  \item[$\bullet$] $z_{ref} = z_{max}$
+  \item[$\bullet$] Chambre cylindrique de 0,6 cm$^3$ si $\overline{E}_0$ > 10 MeV
+  \item[$\bullet$] Chambre plate si $\overline{E}_0$ < 10 MeV
+  \item[$\bullet$] déplacement radial uniquement pour la chambre cylindrique de $dr = 0,6r$
+\end{itemize}
+
 \subsection{Protocole TRS-398}
+\label{partie_TRS_398}
 
 Le protocole TRS-398 de l'AIEA \cite{international2001iaea} nous donne l'équation pour le cacul de la dose absorbée de référence pour les faisceaux d'électrons :
 
@@ -211,7 +224,18 @@ Avec :
   \item[$\bullet$] $k_{Q,\, Q_0}$ le facteur correctif permettant de passer de l'indice de qualité $Q_0$ à la qualité du faisceau clinique $Q$
 \end{itemize}
 
-Le $R_{50}$ est donné par les deux formules suivantes, permettant de passer à un $R_{50}$ en terme d'ionisations à un $R_{50}$ en terme de dose :
+Cette mesure de dose absorbée de référence se se fait dans les conditions de référence suivantes :
+
+\begin{itemize}
+  \item[$\bullet$] fantôme d'eau
+  \item[$\bullet$] DSP = 100 cm
+  \item[$\bullet$] champ de 10$\times$10 cm$^2$
+  \item[$\bullet$] $z_{ref} = 0,6 R_{50} - 0,1$ g/cm$^2$
+  \item[$\bullet$] Chambre cylindrique de 0,6 cm$^3$ si $R_{50}$ > 4 g/cm$^2$ ou chambre plate su $R_{50}$ < 4 g/cm$^2$
+  \item[$\bullet$] déplacement radial de $dr = 0,5r$ si la chambre est cylindrique
+\end{itemize}
+
+Nous voyons que la profondeur de référence dépend du $R_{50}$, celui-ci est donné par les deux formules suivantes, permettant de passer à un $R_{50}$ en terme d'ionisations à un $R_{50}$ en terme de dose :
 
 \begin{equation}
   R_{50} = 1,029 \times R_{50,\, ion} - 0,06 \leq 10\; \text{g/cm}^2
@@ -221,12 +245,6 @@ Le $R_{50}$ est donné par les deux formules suivantes, permettant de passer à 
   R_{50} = 1,059 \times R_{50,\, ion} - 0,37 > 10\; \text{g/cm}^2
 \end{equation}
 
-La profondeur de référence dépend donc du $R_{50}$ pour la mesure de dose :
-
-\begin{equation}
-  z_{ref} = 0,6 R_{50} - 0,1 \, \text{g/cm}^2
-\end{equation}
-
 Concernant le point de mesure, il n'est pas au centre géométrique de la chambre utilisée. Le point de mesure dépend du type de chambre (cylindrique ou plate) et se calcule à partir des équations \ref*{eq_zmes_ROOS} et \ref*{eq_zmes_Farmer}. Il est important de noter que la formule \ref*{eq_zmes_ROOS} n'est valable que pour la chambre ROOS.
 
 \begin{equation}
@@ -234,12 +252,14 @@ Concernant le point de mesure, il n'est pas au centre géométrique de la chambr
   \label{eq_zmes_ROOS}
 \end{equation}
 
+Concernant la chambre ROOS, le volume sensible est situé à 1,1 mm sous la surface externe de la chambre, ce qui est compensé en déplaçant la chambre vers la surface de l'eau de 1,1 mm.
+
 \begin{equation}
   z_{mes} = z_{ref} + 0,5 r_{cyl}
   \label{eq_zmes_Farmer}
 \end{equation}
 
-Dans le cas où la chambre adaptée aux faisceaux d'électrons n'est pas étalonnée par un laboratoire primaire, nous pouvons utilisées un étalonnage croisé pour obtenir un coefficient d'étalonnage associé à la chambre d'intérêt. Celui-ci s'obtient à l'aide d'une chambre étalonnée dans un faisceau de photons de qualité $Q_0$ (généralement du $^{60}$Co). Pour cela, il est recommandé par le TRS-398 d'utiliser un faisceau d'électrons ayant un $R_{50}$ > 7 g.cm$^2$ (soit une énergie moyenne du faisceau $\overline{E}_0$ > 16 MeV). La formule \ref*{eq_cross_calib} permet d'obtenir le coefficient d'étalonnage de la chambre utilisée pour mesurer la dose de référence :
+Dans le cas où la chambre adaptée aux faisceaux d'électrons n'est pas étalonnée par un laboratoire primaire, nous pouvons utilisées un étalonnage croisé pour obtenir un coefficient d'étalonnage associé à la chambre d'intérêt. Celui-ci s'obtient à l'aide d'une chambre étalonnée dans un laboratoire officiel dans un faisceau de photons de qualité $Q_0$ (généralement du $^{60}$Co). Pour cela, il est recommandé par le TRS-398 d'utiliser un faisceau d'électrons ayant un $R_{50}$ > 7 g.cm$^2$ (soit une énergie moyenne du faisceau $\overline{E}_0$ > 16 MeV). La formule \ref*{eq_cross_calib} permet d'obtenir le coefficient d'étalonnage de la chambre utilisée pour mesurer la dose de référence :
 
 \begin{equation}
   N_{D_{eau, \, Q_{cross}}}^x = \dfrac{M_{Q_{cross}}^{ref}}{M_{Q_{cross}}^x} N_{D_{eau,\, Q_0}}^{ref} k_{Q_{cross},\, Q_0}^{ref}
@@ -428,7 +448,7 @@ Le coefficient d'étalonnage pour la chambre d'ionisation ROOS peut donc être c
   \label{table_coeff_etal_energies}
 \end{table}
 
-Les résultats consernant les mesures de dose de référence pour l'ensemble des faisceaux d'électrons disponibles au Clinac 3 sont tabulés dans le tableau \ref*{table_resultats_doses}. Nous pouvons voir que l'écart relatif entre les doses obtenues avec l'étalonnage croisé sont plus faible que le coefficient fourni par le laboratoire primaire. Ceci peut s'expliquer par le fait que, lors de la recette, un étalonnage croisé à été calculé pour la mesure de dose.
+Les résultats consernant les mesures de dose de référence, dont les conditions ont été données dans la partie \ref*{partie_TRS_398} pour l'ensemble des faisceaux d'électrons disponibles au Clinac 3 sont tabulés dans le tableau \ref*{table_resultats_doses}. Nous pouvons voir que l'écart relatif entre les doses obtenues avec l'étalonnage croisé sont plus faible que le coefficient fourni par le laboratoire primaire. Ceci peut s'expliquer par le fait que, lors de la recette, un étalonnage croisé à été calculé pour la mesure de dose.
 
 Nous ne pouvons pas comparer la dose pour le faisceau de 18 MeV obtenue lors des mensuels avec nos mesures car le point de mesure lors des CQ mensuels est au niveau du $R_{100}$.
 
