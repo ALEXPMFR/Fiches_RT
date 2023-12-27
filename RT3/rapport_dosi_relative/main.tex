@@ -81,115 +81,11 @@
 \clearpage
 \chapter*{Introduction}
 
-La radiothérapie externe utilise, de manière prépondérante, les faisceaux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires dans l'optique de fournir ces caractéristiques au TPS (\textit{Treatment Planning System}) utilisé en clinique pour le calcul des plans de traitement des patients, ou encore pour l'installation des machines lors de leur commissionning.
+La radiothérapie externe utilise, de manière prépondérante, les faisceaux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Dans cette optique, la mesure précise des caractéristiques dosimétriques, tels que les rendements en profondeur, les profils de dose, les facteurs d'ouverture du collimateur (FOC) ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires dans l'optique de fournir ces caractéristiques au TPS (\textit{Treatment Planning System}) utilisé en clinique pour le calcul des plans de traitement des patients, ou encore pour l'installation des machines lors de leur commissionning.
 
 Ce rapport traitera des faisceaux de photons utilisés en radiothérapie externe. Sera étudié l'impact de certains paramètres d'acquisition sur la distribution de dose (dose relative), ainsi que des paramètres d'influence (énergie du faisceau, tailles de champ, DSP, détecteurs etc).
 
 \chapter{Matériels et méthodes}
-\section{Matériel}
-
-Les mesures de dose relative ont été réalisées à l'aide du logiciel MyQA (version 9.0.25.0) du constructeur IBA, associé à la cuve à eau BluePhantom 2 du même constructeur. Cette cuve à eau ainsi que MyQA permettent de piloter les déplacements d'un détecteur et de le déplacer dans les trois directions de l'espace, notamment. Le tableau \ref*{table_matos} regroupe l'ensemble du matériel utilisé pour ces mesures. Nous pouvons voir que dans le tableau \ref*{table_matos}, il y a deux chambres CC13 dites de champ et de référence. Celle dite de champ est pour l'acquisition du signal dans le fantôme d'eau, et la chambre dite de référence permet de s'affranchir des fluctuations du débit du faisceau.
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{>{\centering\arraybackslash}m{4cm}>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2cm}}
-    \toprule
-    \textbf{Matériel} & \textbf{Volume sensible (cm}$\mathbf{^3}$\textbf{)} & \textbf{Matériau} & \textbf{Constructeur} & \textbf{N}$\mathbf{^{\circ}}$\textbf{ de série}\\
-    \toprule
-    Chambre dite de référence CC13 & 0,13 & Air & IBA & 3922 \\
-    Chambre dite de champ CC13 & 0,13 & Air & IBA & 3923 \\
-    Chambre Farmer 30013 & 0,6 & Air & PTW & 011924 \\
-    Chambre Semiflex 31010 & 0,125 & Air & PTW & 008214 \\
-    Chambre Pinpoint 31014 & 0,04 & Air & PTW & 00787 \\
-    Diode SRS 60018 & 0,03 & Silicium & PTW & 000186 \\
-    MicroDiamant 60019 & 0,004 $\times$ 10$^{-3}$ & Diamant & PTW & 122271 \\
-    Electromètre Unidos & / & / & PTW & 20505 \\
-    Cuve à eau Blue Phantom 2 & / & / & IBA & 8173 \\
-    Clinac iX 2300 (Clinac 2) & / & / & Varian & H294581 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Récapitulatif du matériel utilisé lors des mesures (acquisition continue)}
-  \label{table_matos}
-\end{table}
-
-\newpage
-\section{Méthodes}
-\subsection{Mise en place de la cuve}
-
-Cette partie traitera de l'installation de la cuve à eau (représentée sur la figure \ref*{fig_cuve}) pour les acquisitions de profils de dose et de rendements en profondeur. 
-
-\begin{itemize}
-  \item[$\bullet$] Bras à 0$^{\circ}$ physique à l'aide d'un niveau 
-  \item[$\bullet$] Alignement de la cuve avec le croisillon de l'accélérateur
-  \item[$\bullet$] Remplissage de la cuve à eau
-  \item[$\bullet$] Installation de la chambre de référence et de la chambre de champ
-  \item[$\bullet$] Une fois que la cuve est remplie d'eau, aligner les rails permettant les mouvements de la chambre de champ de façon parallèle à la surface de l'eau
-  \item[$\bullet$] Enregistrer la position de l'isocentre en ayant au préalable aligné la chambre de champ avec le croisillon et au niveau de la surface de l'eau
-  \item[$\bullet$] Sur le logiciel, bien vérifier l'orientation de la cuve
-\end{itemize}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.4]{figures/cuve.png}
-  \caption{Cuvea à eau Blue Phantom 2 du constructeur IBA utilisée lors des mesures}
-  \label{fig_cuve}
-\end{figure}
-
-\newpage
-\subsection{Mesures réalisées}
-
-Pour chacune des grandeurs dosimétriques étudiées, nous allons réaliser plusieurs mesures en faisant varier plusieurs paramètres d'influences et d'aquisition comme le montre la figure \ref*{table_mesures}.
-
-\begin{table}[h!]
-  \centering
-  \begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{4cm}|}
-    \hline
-    \textbf{Grandeur dosimétrique} & \textbf{Paramètre d'influence} & \textbf{Référence} & \textbf{Comparaison}                    \\ \hline
-    \multicolumn{1}{|c|}{\multirow{5}{*}{\textbf{Rendements}}} & \textbf{Champ (cm}$\mathbf{^2}$\textbf{)} & 10x10 (machoires) & 3x3, 6x6, 20x20    (machoires)                \\
-    \multicolumn{1}{|c|}{}                              & \textbf{DSP (cm)}             & 100                & 85, 110                                 \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Energie (MV)}         & 6                  & 23                                      \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Détecteur}            & CC13               & Pinpoint, MicroDiamant, Diode, Semiflex \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Chambre de référence} & Dans le champ      & Hors champ                              \\ \hline
-    \multicolumn{1}{|c|}{\multirow{7}{*}{\textbf{Profils}}}    & \textbf{Champ (cm}$\mathbf{^2}$\textbf{)} & 10x10 & 3x3, 6x6, 8x8, 12x12, 15x15, 20x20 \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Profondeur (cm)}      & 10                 & 3, 20                                   \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Ouverture/Fermeture}  & Ouverture          & Fermeture                               \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Energie (MV)}         & 6                  & 23                                      \\
-    \multicolumn{1}{|c|}{}                              & \textbf{DSP (cm)}             & 100                & 85, 110                                 \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Détecteur}            & CC13               & Pinpoint, MicroDiamant, Diode, Semiflex \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Orientation}          & Crossline         & Inline                                  \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Mode d'acquisition}   & Continu & Step by step \\ \hline
-    \multicolumn{1}{|c|}{\multirow{3}{*}{\textbf{FOC}}} & \textbf{Energie (MV)}         & 6                  & 23                                      \\
-    \multicolumn{1}{|c|}{}                              & \textbf{Détecteur}            & CC13               & Farmer                                  \\
-    \multicolumn{1}{|c|}{}                              & \textbf{DSP (cm)}             & 90                 & 80, 120                                 \\ \hline
-  \end{tabular}
-  \caption{Différentes mesures réalisées pour la dosimétrie relative}
-  \label{table_mesures}
-\end{table}
-
-Pour les acquisitions en modes continu et pas à pas, plusieurs combinaisons ont été étudiés. Le tableau \ref*{table_ss_presentation}
-
-\begin{table}[h!]
-  \centering
-  \begin{tabular}{>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{3cm}}
-    \toprule
-    \textbf{Mode acquisition} & \textbf{Vitesse (cm/s)} & \textbf{Pas G-D (cm)} & \textbf{Pas centre (cm)} & \textbf{Temps d'intégration (s)} \\
-    \toprule
-    Continu & 0,3 & / & / & / \\
-    Continu & 2,5 & / & / & / \\
-    Steb by Step & / & 0,1 & 0,5 & 1 \\
-    Step by Step & / & 0,1 & 0,5 & 0,5 \\
-    Step by step & / & 0,1 & 0,5 & 3 \\
-    Step by Step & / & 0,5 & 1 & 1 \\
-    Step by step & / & 0,05 & 0,2 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Inlfuence du mode d'acquisition sur les profils (résultats MyQA)}
-  \label{table_ss_presentation}
-\end{table}
-
-Premièrement, les résultats concernant les rendements en profondeur seront présentés puis analysés. Il en sera de même pour les profils de dose et les facteurs d'ouverture du collimateur.
-
-\newpage
 \section{Grandeurs dosimétriques}
 \subsection{Rendement en profondeur}
 
@@ -323,6 +219,111 @@ Avec :
 \end{figure}
 
 Comme l'indique la formule \ref*{eq_foc}, les FOC sont normalisés par rapport à la mesure avec un champ de 10$\times$10 cm$^2$. De plus, la profondeur et la DSP sont respectivement 10 cm et 90 cm lors des mesures de FOC.
+
+\section{Matériels}
+
+Les mesures de dose relative ont été réalisées à l'aide du logiciel MyQA (version 9.0.25.0) du constructeur IBA, associé à la cuve à eau BluePhantom 2 du même constructeur. Cette cuve à eau ainsi que MyQA permettent de piloter les déplacements d'un détecteur et de le déplacer dans les trois directions de l'espace. MyQA permet de créer également ds queues de mesures et d'analyser les mesures acquises. Le tableau \ref*{table_matos} regroupe l'ensemble du matériel utilisé pour ces mesures. Nous pouvons voir que dans le tableau \ref*{table_matos}, il y a deux chambres CC13 dites de champ et de référence. Celle dite de champ est pour l'acquisition du signal dans le fantôme d'eau, et la chambre dite de référence permet de s'affranchir des fluctuations du débit du faisceau. Concernant l'accélérateur, nous avons utilisé le Clinac iX2300 du constructeur Varian qui met a disposition deux faisceaux de photons de 6 MV et de 23 MV.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{4cm}>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2cm}}
+    \toprule
+    \textbf{Matériel} & \textbf{Volume sensible (cm}$\mathbf{^3}$\textbf{)} & \textbf{Matériau} & \textbf{Constructeur} & \textbf{N}$\mathbf{^{\circ}}$\textbf{ de série}\\
+    \toprule
+    Chambre dite de référence CC13 & 0,13 & Air & IBA & 3922 \\
+    Chambre dite de champ CC13 & 0,13 & Air & IBA & 3923 \\
+    Chambre Farmer 30013 & 0,6 & Air & PTW & 011924 \\
+    Chambre Semiflex 31010 & 0,125 & Air & PTW & 008214 \\
+    Chambre Pinpoint 31014 & 0,04 & Air & PTW & 00787 \\
+    Diode SRS 60018 & 0,03 & Silicium & PTW & 000186 \\
+    MicroDiamant 60019 & 0,004 $\times$ 10$^{-3}$ & Diamant & PTW & 122271 \\
+    Electromètre Unidos & / & / & PTW & 20505 \\
+    Cuve à eau Blue Phantom 2 & / & / & IBA & 8173 \\
+    Clinac iX 2300 (Clinac 2) & / & / & Varian & H294581 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Récapitulatif du matériel utilisé lors des mesures (acquisition continue)}
+  \label{table_matos}
+\end{table}
+
+\newpage
+\section{Méthodes}
+\subsection{Mise en place de la cuve}
+
+Cette partie traitera de l'installation de la cuve à eau (représentée sur la figure \ref*{fig_cuve}) pour les acquisitions de profils de dose et de rendements en profondeur, dont les étapes sont présentées par la suite :
+
+\begin{itemize}
+  \item[$\bullet$] Bras à 0$^{\circ}$ physique à l'aide d'un niveau 
+  \item[$\bullet$] Alignement de la cuve avec le croisillon de l'accélérateur à l'aide d'un capuchon que l'on place sur le détecteur
+  \item[$\bullet$] Remplissage de la cuve à eau
+  \item[$\bullet$] Installation de la chambre de référence et de la chambre de champ
+  \item[$\bullet$] Une fois que la cuve est remplie d'eau, aligner les rails permettant les mouvements de la chambre de champ de façon parallèle à la surface de l'eau
+  \item[$\bullet$] Enregistrer la position de l'isocentre en ayant au préalable aligné la chambre de champ avec le croisillon et au niveau de la surface de l'eau. 
+  \item[$\bullet$] Sur le logiciel, bien vérifier l'orientation de la cuve pour que le repère de la cuve sois le même que celui du logiciel
+  \item[$\bullet$] Placer la cuve à la DSP souhaitée
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{figures/cuve.png}
+  \caption{Cuve à eau Blue Phantom 2 du constructeur IBA utilisée lors des mesures}
+  \label{fig_cuve}
+\end{figure}
+
+\newpage
+\subsection{Mesures réalisées}
+
+Pour chacune des grandeurs dosimétriques étudiées, nous allons réaliser plusieurs mesures en faisant varier plusieurs paramètres d'influences et d'aquisition comme le montre la figure \ref*{table_mesures}.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{4cm}|}
+    \hline
+    \textbf{Grandeur dosimétrique} & \textbf{Paramètre d'influence} & \textbf{Mesures de référence} & \textbf{Comparaison}                    \\ \hline
+    \multicolumn{1}{|c|}{\multirow{5}{*}{\textbf{Rendements}}} & \textbf{Taille de champ (cm}$\mathbf{^2}$\textbf{)} & 10x10 (machoires) & 3x3, 6x6, 20x20    (machoires)                \\
+    \multicolumn{1}{|c|}{}                              & \textbf{DSP (cm)}             & 100                & 85, 110                                 \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Energie (MV)}         & 6                  & 23                                      \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Détecteur}            & CC13               & Pinpoint, MicroDiamant, Diode, Semiflex \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Chambre de référence} & Dans le champ      & Hors champ                              \\ \hline
+    \multicolumn{1}{|c|}{\multirow{7}{*}{\textbf{Profils}}}    & \textbf{Champ (cm}$\mathbf{^2}$\textbf{)} & 10x10 & 3x3, 6x6, 8x8, 12x12, 15x15, 20x20 \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Profondeur (cm)}      & 10                 & 3, 20                                   \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Energie (MV)}         & 6                  & 23                                      \\
+    \multicolumn{1}{|c|}{}                              & \textbf{DSP (cm)}             & 100                & 85, 110                                 \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Détecteur}            & CC13               & Pinpoint, MicroDiamant, Diode, Semiflex \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Orientation}          & Crossline         & Inline                                  \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Mode d'acquisition}   & Continu & Step by step \\ \hline
+    \multicolumn{1}{|c|}{\multirow{3}{*}{\textbf{FOC}}} & \textbf{Energie (MV)}         & 6                  & 23                                      \\
+    \multicolumn{1}{|c|}{}                              & \textbf{Détecteur}            & CC13               & Farmer                                  \\
+    \multicolumn{1}{|c|}{}                              & \textbf{DSP (cm)}             & 90                 & 80, 120                                 \\ \hline
+  \end{tabular}
+  \caption{Différentes mesures réalisées pour la dosimétrie relative}
+  \label{table_mesures}
+\end{table}
+
+Pour les acquisitions en modes continu et pas à pas, plusieurs combinaisons ont été étudiés. Le tableau \ref*{table_ss_presentation}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{3cm}}
+    \toprule
+    \textbf{Mode acquisition} & \textbf{Vitesse (cm/s)} & \textbf{Pas G-D (cm)} & \textbf{Pas centre (cm)} & \textbf{Temps d'intégration (s)} \\
+    \toprule
+    Continu & 0,3 & / & / & / \\
+    Continu & 2,5 & / & / & / \\
+    Steb by Step & / & 0,1 & 0,5 & 1 \\
+    Step by Step & / & 0,1 & 0,5 & 0,5 \\
+    Step by step & / & 0,1 & 0,5 & 3 \\
+    Step by Step & / & 0,5 & 1 & 1 \\
+    Step by step & / & 0,05 & 0,2 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Inlfuence du mode d'acquisition sur les profils (résultats MyQA)}
+  \label{table_ss_presentation}
+\end{table}
+
+Premièrement, les résultats concernant les rendements en profondeur seront présentés puis analysés. Il en sera de même pour les profils de dose et les facteurs d'ouverture du collimateur.
+
+\newpage
 
 \chapter{Résultats et discussions}
 \section{Rendement en profondeur}

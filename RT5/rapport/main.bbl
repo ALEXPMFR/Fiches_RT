@@ -1,0 +1,32 @@
+\begin{thebibliography}{1}
+
+\bibitem{international2017iaea}
+{\em Dosimetry of Small Static Fields Used in External Beam Radiotherapy}.
+\newblock Number 483 in Technical Reports Series. INTERNATIONAL ATOMIC ENERGY
+  AGENCY, Vienna, 2017.
+
+\bibitem{EBT4}
+Gafchromic ebt4 radiotherapy films.
+\newblock
+  \url{https://www.ashland.com/industries/medical/radiotherapy-films/ebt4},
+  2023.
+
+\bibitem{MyQAUser}
+IBA.
+\newblock {\em MyQA Accapt user's guide SW version 9.0}.
+\newblock 'Schwarzenbruck.
+
+\bibitem{niroomand2020report}
+Azam Niroomand-Rad, Sou-Tung Chiu-Tsao, Michael~P Grams, David~F Lewis,
+  Christopher~G Soares, Leo~J Van~Battum, Indra~J Das, Samuel Trichter,
+  Michael~W Kissick, Guerda Massillon-JL, et~al.
+\newblock Report of aapm task group 235 radiochromic film dosimetry: an update
+  to tg-55.
+\newblock {\em Medical physics}, 47(12):5986--6025, 2020.
+
+\bibitem{CharlotteCours}
+Charlotte Robert.
+\newblock {\em Films, TLD, OSL, semi-conducteurs, détecteurs diamants}.
+\newblock Cours Master 2 Paris.
+
+\end{thebibliography}
