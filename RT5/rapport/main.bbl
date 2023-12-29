@@ -5,6 +5,12 @@
 \newblock Number 483 in Technical Reports Series. INTERNATIONAL ATOMIC ENERGY
   AGENCY, Vienna, 2017.
 
+\bibitem{EBT4brochure}
+Dosimetry media - gafchromic ebt4 radiotherapy films.
+\newblock
+  \url{https://www.ashland.com/file_source/Ashland/Documents/Gafchromic%20EBT4%20brochure.pdf},
+  2022.
+
 \bibitem{EBT4}
 Gafchromic ebt4 radiotherapy films.
 \newblock
@@ -15,6 +21,11 @@ Gafchromic ebt4 radiotherapy films.
 IBA.
 \newblock {\em MyQA Accapt user's guide SW version 9.0}.
 \newblock 'Schwarzenbruck.
+
+\bibitem{MarchesiCours}
+Vincent Marchesi.
+\newblock {\em Contrôle de qualité en RCMI/VMAT}.
+\newblock Cours DQPRM 2022.
 
 \bibitem{niroomand2020report}
 Azam Niroomand-Rad, Sou-Tung Chiu-Tsao, Michael~P Grams, David~F Lewis,

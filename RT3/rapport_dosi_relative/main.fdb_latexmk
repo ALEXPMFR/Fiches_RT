@@ -1,14 +1,15 @@
 # Fdb version 3
-["bibtex main"] 1703260544 "main.aux" "main.bbl" "main" 1703263790
+["bibtex main"] 1703702702 "main.aux" "main.bbl" "main" 1703703962
   "/usr/local/texlive/2022/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "biblio.bib" 1702284518 1670 0185cddf650184b52aa9c0791c2ce29b ""
-  "main.aux" 1703263790 18628 6bd6c87116ebd429c255425b3aa38f3e "pdflatex"
+  "biblio.bib" 1703698576 1675 38a80a1d4ea0093cf75301a2087c5043 ""
+  "main.aux" 1703703961 19005 1df8e0c1fe0e90660f179b4a26b94c69 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1703263766 "/Volumes/LEXAR/Fiches_DQ/RT/RT3/rapport_dosi_relative/main.tex" "main.pdf" "main" 1703263790
+["pdflatex"] 1703703954 "/Volumes/LEXAR/Fiches_DQ/RT/RT3/rapport_dosi_relative/main.tex" "main.pdf" "main" 1703703962
   "../scripts/figures/dose_relative/DSP/Crossline_DSP.png" 1696241331 169134 4c543d2d31b7c7d8bf52736cdd285efd ""
   "../scripts/figures/dose_relative/DSP/Rendement_DSP.png" 1696241331 232289 51ded065ee7a88dad499d281f6d8ecec ""
+  "../scripts/figures/dose_relative/DSP/Rendement_DSP_zoom.png" 1703702782 200208 1fcf33b97753f51b065a40d0f8441997 ""
   "../scripts/figures/dose_relative/FOC.png" 1695195141 132577 d0b3ebe2c4781c0838ae8d69f6935fe4 ""
   "../scripts/figures/dose_relative/chambre_ref.png" 1695111012 256613 40c369e42bbb8497fd4b93ff1e7ea769 ""
   "../scripts/figures/dose_relative/orientation_profil.png" 1695042285 173117 edecc4fcc4196fa45df040ccdef950cd ""
@@ -19,7 +20,7 @@
   "../scripts/figures/dose_relative/rendement_champs.png" 1695212576 272553 6eb60d3cf73fd5be5fa6cb8860672b0d ""
   "../scripts/figures/dose_relative/test/Rendement.png" 1695195867 277661 8400a30f2216ffe5d6b74eec9e05bb3f ""
   "../scripts/figures/dose_relative/test/profils_10x10.png" 1695195869 263545 7726f0ec87ed34b41f3b9b520f84cc57 ""
-  "/Volumes/LEXAR/Fiches_DQ/RT/RT3/rapport_dosi_relative/main.tex" 1703263765 48310 a5ad19891c225562dd35ef9819b43ab6 ""
+  "/Volumes/LEXAR/Fiches_DQ/RT/RT3/rapport_dosi_relative/main.tex" 1703703952 51555 a3886418cb3cec3cab93f8f1dc46d6e1 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -414,14 +415,13 @@
   "figures/logo_ico.png" 1694591549 89366 2ff5053c0b6b550c110e156e9bb700a9 ""
   "figures/rdt_schema.png" 1697534142 39946 fae5b55c15def131454bd3c4ccab4a05 ""
   "figures/regions_profil.PNG" 1696519896 13572 cd1d2472cbf8b9e2e89c5f933bd7a009 ""
-  "figures/tpr_schema.png" 1697535094 56771 5b6e3344eec232d5e8f0f9042d485ded ""
-  "main.aux" 1703263790 18628 6bd6c87116ebd429c255425b3aa38f3e "pdflatex"
-  "main.bbl" 1703260544 1587 284054afe04b35c405f353b51f021dda "bibtex main"
+  "main.aux" 1703703961 19005 1df8e0c1fe0e90660f179b4a26b94c69 "pdflatex"
+  "main.bbl" 1703702702 1592 411069139c7ce1d7f08595f7b3e53082 "bibtex main"
   "main.mtc" 0 -1 0 "pdflatex"
   "main.mtc0" 0 -1 0 "pdflatex"
-  "main.out" 1703263790 5171 1acd5b8424a946d3bb3d31d44c65b080 "pdflatex"
-  "main.tex" 1703263765 48310 a5ad19891c225562dd35ef9819b43ab6 ""
-  "main.toc" 1703263790 2695 dc353639c7b417d1817388470d5c2fe1 "pdflatex"
+  "main.out" 1703703961 5425 02da5eb96fdde2b23329b7e83af7f5ae "pdflatex"
+  "main.tex" 1703703952 51555 a3886418cb3cec3cab93f8f1dc46d6e1 ""
+  "main.toc" 1703703961 2683 d75c23e597990183669e766e1c0818d7 "pdflatex"
   "presentation.tex" 1694591667 1262 3a8c8dfed6be5eae644ceeb136cf9865 ""
   (generated)
   "main.aux"

@@ -77,7 +77,9 @@ def DSP():
         plt.xlabel('Profondeur (mm)')
         plt.ylabel('Dose (%)')
         plt.title('Influence de la DSP')
-        plt.savefig('figures/dose_relative/DSP/' + et.split(' ')[0] + '_DSP.png', dpi=250)
+        plt.xlim(0, 25)
+        plt.ylim(80, 102)
+        plt.savefig('figures/dose_relative/DSP/' + et.split(' ')[0] + '_DSP_zoom.png', dpi=250)
 
 def rendement_X6_X23():
     for energie in ['14_profils_rendements_cc13.xlsx', '5_X23_RP.xlsx']:
@@ -212,12 +214,12 @@ def main():
     # courbes_solo()
     # influence_detecteur()
     # chambre_ref()
-    # DSP()
+    DSP()
     # rendement_X6_X23()
     # champs()
     # perturbations_chambre_ref()
     # vitesse()
     # inline_crossline()
-    SS()
+    # SS()
 
 main()
