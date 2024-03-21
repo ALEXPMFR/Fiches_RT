@@ -1,0 +1,539 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{esint}
+\usepackage{geometry}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{ctable}
+\usepackage{fancybox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage[french]{babel}
+\usepackage{dsfont}
+\usepackage{setspace}
+\usepackage[french]{minitoc}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\geometry{top=2.3cm, bottom=2.3cm, left=2.5cm, right=2.5cm}
+
+\addtocounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{white}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% PRÉSENTATION %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{presentation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% STYLE %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\onehalfspacing
+
+%Style  du corps
+\pagestyle{fancy}
+\renewcommand\headrulewidth{0.5pt}
+\renewcommand\footrulewidth{0.5pt}
+\fancyfoot[L]{\textsc{A. Rintaud}}
+\fancyfoot[C]{\textsc{ICO Nantes}}
+\fancyfoot[R]{\thepage}
+
+\tableofcontents
+\clearpage
+\section{Introduction}
+
+La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Cependant, et de façon de plus en plus rares, les faisceaux d'électrons sont également utilisés pour des tumeurs plutôt superficielles au vu du faible parcours dans la matière, contrairement aux photons. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
+
+Ce rapport traitera des faisceaux d'électrons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilisés lors des mesures des doses relatives concernant les rendements en profondeur, les profils de dose ainsi que les facteurs d'ouverture du collimateur (FOC), puis les résultats seront présentés et discutés.
+
+\section{Matériels et méthodes}
+
+Cette partie est consacrée au matériel et à la méthode permettant d'étudier la répartition de la dose absorbée dans le fantôme d'eau utilisé. Le tableau \ref*{table_mesures} et \ref*{table_matos} donnent respectivement l'ensemble des mesures réalisées et le matériel utilisé pour la dosimétrie relative dans des faisceaux d'électrons.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cc|c|c|}
+  \cline{3-4}
+   &  & \textbf{Référence} & \textbf{Comparaisons} \\ \hline
+  \multicolumn{1}{|c|}{\multirow{4}{*}{\textbf{Rendement}}} & \textbf{Champ (cm}$\mathbf{^2}$\textbf{)} & 10x10 & 6x6, 15x15, 20x20 \\
+  \multicolumn{1}{|c|}{} & \textbf{DSP (cm)} & 100 & 105, 110 \\
+  \multicolumn{1}{|c|}{} & \textbf{Energie (MV)} & 9 & 6, 12, 15, 18 \\
+  \multicolumn{1}{|c|}{} & \textbf{Détecteur} & ROOS & CC13 \\ \hline
+  \multicolumn{1}{|c|}{\multirow{5}{*}{\textbf{Profils}}} & \textbf{Champ (cm}$\mathbf{^2}$\textbf{)} & 10x10 & 6x6, 15x15, 20x20 \\
+  \multicolumn{1}{|c|}{} & \textbf{Energie (MV)} & 9 & 6, 12, 15, 18 \\
+  \multicolumn{1}{|c|}{} & \textbf{Détecteur} & CC13 & ROOS \\
+  \multicolumn{1}{|c|}{} & \textbf{Orientation du profil} & Crossline & Inline \\
+  \multicolumn{1}{|c|}{} & \textbf{DSP (cm)} & 100 & 105, 110 \\ \hline
+  \multicolumn{1}{|c|}{\textbf{FOC}} & \textbf{Energie (MV)} & 6 & 15 \\ \hline
+  \end{tabular}
+  \caption{Différentes meures réalisées pour la dosimétrie relative}
+  \label{table_mesures}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccc}
+    \toprule
+    \textbf{Matériel} & \textbf{Volulme sensible (cm}$\mathbf{^2}$\textbf{)} & \textbf{Matériau} & \textbf{Constructeur} & \textbf{N$^{\circ}$ de série}\\
+    \toprule
+    Chambre CC13 (référence) & 0,13 & Air & IBA & 3922 \\
+    Chambre CC13 (champ) & 0,13 & Air & IBA & 3923 \\
+    Chambre ROOS & 0,35 & Air & PTW & 002030 \\
+    Electromètre Unidos & / & / & PTW & 20505 \\
+    Cuve à eau Blue Phantom 2 & / & / & IBA & 8173 \\
+    Clinac iX 2300 (Clinac 3) & / & / & Varian & H141033 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Matériel utilisé lors des mesures}
+  \label{table_matos}
+\end{table}
+
+\subsection{Rendement en profondeur}
+
+Le rendement en profondeur (RDT) permet de connaître l'évolution de la dose dans le milieu de référence en fonction de la profondeur $z$ du point de mesure. Il est donné par la formule suivante :
+
+\begin{equation}
+  RDT(z, A, E, DSP) = \dfrac{D_z}{D_{max}}
+  \label{eq_rdt}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+  \item[$\bullet$] $z$ la profondeur
+  \item[$\bullet$] $A$ la taille de champ
+  \item[$\bullet$] $DSP$ la distance source-patient
+  \item[$\bullet$] $E$ l'énergie du faisceau
+  \item[$\bullet$] $D_z$ la dose à la profondeur $z$
+  \item[$\bullet$] $D_{max}$ la dose à la profondeur du maximum
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{figures/rdt_schema.png}
+  \caption{Géométrie pour la mesure du rendement en profondeur}
+  \label{fig_rdt}
+\end{figure}
+
+Pour les faisceaux d'électrons, le rendement en profondeur mesuré par le logiciel d'analyse n'est pas un rendement en dose mais un rendement en ionisations puisque le pouvoir d'arrêt des électrons chute avec la profondeur, ce qui n'est pas le cas pour les photons. Il faut donc appliquer une correction sur chacun des points de la courbe à l'aide de la formule suivante \cite{fm1991clinical}\cite{gerbi2009recommendations} :
+
+\begin{equation}
+  \%dd_w(d) = \%di_w(d) \times \dfrac{(\overline{L}/\rho)^w_{air}(R_{50}, d) P_{fl}(E_d)}{(\overline{L}/\rho)^w_{air} (R_{50}, d_{max}) P_{fl}(E_{d_{max}})}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+  \item[$\bullet$] $\%dd_w(d)$ le pourcentage de dose dans l'eau à la profondeur $d$
+  \item[$\bullet$] $\%di_w(d)$ le pourcentage d'ionisation dans l'eau à la profondeur $d$
+  \item[$\bullet$] $(\overline{L}/\rho)^w_{air}(R_{50}, d)$ le rapport entre le pouvoir d'arrêt massique de l'eau et celui de l'air
+  \item[$\bullet$] $R_{50}$ le parcours où 50\% de la dose est déposée par les électrons
+  \item[$\bullet$] $P_{fl}$ le facteur qui corrige la réponse d'une chambre d'ionisation en fonction de la perturbation de la fluence d'électrons qui se produit dans la chambre
+  \item[$\bullet$] $\overline{E}_d$ l'énergie moyenne d'un faisceau d'électrons à la profondeur $d$ donnée par l'équation \ref*{eq_energie_profondeur}
+\end{itemize}
+
+\begin{equation}
+  \overline{E}_d = \overline{E}_0 \left( 1 - \dfrac{z}{R_p} \right)
+  \label{eq_energie_profondeur}
+\end{equation}
+
+Avec $\overline{E}_0$ = 2,4$R_{50}$ [MeV] \cite{fm1991clinical}\cite{gerbi2009recommendations}.
+
+\subsection{Profils de dose}
+
+Les profils de dose permettent d'évaluer la répartition de la dose suivant les axes perpendiculaires à l'axe du faisceau. Les profils sont composés de trois régions principales (voir figure \ref*{fig_regions_profil}) :
+
+\begin{itemize}
+  \item[$\bullet$] zone centrale
+  \item[$\bullet$] pénombre
+  \item[$\bullet$] dose hors champ
+\end{itemize}
+
+Pour évaluer les différents profils, plusieurs métriques sont à notre disposition :
+
+\begin{itemize}
+  \item[$\bullet$] L'homogénéité permet d'évaluer la planéité de la zone centrale du profil. L'homogénéité du faisceau est obtenue à l'aide de deux diffuseur. Le premier pour disperser le faisceau et le second pour l'homogénéisé. Cette métrique se calcule comme suit :
+  
+  \begin{equation}
+    H = \dfrac{D_{max} - D_{min}}{D_{max} + D_{min}}
+    \label{eq_homogeneite}
+  \end{equation}
+  
+  \item[$\bullet$] La symétrie est définie de la manière suivante :
+  
+  \begin{equation}
+    S = \max\left(\dfrac{D(-x)}{D(+x)}; \dfrac{D(+x)}{D(-x)}\right)
+    \label{eq_symetrie}
+  \end{equation}
+  
+  \item[$\bullet$] La pénombre est la distance séparant le point à 20 \% de la dose maximale et celui à 80 \%. Il y a donc une valeur pour chacun des côtés du faisceau.  
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.8]{figures/regions_profil.PNG}
+  \caption{Différentes régions d'un profil de dose}
+  \label{fig_regions_profil}
+\end{figure}
+
+\subsection{Facteur d'ouverture du collimateur}
+
+Le facteur d'ouverture du collimateur (FOC) est le rapport de la dose à une taille de champ $A$ quelconque et de la dose au champ de référence $A_{ref}$ :
+
+\begin{equation}
+    FOC(A, E, z) = \dfrac{D(A, E, z)}{D(c_{ref}, E, z)}
+    \label{eq_foc}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+    \item[$\bullet$] $D(A, E, z)$ la dose à la taille de champ $A$, l'énergie $E$ et à la profondeur $z$
+    \item[$\bullet$] $D(A_{ref}, E, z)$ la dose à la taille de champ de référence $A_{ref}$, à l'énergie $E$ et à la profondeur $z$
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{figures/foc_schema.png}
+  \caption{Géométrie de mesure des FOC \cite{mayles2007handbook}}
+  \label{fig_foc}
+\end{figure}
+
+\newpage
+\section{Résultats}
+\subsection{Rendements en profondeur}
+\subsubsection{Influence de l'énergie}
+
+Nous pouvons observer plusieurs effets de l'énergie du faisceau sur les rendements en profondeur à l'aide du tableau \ref*{table_rdt_energies} et de la figure \ref*{fig_rdt_energie} :
+
+\begin{itemize}
+  \item[$\bullet$] le parcours pratique $R_p$ augmente avec l'énergie puisque celle-ci permet une plus grande portée des électrons
+  \item[$\bullet$] la dose à la surface augmente avec l'énergie car la diffusion des électrons est moins importante à haute énergie, ce qui diminue l'écart entre la dose déposée à l'entrée et celle du maximum
+  \item[$\bullet$] la dose en fin de parcours est plus importante à haute énergie car le rayonnement de freinage généré pour les particules primaires est lui-même plus énergétique
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/rendements_energies.png}
+  \caption{Rendements en profondeur pour plusieurs énergies de faisceaux. Taille de champ de 10$\times$10 cm$^2$, DSP de 100 cm}
+  \label{fig_rdt_energie}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccccc}
+  \toprule
+  \textbf{Energie (MeV)} & $\mathbf{R_{100}}$ \textbf{(cm)} & $\mathbf{R_{50}}$ \textbf{(cm)} & $\mathbf{R_{85}}$ \textbf{(cm)} & $\mathbf{R_p}$ \textbf{(cm)} & $\mathbf{E_{p_0}}$ \textbf{(MeV)} & $\mathbf{E_0}$ \textbf{(MeV)} \\ \toprule
+  6 & 1,09 & 2,08 & 1,62 & 2,65 & 5,49 & 4,84 \\
+  9 & 1,82 & 3,32 & 2,66 & 4,13 & 8,44 & 7,73 \\
+  12 & 2,42 & 4,73 & 3,85 & 5,79 & 11,77 & 11,02 \\
+  15 & 2,67 & 5,99 & 4,83 & 7,31 & 14,82 & 13,96 \\
+  18 & 1,94 & 7,18 & 5,62 & 8,84 & 17,91 & 16,73 \\ \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence de l'énergie sur le rendement en profondeur pour les faisceaux d'électrons du Clinac 3}
+  \label{table_rdt_energies}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    \textbf{Énergie (MeV)} & $\mathbf{R_{50}}$ \textbf{recette (cm)} & $\mathbf{R_{50}}$ \textbf{mesures (cm)} & \textbf{Écart (mm)} \\
+    \toprule
+    6 & 2,08 & 2,33 & 2,5 \\
+    9 & 3,32 & 3,56 & 2,4 \\
+    12 & 4,73 & 4,99 & 2,6 \\
+    15 & 5,99 & 6,27 & 2,8 \\
+    18 & 7,18 & 7,48 & 3,0 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Écart entre le $R_{50}$ obtenu lors des mesures et celui obtenu lors de la recette pour l'ensemble des énergies de l'accélérateur utilisé}
+  \label{table_ecarts_R50}
+\end{table}
+
+Le tableau \ref*{table_ecarts_R50} donne les écarts relatifs du $R_{50}$ mesuré lors de la recette et celui mesuré lors des manipulations et nous voyons que les écarts sont hors tolérances. Lors de la recettes, les rendements en profondeur ont été acquis à l'aide de la chambre CC13, hors nous avons mesuré les rendements avec la chambre ROOS. Nous ne pouvons donc pas obtenir des résultats semblables puisque ces deux détecteurs n'ont pas du tout la même forme de volume sensible. Les résultats concernant la comparaison entre ces deux détecteurs (voir partie \ref*{partie_detecteurs_rdt}) nous rassurent à ce sujet puisque, pour un faisceau d'énergie de 9 MeV, l'écart entre les deux mesures est de 0,7 mm, ce qui est dans les tolérances.
+
+\subsubsection{Influence de la taille de champ}
+
+Nous pouvons voir que la taille de champ n'a quasiment aucun effet sur l'ensemble de la courbe de rendement en profondeur pour des tailles de champ allant de 6$\times$6 cm$^2$ à 20$\times$20 cm$^2$ (cf figure \ref*{fig_rdt_champ} et tableau \ref*{table_rdt_champs}). Nous pouvons supposer que l'équilibre électronique latéral est suffisant pour ces tailles de champ. Certainement que ce ne serait pas le cas avec des petits champs et que cela impacterait le rendement en profondeur.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.39]{../scripts/figures/rendements_taille_champ.png}
+  \caption{Rendements en profondeur pour différentes tailles de champ. Energie de 9 MeV et DSP de 100 cm}
+  \label{fig_rdt_champ}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccccc}
+  \toprule
+  \textbf{Taille de champ} \textbf{(cm}$\mathbf{^2}$\textbf{)} & $\mathbf{R_{100}}$ \textbf{(cm)} & $\mathbf{R_{50}}$ \textbf{(cm)} & $\mathbf{R_{85}}$ \textbf{(cm)} & $\mathbf{Rp}$\textbf{(cm)} & $\mathbf{E_{p_0}}$ \textbf{(MeV)} & $\mathbf{E_0}$ \textbf{(MeV)} \\ \toprule
+  6x6 & 2,18 & 3,61 & 2,93 & 4,41 & 9,01 & 8,40 \\
+  10x10 & 2,17 & 3,60 & 2,93 & 4,42 & 9,01 & 8,39 \\
+  15x15 & 2,19 & 3,60 & 2,94 & 4,42 & 9,03 & 8,40 \\
+  20x20 & 2,18 & 3,61 & 2,94 & 4,41 & 9,00 & 8,40 \\ \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence de la taille de champ sur le rendement en profondeur pour les faisceaux d'électrons du Clinac 3}
+  \label{table_rdt_champs}
+\end{table}
+
+\subsubsection{Influence de la DSP}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/rendements_DSP.png}
+  \caption{Rendements en profondeur pour plusieurs DSP. Taille de champ de 10$\times$10 cm$^2$ et énergie de 9 MeV}
+  \label{fig_rdt_DSP}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccccc}
+    \toprule
+    \textbf{DSP (cm)} & $\mathbf{R_{100}}$ \textbf{(cm)} & $\mathbf{R_{50}}$ \textbf{(cm)} & $\mathbf{R_{85}}$ \textbf{(cm)} & $\mathbf{R_p}$\textbf{(cm)} & $\mathbf{E_{p_0}}$ \textbf{(MeV)} & $\mathbf{E_0}$ \textbf{(MeV)} \\ \toprule
+    100 & 1,88 & 3,54 & 2,87 & 4,36 & 8,89 & 8,26 \\
+    105 & 1,87 & 3,54 & 2,87 & 4,35 & 8,89 & 8,24 \\
+    110 & 2,01 & 3,52 & 2,87 & 4,35 & 8,89 & 8,21 \\ \bottomrule
+  \end{tabular}
+  \caption{Influence de la DSP sur le rendement en profondeur pour les faisceaux d'électrons du Clinac 3}
+  \label{table_rdt_dsp}
+\end{table}
+
+La distance source patient influence le rendement en profondeur uniquement sur la dose à l'entrée et la profondeur du maximum de dose. En effet, nous pouvons voir que plus la DSP augmente, plus la dose à l'entrée ainsi que le $R_{100}$ augmentent. Cela peut s'expliquer par le fait que l'énergie moyenne du faisceau diminue pour une DSP qui augmente (voir \ref*{table_rdt_dsp}) car les électrons diffusent dans l'air, ce qui n'est pas le cas de façon sensible pour les photons. En routine clinique, nous pouvons en conclure que les torlérances sur le placement du patient à la bonne DSP ne sont pas très strictes.
+
+\subsubsection{Influence du détecteur}
+\label{partie_detecteurs_rdt}
+
+Comme le parcours des électrons est très faible par rapport aux photons dans l'eau, la variation de la dose relative selon l'axe du faisceau est importante. Or la largeur du volume sensible de la chambre ROOS étant de 2 mm (contre 6 mm de diamètre pour la CC13), celle-ci permet d'avoir une meilleure représentation des rendements en profondeur pour les faisceaux d'électrons. La chambre CC13 sous-estime la dose dans la zone de build-up, comme nous pouvons le voir sur la figure \ref*{fig_rdt_detecteur} et le tableau \ref*{table_rdt_detecteurs}. Il est donc recommandé de choisir la chambre ROOS pour les acquisitions des rendements en profondeur.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/rendements_detecteurs.png}
+  \caption{Rendements en profondeur pour différents détecteurs. Taille de champ de 10$\times$10 cm$^2$, énergie ed 9 MeV et DSP de 10 cm}
+  \label{fig_rdt_detecteur}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccccc}
+  \toprule
+  \textbf{Détecteur} & $\mathbf{R_{100}}$ \textbf{(cm)} & $\mathbf{R_{50}}$ \textbf{(cm)} & $\mathbf{R_{85}}$ \textbf{(cm)} & $\mathbf{R_p}$ \textbf{(cm)} & $\mathbf{E_{p0}}$ \textbf{(MeV)} & $\mathbf{E_0}$ \textbf{(MeV)} \\ \toprule
+  CC13 & 2,17 & 3,6 & 2,93 & 4,42 & 9,01 & 8,39 \\
+  ROOS & 1,82 & 3,32 & 2,66 & 4,13 & 8,44 & 7,73 \\ \bottomrule
+  \end{tabular}
+  \caption[short]{Résultats de l'influence du détecteur sur le rendement en profondeur pour les faisceaux d'électrons du Clinac 3}
+  \label{table_rdt_detecteurs}
+\end{table}
+
+\subsection{Profils de dose}
+\subsubsection{Inlfuence de l'énergie}
+
+Nous voyons que la pénombre augmente avec l'énergie, ce qui est contradictoire puisque l'angle de diffusion des électrons diminue avec l'énergie. Cependant, comme le $R_{100}$ n'est pas le même pour toutes les énergies, la profondeur de mesure est modifiée. Pour une énergie de 18 MeV, la profondeur est plus faible que certaines énergies et l'angle de diffusion des électrons est moindre puisque c'est l'énergie la plus élevée. Ces deux paramètres combinés donnent une pénombre qui est bien plus faible que pour les autres énergies. De plus, nous voyons que l'homogénéité se dégrade légèrement avec l'énergie (jusqu'à 12 MeV) car la profondeur de mesure augmente progressivement.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_energies.png}
+  \caption{Profils de dose pour différents énergies de faisceaux d'électrons. Taille de champ de 10$\times$10 cm$^2$ et DSP de 100 cm}
+  \label{fig_profil_energie}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1cm}>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1cm}>{\centering\arraybackslash}m{2cm}}
+  \toprule
+  \textbf{Energie (MeV)} & \textbf{H (\%)} & \textbf{S (\%)} & \textbf{Taille de champ (cm)} & \textbf{Pénombre (cm)} & \textbf{Centre (cm)} & \textbf{Deviation (\%)} \\ \toprule
+  6 & 4,75 & 101,54 & 10,23 & 1,14-1,14 & -0,03 & 100,35 \\
+  9 & 5,17 & 102,79 & 10,34 & 1,25-1,25 & -0,05 & 100,45 \\
+  12 & 6,31 & 101,33 & 10,44 & 1,40-1,40 & -0,04 & 100,41 \\
+  15 & 5,90 & 101,56 & 10,52 & 1,40-1,39 & -0,03 & 100,33 \\
+  18 & 2,05 & 101,48 & 10,38 & 0,78-0,78 & -0,03 & 100,38 \\ \bottomrule
+  \end{tabular}
+  \caption{Influence de l'énergie sur le profil de dose pour les faisceaux d'électrons du Clinac 3}
+  \label{table_proflis_energies}
+\end{table}
+
+\newpage
+\subsubsection{Influence de la taille de champ}
+
+Plus la taille de champ augmente, plus l'homogénéité s'améliore. Cela est dû à l'effet d'équilibre électronique latéral qui se dégrade pour des petits champs. 
+
+De plus, nous voyons que la taille de champ calculée par MyQA n'est pas tout à fait celle prévue car la DSP lors des mesures est de 100 cm, ce qui ne place pas le détecteur à l'isocentre.
+
+Pour finir, nous voyons que la pénombre pour un champ de 6$\times$6 cm$^2$ est plus grande que pour les autres tailles de champ. Ceci s'explique par le fait qu'à cette taille, il n'y a pas d'effet de plateau (d'où une homogénéité dégradée) et qu'il y a un défaut d'équilibre électronique.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_taille_champ.png}
+  \caption{Profils de dose pour différentes tailles de champ. DSP de 100 cm et énergie de 9 MeV}
+  \label{fig_profils_taille}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1cm}>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1cm}>{\centering\arraybackslash}m{2cm}}
+  \toprule
+  \textbf{Taille de champ (cm}$\mathbf{^2}$\textbf{)} & \textbf{H (\%)} & \textbf{S (\%)} & \textbf{Taille de champ (cm)} & \textbf{Pénombre (cm)} & \textbf{Centre (cm)} & \textbf{Déviation (\%)} \\ \toprule
+  6x6 & 15,53 & 102,89 & 6,16 & 1,68-1,68 & -0,03 & 100,02 \\
+  10x10 & 5,17 & 102,79 & 10,34 & 1,25-1,25 & -0,05 & 100,45 \\
+  15x15 & 2,23 & 101,14 & 15,49 & 1,24-1,25 & -0,05 & 101,06 \\
+  20x20 & 1,04 & 100,86 & 20,7 & 1,23-1,25 & 0 & 101,26 \\ \bottomrule
+  \end{tabular}
+  \caption{Influence de la taille de champ sur les profils de dose pour les faisceaux d'électrons du Clinac 3}
+  \label{table_profils_champs}
+\end{table}
+
+\newpage
+\subsubsection{Inlfuence de la DSP}
+
+Lorsque la DSP augmente, nous voyons tout d'abord que l'homogénéité se dégrade du fait de la diffusion plus importante dans l'air des électrons. Il est donc préférable en clinique de diminuer la DSP au maximum. De plus, l'effet de cette augmentation agit sur l'accroissement de la pénombre car l'énergie moyenne du faisceau à l'entrée du fantôme d'eau est plus faible, ce qui implique un plus grand angle de diffusion des électrons. Enfin, la taille de champ calculée par le logiciel d'analyse augmente pour une DSP qui augmente car la profondeur de mesure est fixe pour les trois mesures, du fait du faible parcours des électrons dans l'eau.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_DSP.png}
+  \caption{Profils de dose pour différentes DSP. Taille de champ de 10$\times$10 cm$^2$, énergie de 9 MeV et énergie de 9 MeV}
+  \label{fig_profil_DSP}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1cm}>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1cm}>{\centering\arraybackslash}m{2cm}}
+  \toprule
+  \textbf{DSP (cm)} & \textbf{H (\%)} & \textbf{S (\%)} & \textbf{Taille de champ (cm)} & \textbf{Pénombre (cm)} & \textbf{Centre (cm)} & \textbf{Deviation (\%)} \\ \toprule
+  100 & 5,17 & 102,79 & 10,34 & 1,25-1,25 & -0,05 & 100,45 \\
+  105 & 6,14 & 101,58 & 10,90 & 1,46-1,49 & -0,01 & 100,47 \\
+  110 & 7,47 & 101,05 & 11,47 & 1,73-1,73 & 0,03 & 100,55 \\ \bottomrule
+  \end{tabular}
+  \caption{Influence de la DSP sur les profils de dose pour les faisceaux d'électrons du Clinac 3}
+  \label{table_profils_dsp}
+\end{table}
+
+\newpage
+\subsubsection{Influence du détecteur}
+
+Le tableau \ref*{table_profils_detecteurs} donne une plus grande pénombre pour la chambre ROOS. Cela s'explique par le fait que cette chambre est plate et plus étalée dans le plan perpendiculaire  à l'axe du faisceau. La chambre CC13 est plus adaptée pour les acquisitions des profils de dose car elle est plus ponctuelle que la ROOS. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_detecteurs.png}
+  \caption{Profils de dose pour différents détecteurs. Taille de champ de 10$\times$10 cm$2$, énergie de 9 MeV et DSP de 100 cm}
+  \label{fig_profils_detecteur}
+\end{figure}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1cm}>{\centering\arraybackslash}m{2cm}}
+  \toprule
+  \textbf{Détecteur} & \textbf{H (\%)} & \textbf{S (\%)} & \textbf{Taille de champ (cm)} & \textbf{Pénombre (cm)} & \textbf{Centre (cm)} & \textbf{Deviation (\%)} \\ \toprule
+  CC13 & 5,17 & 102,79 & 10,34 & 1,25-1,25 & -0,05 & 100,45 \\
+  ROOS & 6,81 & 101,61 & 10,36 & 1,50-1,51 & -0,02 & 100,53 \\ \bottomrule
+  \end{tabular}
+  \caption{Influence du détecteur sur les profils de dose des faisceaux d'électrons du Clinac 3}
+  \label{table_profils_detecteurs}
+\end{table}
+
+\newpage
+\subsection{Influence de la vitesse d'acquisition}
+
+Nous voyons sur la figure \ref*{fig_profils_vitesse} que l'acquisition avec une vitesse rapide est beaucoup plus bruitée que celle avec une vitesse lente. Cela vient du fait que la statistique de comptage est meilleure sur la vitesse lente que sur la vitesse rapide.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_vitesses.png}
+  \caption{Profils de dose pour différentes vitesses d'acquisition. Taille de champ de 10$\times$10 cm$^2$, énergie de 9 MeV et DSP de 100 cm}
+  \label{fig_profils_vitesse}
+\end{figure}
+
+\begin{table}[h]
+  \begin{tabular}{>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1cm}>{\centering\arraybackslash}m{2cm}}
+  \toprule
+  \textbf{Vitesse (cm/s)} & \textbf{H (\%)} & \textbf{S (\%)} & \textbf{Taille de champ (cm)} & \textbf{Pénombre (cm)} & \textbf{Centre (cm)} & \textbf{Deviation (\%)} \\ \toprule
+  0,3 & 8,29 & 102,3 & 10,38 & 1,65-1,65 & -0,04 & 100,71 \\
+  2,5 & 8,80 & 102,9 & 10,37 & 1,66-1,66 & -0,03 & 100,52 \\ \bottomrule
+  \end{tabular}
+  \caption{Influence de la vitesse d'acquisition sur le profils de dose des faisceaux d'électrons du Clinac 3}
+  \label{table_profils_vitesse}
+\end{table}
+
+\subsection{Influence de l'orientation du profil}
+
+La taille de champ mesurée à l'aide de MyQA est quasiment la même entre les deux orientations (cf tableau \ref*{table_profils_orientation}). Nous pouvons observer un léger décalage par rapport au centre du faisceaux. Ceci peut s'expliquer par les bobines de déviations du faisceau d'électrons.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/profils_orientation.png}
+  \caption{Profils de dose pour différentes orientations d'acquiqition. Taille de champ de 10$\times$10 cm$^2$, énergie de 9 MeV et DSP de 100 cm}
+  \label{fig_profils_orientation}
+\end{figure}
+
+\begin{table}[h]
+  \begin{tabular}{>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{1cm}>{\centering\arraybackslash}m{2cm}}
+  \toprule
+  \textbf{Orientation} & \textbf{H (\%)} & \textbf{S (\%)} & \textbf{Taille de champ (cm)} & \textbf{Pénombre (cm)} & \textbf{Centre (cm)} & \textbf{Deviation (\%)} \\ \toprule
+  Inline & 6,80 & 102,07 & 10,35 & 1,51-1,51 & -0,05 & 100,27 \\
+  Crossline & 6,81 & 101,61 & 10,36 & 1,50-1,51 & -0,02 & 100,53 \\ \bottomrule
+  \end{tabular}
+  \caption{Influence de l'orientation sur le profil de dose des faisceaux d'électrons du Clinac 3}
+  \label{table_profils_orientation}
+\end{table}
+
+\newpage
+\subsection{Facteurs d'ouverture du collimateur}
+
+En fonction de l'énergie du faisceau choisie sur l'accélérateur, les machoires n'ont pas la même ouverture pour une même taille de champ au niveau de l'applicateur. Ces réglages étant imposés par Varian, il n'est pas possible d'obtenir des courbes de FOC croissantes comme pour les faisceaux de photons puisque les conditions de diffusion sont différentes.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{../scripts/figures/FOC.png}
+  \caption{Facteurs d'ouverture du collimateur (FOC) pour différentes énergies. DSP de 100 cm.}
+  \label{fig_foc}
+\end{figure}
+
+\clearpage
+\bibliography{biblio}
+\addcontentsline{toc}{section}{Références}
+\bibliographystyle{plain}
+\nocite{*}
+
+\end{document}

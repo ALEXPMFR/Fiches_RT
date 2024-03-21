@@ -1,0 +1,582 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{esint}
+\usepackage{geometry}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{ctable}
+\usepackage{fancybox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[french]{babel}
+\usepackage{dsfont}
+\usepackage{setspace}
+\usepackage[french]{minitoc}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+
+\addtocounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{white}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% PRÉSENTATION %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{presentation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% STYLE %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\onehalfspacing
+
+%Style  du corps
+\pagestyle{fancy}
+	\renewcommand\headrulewidth{0.5pt}
+	\renewcommand\footrulewidth{0.5pt}
+	\fancyfoot[L]{\textsc{A. Rintaud}}
+	\fancyfoot[C]{\textsc{ICO Nantes}}
+	\fancyfoot[R]{\thepage}
+
+\tableofcontents
+\clearpage
+\section{Introduction}
+
+La radiothérapie externe utilise, de manière prépondérante, les faisceux de photons de haute énergie afin de traiter des cellules cancéreuses tout en épargnant le plus possible les tissus sains. Cependant, et de façon de plus en plus rares, les faisceaux d'électrons sont également utilisés pour des tumeurs plutôt superficielles au vu du faible parcours dans la matière, contrairement aux photons. Dans cette optique, la connaissance précise des caractéristiques dosimétriques ainsi que les incertitudes associées de l'accélérateur utilisé sont nécessaires. 
+
+Ce rapport traitera des faisceaux d'électrons utilisés en radiothérapie. Premièrement, le matériel et les méthodes utilisés lors des mesures des doses absolues basées sur les protocoles internationaux fournis par l'Agence Internationale de l'Énergie Atomique (AIEA) seront explicités, puis les résultats seront présentés. 
+
+\section{Matériel et méthodes}
+
+Cette partie est consacrée à la méthode permettant de mesurer de la dose absorbée dans les conditions de référence, telles que décrites dans le protocole TRS-398 de l'AIEA \cite{international2001iaea}. De plus, nous développerons également la méthodologie de l'ancien protocole international, le TRS-277 \cite{internationaliaea}.
+
+\subsection{Matériel utilisé}
+
+Pour les mesures de dose de référence, les chambres d'ionisation utilisées sont renseignées dans le tableau \ref*{table_matos_chambres}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|c|c|}
+  \cline{2-3}
+  \textbf{} & \textbf{Farmer} & \textbf{ROOS} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Constructeur}} & PTW & PTW \\
+  \multicolumn{1}{|c|}{\textbf{Modèle}} & 30013 & 34001 \\
+  \multicolumn{1}{|c|}{\textbf{Numéro de série}} & 011924 & 01689 \\
+  \multicolumn{1}{|c|}{\textbf{Volume sensible (cm}$\mathbf{^3}$\textbf{)}} & 0,6 & 0,35 \\
+  \multicolumn{1}{|c|}{\textbf{Tension appliquée (V)}} & 400 & 200 \\
+  \multicolumn{1}{|c|}{\textbf{Coefficient d'étalonnage (Gy/nC)}} & 5,365 $\times$ 10$^{-2}$ & 7,32 $\times$ 10$^{-2}$ ($R_{50}$ = 7,48 g/cm$^{-2}$)\\
+  \multicolumn{1}{|c|}{\textbf{Taille de champ recommandée (cm}$\mathbf{^2}$\textbf{)}} & 5x5 à 40x40 & 4x4 à 40x40 \\ \hline
+  \end{tabular}
+  \caption{Chambres d'ionisation utilisées lors des mesures de dose absolue dans des faisceaux d'électrons}
+  \label{table_matos_chambres}
+\end{table}
+
+Autre matériel utilisé :
+
+\begin{itemize}
+  \item[$\bullet$] électromètre PTW UNIDOS 20505
+  \item[$\bullet$] cuve à eau IBA Blue Phantom 2
+  \item[$\bullet$] niveau à bulle
+\end{itemize}
+
+\subsection{Facteurs correctifs}
+
+L'utilisation d'une chambre d'ionnisation à cavité d'air étanche pour la mesure de la dose absolue engendre une fluctuation de la réponse du système de mesure en fonction de plusieurs paramètres. Il faut donc appliquer une correction de la mesure grâce à l'équation suivante :
+
+\begin{equation}
+  M_{Q}^{'} = M_Q \times k_{T,P} \times k_{pol} \times k_{rec} \times k_H
+  \label{eq_corr_charge}
+\end{equation}
+
+Avec $M_Q$ la charge mesurée sur l'électromètre, $k_{T,P}$ le facteur correctif de la pression et de la température, $k_{pol}$ le facteur correctif de la polarisation de la chambre, $k_{rec}$ le facteur correctif de la recombinaison ionique et $k_H$ le facteur correctif des conditions hygrométriques.
+
+\subsubsection{Pression et température}
+
+Le facteur $k_{T,P}$ permet de corriger de la pression et de la température et se calcule de la manière suivante :
+
+\begin{equation}
+  k_{T,P} = \dfrac{P_0T}{T_0P}
+  \label{eq_k_TP}
+\end{equation}
+
+Avec $P_0$ et $T_0$ la pression et la température de référence, respectivement égales à 1013,25 hPa et 273,15 K, $P$ et $T$ sont la pression et la température de la salle lors de la mesure.
+
+\paragraph*{N.B. :} La température de référence lors de l'étalonnage de la chambre d'ionisation n'est pas forcément 273,15 K. Il faut utiliser celle mentionnée sur le certificat d'étalonnage.
+
+\subsubsection{Polarisation}
+
+Ce facteur correctif, noté $k_{pol}$, permet de corriger de l'effet de la polarité appliquée à la chambre lors de la mesure :
+
+\begin{equation}
+  k_{pol} = \dfrac{|M_+| + |M_-|}{2M}
+  \label{eq_pol}
+\end{equation}
+
+Avec $M_+$ et $M_-$ les charges mesurées pour les tensions $V_+$ et $V_-$ respectivement et $M$ est la réponse pour la tension utilisée en clinique. Si le signe de la tension appliquée lors des mesures est le même que celui pour laquelle la chambre a été étalonnée, le facteur $k_{pol}$ n'est pas à appliquer.
+
+\subsubsection{Recombinaisons ioniques}
+
+Le facteur de recombinaison permet de corriger la réponse de la chambre d'ionisation sur le nombre de charges collectées. La mesure est sous estimée car des paires d'ions sont recombinées et ne rentrent pas en compte dans la mesure.
+
+\begin{equation}
+  k_{rec} = a_0 + a_1 \left(\dfrac{M_1}{M_2}\right) + a_2 \left(\dfrac{M_1}{M_2}\right) ^2
+  \label{eq_rec}
+\end{equation}
+
+Avec $M_1$ et $M_2$ les réponses aux tensions $V_1$ et $V_2$ respectivement, et $a_0$, $a_1$ et $a_2$ sont les facteurs tabulés en fonction du rapport $\frac{V_1}{V_2}$ fournis par le protocole TRS-398 \cite{international2001iaea}.
+
+\subsubsection{Humidité}
+
+Ce facteur est égale à 1 lorsque l'humidité de la salle est comprise entre 20\% et 80\%, sinon il faut lui attribuer la valeur de 0,997.
+
+\subsubsection{Correction de la qualité du faisceau}
+
+Le faisceau utilisé en clinique n'est souvent pas le même que celui qui a permis d'étalonner la chambre d'ionisation. Pour corriger l'effet de la qualité du faisceau sur la mesure, des facteurs sont tabulés dans le protocole international TRS-398 en fonction de l'indice de qualité du faisceau d'électrons ainsi que de la chambre utilisée. L'indice de qualité de faisceau est représenté par le $R_{50}$, ce qui correspond au parcour des électrons où 50\% de la dose maximale est déposée dans le fantôme d'intérêt.
+
+\subsection{Calibration croisée}
+
+Dans le cas où la chambre adaptée aux faisceaux d'électrons n'est pas étalonnée par un laboratoire primaire, nous pouvons utilisées un étalonnage croisé pour obtenir un coefficient d'étalonnage associé à la chambre d'intérêt.
+
+\subsection{Protocole TRS-277}
+
+Ce protocole permet de calculer la dose absorbée dans les conditions de références à partir d'un étalonnage en terme de kerma dans l'air. Il fallait donc corriger aussi de cette différence entre le laboratoire et les conditions dans le centre (dose dans l'eau).v La dose en un point, dans un fantôme d'eau, est donnée par la formule \ref*{eq_dose_397}, tirée du protocole TRS-277 :
+
+\begin{equation}
+  D_{eau,\, Q} = M_Q^{'} N_{K_{air, Q_0}} k_{att} k_m (1-g) \left( \dfrac{S}{\rho} \right)^{eau}_{air} p_u p_{cel}
+  \label{eq_dose_397}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+  \item[$\bullet$] $M_Q^{'}$ la mesure de la charge corrigée mesurée avec la chambre d'ionisation 
+  \item[$\bullet$] $N_{K_{air, Q_0}}$ le coefficient d'étalonnage de la chambre d'ionisation fourni par le laboratoire primaire
+  \item[$\bullet$] $g$ la fraction de la perte d'énergie des particules secondaires par radiations (rayonnement de freinage)
+  \item[$\bullet$] $k_m$ 
+  \item[$\bullet$] $\left( \dfrac{S}{\rho} \right)^{eau}_{air}$ le rapport entre le pouvoir d'arrêt massique de l'eau et celui de l'air
+  \item[$\bullet$] $p_u$ le facteur de correction des perturbations
+\end{itemize}
+
+Cette mesure de dose absorbée de référence se fait dans les conditions de référence suivantes :
+
+\begin{itemize}
+  \item[$\bullet$] fantôme d'eau
+  \item[$\bullet$] DSP = 100 cm
+  \item[$\bullet$] champ de 10$\times$10 cm$^2$
+  \item[$\bullet$] $z_{ref} = z_{max}$
+  \item[$\bullet$] Chambre cylindrique de 0,6 cm$^3$ si $\overline{E}_0$ > 10 MeV
+  \item[$\bullet$] Chambre plate si $\overline{E}_0$ < 10 MeV
+  \item[$\bullet$] déplacement radial uniquement pour la chambre cylindrique de $dr = 0,6r$
+\end{itemize}
+
+\subsection{Protocole TRS-398}
+\label{partie_TRS_398}
+
+Le protocole TRS-398 de l'AIEA \cite{international2001iaea} nous donne l'équation pour le cacul de la dose absorbée de référence pour les faisceaux d'électrons :
+
+\begin{equation}
+  D_{eau, \, Q} = M_Q^{'} N_{D_{eau}, \, Q_0} k_{Q,\, Q_0}
+  \label{eq_dose_398}
+\end{equation}
+
+Avec :
+\begin{itemize}
+  \item[$\bullet$] $M_Q^{'}$ la mersure de la charge corrigée des facteurs correctifs
+  \item[$\bullet$] $N_{D_{eau} Q_0}$ le coefficient d'étalonnage en terme de dose dans l'eau
+  \item[$\bullet$] $k_{Q,\, Q_0}$ le facteur correctif permettant de passer de l'indice de qualité $Q_0$ à la qualité du faisceau clinique $Q$
+\end{itemize}
+
+Cette mesure de dose absorbée de référence se se fait dans les conditions de référence suivantes :
+
+\begin{itemize}
+  \item[$\bullet$] fantôme d'eau
+  \item[$\bullet$] DSP = 100 cm
+  \item[$\bullet$] champ de 10$\times$10 cm$^2$
+  \item[$\bullet$] $z_{ref} = 0,6 R_{50} - 0,1$ g/cm$^2$
+  \item[$\bullet$] Chambre cylindrique de 0,6 cm$^3$ si $R_{50}$ > 4 g/cm$^2$ ou chambre plate su $R_{50}$ < 4 g/cm$^2$
+  \item[$\bullet$] déplacement radial de $dr = 0,5r$ si la chambre est cylindrique
+\end{itemize}
+
+Nous voyons que la profondeur de référence dépend du $R_{50}$, celui-ci est donné par les deux formules suivantes, permettant de passer à un $R_{50}$ en terme d'ionisations à un $R_{50}$ en terme de dose :
+
+\begin{equation}
+  R_{50} = 1,029 \times R_{50,\, ion} - 0,06 \leq 10\; \text{g/cm}^2
+\end{equation}
+
+\begin{equation}
+  R_{50} = 1,059 \times R_{50,\, ion} - 0,37 > 10\; \text{g/cm}^2
+\end{equation}
+
+Concernant le point de mesure, il n'est pas au centre géométrique de la chambre utilisée. Le point de mesure dépend du type de chambre (cylindrique ou plate) et se calcule à partir des équations \ref*{eq_zmes_ROOS} et \ref*{eq_zmes_Farmer}. Il est important de noter que la formule \ref*{eq_zmes_ROOS} n'est valable que pour la chambre ROOS.
+
+\begin{equation}
+  z_{mes} = z_{ref} - 0,11 \, [\text{g/cm$^2$}]
+  \label{eq_zmes_ROOS}
+\end{equation}
+
+Concernant la chambre ROOS, le volume sensible est situé à 1,1 mm sous la surface externe de la chambre, ce qui est compensé en déplaçant la chambre vers la surface de l'eau de 1,1 mm.
+
+\begin{equation}
+  z_{mes} = z_{ref} + 0,5 r_{cyl}
+  \label{eq_zmes_Farmer}
+\end{equation}
+
+Dans le cas où la chambre adaptée aux faisceaux d'électrons n'est pas étalonnée par un laboratoire primaire, nous pouvons utilisées un étalonnage croisé pour obtenir un coefficient d'étalonnage associé à la chambre d'intérêt. Celui-ci s'obtient à l'aide d'une chambre étalonnée dans un laboratoire officiel dans un faisceau de photons de qualité $Q_0$ (généralement du $^{60}$Co). Pour cela, il est recommandé par le TRS-398 d'utiliser un faisceau d'électrons ayant un $R_{50}$ > 7 g.cm$^2$ (soit une énergie moyenne du faisceau $\overline{E}_0$ > 16 MeV). La formule \ref*{eq_cross_calib} permet d'obtenir le coefficient d'étalonnage de la chambre utilisée pour mesurer la dose de référence :
+
+\begin{equation}
+  N_{D_{eau, \, Q_{cross}}}^x = \dfrac{M_{Q_{cross}}^{ref}}{M_{Q_{cross}}^x} N_{D_{eau,\, Q_0}}^{ref} k_{Q_{cross},\, Q_0}^{ref}
+  \label{eq_cross_calib}
+\end{equation}
+
+Avec :
+
+\begin{itemize}
+  \item[$\bullet$] $M_{Q_{cross}}^{ref}$ la mesure de la charge à l'aide de la chambre de référence étalonnée par le laboratoire primaire
+  \item[$\bullet$] $M_{Q_{cross}}^x$ la mesure de la charge à l'aide de la chambre d'ionisation non étalonnée
+  \item[$\bullet$] $N_{D_{eau,\, Q_0}}^{ref}$ le coefficient d'étalonnage de la chambre de référence
+  \item[$\bullet$] $k_{Q_{cross},\, Q_0}^{ref}$ le facteur permettant de passer de la chambre de référence à la chambre d'intérêt tabulé dans le TRS-398
+\end{itemize}
+
+Une fois que le facteur d'étalonnage $N_{D_{eau, \, Q_{cross}}}^x$ obtenu pour le faisceau d'électrons ayant un $R_{50}$ > 7 g/cm$^2$, il faut appliquer un facteur de passage $k_{Q,\, Q_{cross}}$ pour les autres énergies de l'accélérateur :
+
+\begin{equation}
+  k_{Q,\, Q_{cross}} = \dfrac{k_{Q,\, Q_{int}}}{k_{Q_{cross},\, Q_{int}}}
+\end{equation}
+
+Avec $k_{Q,\, Q_{int}}$ et $k_{Q_{cross},\, Q_{int}}$ fournis dans la table 7.IV du TRS-398 \cite{international2001iaea}. Le facteur $k_{Q_{cross},\, Q_{int}}$ est obtenu par interpolation linéaire pour la chambre d'intérêt (chambre ROOS ici) des facteurs $k_{Q,\, Q_{int}}$ correspondant à l'indice de qualité du faisceau utilisé pour l'étalonnage croisé.
+
+La dose est donc fournie par la formule suivante, pour un faisceau d'énergie quelconque :
+
+\begin{equation}
+  D_{eau,\, Q} = M_Q^x N_{D_{eau},\, Q_{cross}} k_{Q,\, Q_{cross}}^x
+\end{equation}
+
+\subsection{Incertitudes}
+
+\subsubsection{Incertitudes de type A}
+
+Les incertitudes de type A sont liées à l'analyse d'une série d'observations qui se répètent en se fondant sur la distribution statistique des résultats. L'incertitude-type $u(x)$ associé à une série de $n$ résultats $x_i$ est donnée par :
+
+\begin{equation}
+  u(x) = \sqrt{\dfrac{\sum\limits_{i=1}^n (x_i - \overline{x})^2}{n-1}}
+\end{equation}
+
+Si le résultat recherché est la moyenne arithmétique de $n$ observations indépendantes répétées, l'incertitude-type sur la moyenne est donné par l'estimateur $s(\overline{x})$, qui est l'écart-type expérimental de la moyenne :
+
+\begin{equation}
+  u(\overline{x}) = \dfrac{u(x)}{\sqrt{n}} = \sqrt{\dfrac{\sum\limits_{i=1}^n (x_i - \overline{x})^2}{n(n-1)}}
+\end{equation}
+
+\subsubsection{Incertitudes de type B}
+
+Les incertitudes de type B sont basées sur des connaissances scientifiques du phénomène observé qui peuvent être :
+
+\begin{itemize}
+  \item[$\bullet$] des données antérieures mesurées
+  \item[$\bullet$] des spécifications du constructeur
+  \item[$\bullet$] des données fournies lors d'un étalonnage ou d'autres certifications
+  \item[$\bullet$] des incertitudes issues de données de références extraites de tables
+  \item[$\bullet$] des propriétés du matériel utilisé
+\end{itemize}
+
+Pour donner quelques exemples, si la grandeur $X$ observée peut prendre des valeurs restreintes dans un intervalle [$x - a$, $x + a$] et que la distribution est uniforme, alors l'u-incertitude-type associée est :
+
+\begin{equation}
+  u(x) = \dfrac{a}{\sqrt{3}}
+\end{equation}
+
+Si la grandeur $X$ observée est dans un intervalle bien défini mais qui n'est pas au centre de celui-ci, l'incertitude-type associée est donnée par :
+
+\begin{equation}
+  u(x) = \dfrac{a}{\sqrt{12}}
+\end{equation}
+
+Cette deuxième situation est le cas d'une lecture de la température ou de la pression sur un thermomètre ou un baromètre respectivement et $a$ correspond à la graduation de l'outil de mesure.
+
+\subsubsection{Propagation des incertitudes}
+
+Dans notre cas, la dose absorbée se calcule en pultipliant plusieurs facteurs entre eux. Dans cette situation, l'incertitude-type associée à la dose absolue est régie par l'éuation suivante :
+
+\begin{equation}
+  \dfrac{u(y)}{y} = \sqrt{\sum\limits_i^n \left( \dfrac{u(x_i)}{x_i} \right) ^2}
+\end{equation}
+
+\subsubsection{Incertitude élargie}
+
+Pour répondre à certaines exigences, l'incertitude-type peut être multipliée par un coefficent d'élargissement $k$. Cette pratique sert à fournir un intervalle à l'interieur duquel se situe une large pproportion de la distribution des valeurs qui peuvent être associées au mesurande. Dans ce travail, le facteur d'élargissement $k$ sera pris égal à 2 pour s'assurer que la vraie valeur se trouve dans l'intervalle défini par les incertitudes-types calculées avec une probabilité de 95 \%.
+
+\newpage
+\section{Résultats}
+\subsection{Détermination des facteurs correctifs}
+
+Les facteurs correctifs $k_{TP}$ et $k_{rec}$ ont été déterminés à partir des équations \ref*{eq_k_TP} et \ref*{eq_rec} respectivement. Les résultats obtenus pour ces facteurs sont donnés dans les tableaux \ref*{table_kTP} et \ref*{table_krec}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccc}
+    \toprule
+    \textbf{Tenpérature (}$\mathbf{^{\circ}}$\textbf{C)} & \textbf{Pression (hPa)} & $\mathbf{k_{TP}}$ \\
+    \toprule
+    18,6 & 1012 & 0,996 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Calcul du $k_{TP}$}
+  \label{table_kTP}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+  \toprule
+  \textbf{Energie (MeV)} & \textbf{Tension (V)} & \textbf{Charge (nC)} & $\mathbf{k_{rec}}$ \\ \toprule
+  \multirow{2}{*}{6} & 50 & 24,87 & \multirow{2}{*}{1,0099} \\
+   &200 & 25,63 &  \\ \hline
+  \multirow{2}{*}{9} & 50 & 25,50 & \multirow{2}{*}{1,0099} \\
+   &200 & 26,27 &  \\ \hline
+  \multirow{2}{*}{12} & 50 & 25,69 & \multirow{2}{*}{1,0099} \\
+   &200 & 26,46 &  \\ \hline  \multirow{2}{*}{15} &50 & 26,15 & \multirow{2}{*}{1,0087} \\
+   &200 & 26,85 &  \\ \hline
+  \multirow{2}{*}{18} & 50 & 24,82 & \multirow{2}{*}{1,0080} \\
+   & 200 & 25,43 &  \\ \bottomrule
+  \end{tabular}
+  \caption{Série de mesures pour le calcul du $k_{rec}$ pour les différentes énergies des faisceau d'électrons du Clinac 3}
+  \label{table_krec}
+\end{table}
+
+\subsection{Étalonnage croisé}
+
+Concernant l'étalonnage croisé, les conditions de mesures ainsi que les profondeurs de mesures en fonction des chambres utilisées sont répertoriées dans les tableaux \ref*{table_conditions_etal_croise} et \ref*{table_profondeurs_mesures}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccc}
+    \toprule
+    \textbf{Énergie (MeV)} & \textbf{Champ (cm}$\mathbf{^2}$\textbf{)} & \textbf{DSP (cm)} & \textbf{Débit (UM/min)} & \textbf{Nombre d'UM} \\
+    \toprule
+    18 & 20x20 & 100 & 300 & 200\\
+    \bottomrule
+  \end{tabular}
+  \caption{Conditions de mesures pour l'étalonnage croisé}
+  \label{table_conditions_etal_croise}
+\end{table}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|cc|cc|}
+  \hline
+  \multicolumn{2}{|c|}{\textbf{Farmer}} & \multicolumn{2}{c|}{\textbf{ROOS}} \\ \hline
+  $\mathbf{z_{ref}}$ \textbf{(cm)} & $\mathbf{z_{mes}}$ \textbf{(cm)} & $\mathbf{z_{ref}}$ \textbf{(cm)} & $\mathbf{z_{mes}}$ \textbf{(cm)} \\ \hline
+  4,388 & 4,538 & 4,388 & 4,278 \\ \hline
+  \end{tabular}
+  \caption{Profondeurs de référence et de mesure en fonction de la chambre d'ionisation utilisée}
+  \label{table_profondeurs_mesures}
+\end{table}
+
+L'indice de qualité des différents faisceaux, représenté par le $R_{50}$, est issu de la recette de l'accélérateur d'intérêt. Les facteurs correctifs découlent du $R_{50}$ et sont calculés par interpolations linéaires à l'aide du protocole TRS-398 \cite{international2001iaea}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccc}
+    \toprule
+    \textbf{Énergie (MeV)} & $\mathbf{R_{50}}$ \textbf{(cm)} & $\mathbf{k_{Q_{cross},\, Q_0}}$ \textbf{(Farmer)} & $\mathbf{k_{Q,\, Q_{int}}}$ \textbf{(ROOS)} & $\mathbf{k_{Q,\, Q_{cross}}}$ \textbf{(ROOS)} \\
+    \toprule
+    6 & 2,280 & / & 1,0515 & 1,0514 \\
+    9 & 3,550 & / & 1,0334 & 1,0333 \\
+    12 & 4,990 & / & 1,0191 & 1,0190 \\
+    15 & 6,280 & / & 1,0080 & 1,0079 \\
+    18 & 7,480 & 0,8996 & 1,0001 & 1,000 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Facteurs correctifs de qualité de faisceaux pour l'étalonnage croisé}
+  \label{table_facteurs_corr_etal}
+\end{table}
+
+Le coefficient d'étalonnage pour la chambre d'ionisation ROOS peut donc être calculé à l'aide des facteurs correctifs du tableau pécédent et application de la formule \ref*{eq_cross_calib}. Les résultats des coefficients d'étalonnage pour chaque énergie de l'accélérateur sont donnés dans le tableau \ref*{table_coeff_etal_energies}. L'écart maximum entre le coefficient d'étalonnage fourni par le laboratoire primaire et celui calculé sur site est environ à 1\% pour chaque énergie. La méthode de l'étalonnage croisé à partir d'une chambre étalonnée par un laboratoire primaire dans un faisceau de $^{60}$Co est donc robuste.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    \textbf{Énergie (MV)} & $\mathbf{N_{D,\, eau}}$ \textbf{calculé (Gy/nC)} & $\mathbf{N_{D,\, eau}}$ \textbf{certificat (Gy/nC)} & \textbf{ER (\%)} \\
+    \toprule
+    6 & 7,77 $\times$ 10$^{-2}$ & 7,69 $\times$ 10$^{-2}$ & 1,06 \\
+    9 & 7,64 $\times$ 10$^{-2}$ & 7,56 $\times$ 10$^{-2}$ & 1,06 \\
+    12 & 7,53 $\times$ 10$^{-2}$ & 7,46 $\times$ 10$^{-2}$ & 0,94 \\
+    15 & 7,45 $\times$ 10$^{-2}$ & 7,38 $\times$ 10$^{-2}$ & 0,95 \\
+    18 & 7,39 $\times$ 10$^{-2}$ & 7,32 $\times$ 10$^{-2}$ & 0,96 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Comparaison des coefficients d'étalonnage entre celui calculé sur site et celui du laboratoire primaire pour toutes les énergies de faisceau d'électrons}
+  \label{table_coeff_etal_energies}
+\end{table}
+
+Les résultats consernant les mesures de dose de référence, dont les conditions ont été données dans la partie \ref*{partie_TRS_398} pour l'ensemble des faisceaux d'électrons disponibles au Clinac 3 sont tabulés dans le tableau \ref*{table_resultats_doses}. Nous pouvons voir que l'écart relatif entre les doses obtenues avec l'étalonnage croisé sont plus faible que le coefficient fourni par le laboratoire primaire. Ceci peut s'expliquer par le fait que, lors de la recette, un étalonnage croisé à été calculé pour la mesure de dose.
+
+Nous ne pouvons pas comparer la dose pour le faisceau de 18 MeV obtenue lors des mensuels avec nos mesures car le point de mesure lors des CQ mensuels est au niveau du $R_{100}$.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{3.5cm}>{\centering\arraybackslash}m{1.9cm}>{\centering\arraybackslash}m{1.9cm}>{\centering\arraybackslash}m{1.9cm}>{\centering\arraybackslash}m{1.9cm}>{\centering\arraybackslash}m{1.9cm}}
+    \toprule
+    \textbf{Énergie (MV)} & \textbf{6} & \textbf{9} & \textbf{12} & \textbf{15} & \textbf{18} \\ 
+    \toprule
+    \textbf{Profondeur (cm)} & 1,28 & 2,10 & 2,95 & 3,51 & 2,47 \\ 
+    \textbf{Dose recette (Gy)} & 2,000 & 2,000 & 2,000 & 2,000 & / \\ 
+    $\mathbf{N_{D_{eau},\, Q}}$ \textbf{(Gy/nC)} & 7,77 $\times$ 10$^{-2}$ & 7,64 $\times$ 10$^{-2}$ & 7,53 $\times$ 10$^{-2}$ & 7,45 $\times$ 10$^{-2}$ & 7,39 $\times$ 10$^{-2}$ \\ 
+    $\mathbf{N_{D_{eau},\, Q}}$ \textbf{certificat (Gy/nC)} & 7,69 $\times$ 10$^{-2}$ & 7,56 $\times$ 10$^{-2}$ & 7,46 $\times$ 10$^{-2}$ & 7,38 $\times$ 10$^{-2}$ & 7,32 $\times$ 10$^{-2}$ \\ 
+    \textbf{Dose étalonnage croisé (Gy)} & 2,001 & 2,014 & 2,002 & 2,008 & 1,890 \\ 
+    \textbf{ER étalonnage croisé (\%)} & 0,06 & 0,72 & 0,11 & 0,38 & / \\ 
+    \textbf{Dose certificat (Gy)} & 1,980 & 1,994 & 1,983 & 1,989 & 1,871 \\ 
+    \textbf{ER certificat (\%)} & -0,99 & -0,30 & -0,85 & -0,57 & / \\
+    \bottomrule
+  \end{tabular}
+  \caption{Résultats de la mesure de la dose absolue dans les conditions de référence pour l'ensemble des énergies de faisceaux disponibles au Clinac 3}
+  \label{table_resultats_doses}
+\end{table}
+
+\clearpage 
+\subsection{Incertitudes}
+
+Le tableau \ref*{table_resultats_incertitudes} synthétise les incertitudes associées au calcul de dose absolue dans les conditions de référence.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|cc|cc|}
+  \cline{2-5}
+  \textbf{} & \multicolumn{2}{c|}{\textbf{Farmer}} & \multicolumn{2}{c|}{\textbf{ROOS}} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Type d'incertitude}} & \textbf{A} & \textbf{B} & \textbf{A} & \textbf{B} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Coefficient d'étalonnage (\%)}} &  & 0,55 &  & 0,55 \\
+  \multicolumn{1}{|c|}{$\mathbf{k_{Q,\, Q_0}}$ \textbf{(\%)}} &  & 0,31 &  & 0,31 \\
+  \multicolumn{1}{|c|}{$\mathbf{k_{pol}}$ \textbf{(\%)}} &  & 0 &  & 0 \\
+  \multicolumn{1}{|c|}{$\mathbf{k_{rec}}$ \textbf{(\%)}} &  & 2 10$^{-4}$ &  & 5,39 10$^{-4}$ \\
+  \multicolumn{1}{|c|}{$\mathbf{k_{TP}}$ \textbf{(\%)}} &  & 0,16 &  & 0,16 \\
+  \multicolumn{1}{|c|}{\textbf{Charges collectées (\%)}} & 0,01 &  & 0,05 & \textbf{} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Incertitude totale (\%)}} & \multicolumn{2}{c|}{1,15} & \multicolumn{2}{c|}{2,31} \\
+  \multicolumn{1}{|c|}{\textbf{Incertitude totale élargie (\%)}} & \multicolumn{2}{c|}{2,30} & \multicolumn{2}{c|}{4,61} \\ \hline
+  \end{tabular}
+  \caption{Incertitudes associées au calcul de la dose absolue de références pour un faisceau d'électrons de 18 MeV} 
+  \label{table_resultats_incertitudes}
+\end{table}
+
+Les incertitudes élargies associées aux mesures sont au maximum de 4,61\%. Bien que les tolérances en routine clinique ne soient que de 2\% d’écart entre la dose mesurée lors de la recette et celle mesurée lors du contrôle qualité quotidien (TOP), ceci ne pose pas problème puisque nous ne mesurons pas la même chose. En effet, l’écart de dose mesuré entre la dose du jour et celle de la recette permet d’estimer la constance dans le temps du débit de référence de la machine, alors que l’incertitude permet de définir un intervalle de confiance dans lequel la dose mesurée est comprise.
+
+\newpage
+\section*{Annexe}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|cc|}
+  \cline{2-3}
+   & \textbf{Farmer} & \textbf{ROOS} \\ \hline
+  \multicolumn{1}{|c|}{\multirow{5}{*}{\textbf{Charges collectées (nC)}}} & 38,97 & 25,43 \\
+  \multicolumn{1}{|c|}{} & 39,01 & 25,43 \\
+  \multicolumn{1}{|c|}{} & 39,00 & 25,43 \\
+  \multicolumn{1}{|c|}{} & 39,01 & 25,42 \\
+  \multicolumn{1}{|c|}{} & 38,99 & 25,43 \\ \hline
+  \end{tabular}
+  \caption{Mesure des charges collectées pour les chambres Farmer et ROOS dans un faisceau d'électrons de 18 MeV}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|cccc|}
+  \cline{2-5}
+   & \textbf{6 MeV} & \textbf{9 MeV} & \textbf{12 MeV} & \textbf{15 MeV} \\ \hline
+  \multicolumn{1}{|c|}{\multirow{5}{*}{\textbf{Charges collectées (nC)}}} & 25,59 & 26,21 & 26,41 & 26,82 \\
+  \multicolumn{1}{|c|}{} & 25,60 & 26,22 & 26,40 & 26,81 \\
+  \multicolumn{1}{|c|}{} & 25,59 & 26,21 & 26,43 & 26,81 \\
+  \multicolumn{1}{|c|}{} & 25,59 & 26,21 & 26,41 & 26,81 \\
+  \multicolumn{1}{|c|}{} & 25,57 & 26,20 & 26,43 & 26,79 \\ \hline
+  \end{tabular}
+  \caption{Séries de mesures pour les champs de 6 à 15 MeV du Clinac 3 (chambre ROOS)}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cclclclcl}
+  \cline{2-9}
+  \multicolumn{1}{c|}{} & \multicolumn{2}{c|}{\textbf{6 MeV}} & \multicolumn{2}{c|}{\textbf{9 MeV}} & \multicolumn{2}{c|}{\textbf{12 MeV}} & \multicolumn{2}{c|}{\textbf{15 MeV}} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Tension (V)}} & \textbf{50} & \multicolumn{1}{c|}{\textbf{200}} & \textbf{50} & \multicolumn{1}{c|}{\textbf{200}} & \textbf{50} & \multicolumn{1}{c|}{\textbf{200}} & \textbf{50} & \multicolumn{1}{c|}{\textbf{200}} \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{\textbf{Charges collectées (nC)}}} & 24,90 & \multicolumn{1}{c|}{25,64} & 25,49 & \multicolumn{1}{c|}{26,27} & 25,70 & \multicolumn{1}{c|}{26,45} & 26,16 & \multicolumn{1}{c|}{26,83} \\
+  \multicolumn{1}{|c|}{} & 24,89 & \multicolumn{1}{c|}{25,62} & 25,51 & \multicolumn{1}{c|}{26,26} & 25,69 & \multicolumn{1}{c|}{26,45} & 26,15 & \multicolumn{1}{c|}{26,84} \\
+  \multicolumn{1}{|c|}{} & 24,87 & \multicolumn{1}{c|}{25,64} & 25,51 & \multicolumn{1}{c|}{26,27} & 25,68 & \multicolumn{1}{c|}{26,48} & 26,15 & \multicolumn{1}{c|}{26,87} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Charge Moyenne (nC)}} & 24,89 & \multicolumn{1}{c|}{25,63} & 25,50 & \multicolumn{1}{c|}{26,27} & 25,69 & \multicolumn{1}{c|}{26,46} & 26,15 & \multicolumn{1}{c|}{26,85} \\ \hline
+  \multicolumn{1}{|c|}{$\mathbf{k_{rec}}$} & \multicolumn{2}{c|}{\textbf{1,0099}} & \multicolumn{2}{c|}{\textbf{1,0099}} & \multicolumn{2}{c|}{\textbf{1,0099}} & \multicolumn{2}{c|}{\textbf{1,0087}} \\ \hline
+  \end{tabular}
+  \caption{Séries de mesures pour le calcul du $k_{rec}$ pour les faisceaux d'électrons de 6 à 15 MeV}
+\end{table}
+
+\newpage
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{figures/kQ.png}
+  \caption{Facteurs correctifs issus du TRS-398 permettant de corriger l'étalonnage initial au $^{60}$Co en fonction du $R_{50}$ et de la chambre utilisées}
+  \label{fig_kQ_TRS}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{figures/kQQint.png}
+  \caption{Facteurs correctifs issus du TRS-398 permettant de corriger de l'énergie du faisceau d'électrons en fonction du $R_{50}$ et de la chambre utilisées}
+  \label{fig_kQQint_TRS}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{figures/certificat_ref1.PNG}
+  \caption[short]{Certificat d'étalonnage de la chambre PTW Farmer 30013 (référence 1)}
+  \label{fig_certif_ref1}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.55]{figures/certif ROOS.PNG}
+  \caption{Certificat d'étalonnage de la chambre PTW ROOS 34001}
+  \label{fig_certif_ROOS}
+\end{figure}
+
+\clearpage
+\bibliography{biblio}
+\addcontentsline{toc}{section}{Références}
+\bibliographystyle{plain}
+\nocite{*}
+
+\end{document}

@@ -1,0 +1,1068 @@
+Measurement time:; 27/05/2023 13:34:18
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Inline
+Scan mode:; StepByStep
+Wedge:; none
+
+Points [mm]:
+Inline; Crossline; Depth; Normalized field; Current field; Ratio
+-30,0; 0,0; 100,0; 134,13; 781,7; 4,62
+-29,0; 0,0; 100,0; 136,11; 793,2; 4,68
+-28,1; 0,0; 100,0; 154,86; 902,5; 5,33
+-27,0; 0,0; 100,0; 171,72; 1000,8; 5,91
+-26,0; 0,0; 100,0; 163,64; 953,7; 5,63
+-25,1; 0,0; 100,0; 153,83; 896,5; 5,30
+-24,0; 0,0; 100,0; 150,35; 876,2; 5,17
+-23,0; 0,0; 100,0; 163,92; 955,3; 5,64
+-22,1; 0,0; 100,0; 175,17; 1020,9; 6,03
+-21,0; 0,0; 100,0; 189,76; 1105,9; 6,53
+-20,0; 0,0; 100,0; 228,14; 1329,6; 7,85
+-19,1; 0,0; 100,0; 276,50; 1611,4; 9,51
+-18,0; 0,0; 100,0; 345,26; 2012,2; 11,88
+-17,0; 0,0; 100,0; 475,41; 2770,7; 16,36
+-16,1; 0,0; 100,0; 731,18; 4261,3; 25,15
+-15,1; 0,0; 100,0; 1284,84; 7488,0; 44,21
+-14,0; 0,0; 100,0; 2014,86; 11742,6; 69,34
+-13,1; 0,0; 100,0; 2462,53; 14351,7; 84,74
+-12,0; 0,0; 100,0; 2654,21; 15468,8; 91,33
+-11,1; 0,0; 100,0; 2751,37; 16035,0; 94,71
+-10,0; 0,0; 100,0; 2797,99; 16306,8; 96,32
+-9,0; 0,0; 100,0; 2831,29; 16500,8; 97,46
+-8,0; 0,0; 100,0; 2849,25; 16605,5; 98,07
+-7,1; 0,0; 100,0; 2865,28; 16698,9; 98,54
+-6,1; 0,0; 100,0; 2884,50; 16810,9; 99,24
+-5,0; 0,0; 100,0; 2905,48; 16933,2; 99,99
+-4,1; 0,0; 100,0; 2910,47; 16962,3; 100,12
+-3,0; 0,0; 100,0; 2909,59; 16957,1; 100,07
+-2,0; 0,0; 100,0; 2905,79; 16935,0; 99,99
+-1,0; 0,0; 100,0; 2895,79; 16876,7; 99,67
+0,0; 0,0; 100,0; 2904,68; 16928,5; 100,00
+1,0; 0,0; 100,0; 2882,65; 16800,2; 99,21
+2,0; 0,0; 100,0; 2880,43; 16787,2; 99,18
+2,9; 0,0; 100,0; 2888,82; 16836,1; 99,42
+4,0; 0,0; 100,0; 2891,23; 16850,2; 99,49
+5,0; 0,0; 100,0; 2899,47; 16898,2; 99,81
+6,0; 0,0; 100,0; 2886,78; 16824,2; 99,35
+7,0; 0,0; 100,0; 2892,70; 16858,7; 99,60
+8,0; 0,0; 100,0; 2873,49; 16746,7; 98,91
+9,0; 0,0; 100,0; 2842,44; 16565,8; 97,83
+9,9; 0,0; 100,0; 2804,86; 16346,8; 96,55
+11,0; 0,0; 100,0; 2726,56; 15890,4; 93,88
+11,9; 0,0; 100,0; 2646,35; 15423,0; 91,04
+13,0; 0,0; 100,0; 2409,73; 14044,0; 82,93
+14,0; 0,0; 100,0; 1922,01; 11201,5; 66,15
+14,9; 0,0; 100,0; 1223,67; 7131,6; 42,12
+16,0; 0,0; 100,0; 678,84; 3956,3; 23,37
+17,0; 0,0; 100,0; 437,90; 2552,1; 15,07
+18,0; 0,0; 100,0; 333,44; 1943,3; 11,48
+18,9; 0,0; 100,0; 276,59; 1612,0; 9,52
+20,1; 0,0; 100,0; 214,44; 1249,8; 7,39
+20,9; 0,0; 100,0; 206,46; 1203,2; 7,11
+22,0; 0,0; 100,0; 189,82; 1106,3; 6,53
+23,0; 0,0; 100,0; 166,13; 968,2; 5,72
+24,0; 0,0; 100,0; 154,42; 899,9; 5,32
+25,0; 0,0; 100,0; 161,14; 939,1; 5,55
+26,0; 0,0; 100,0; 140,86; 820,9; 4,85
+27,0; 0,0; 100,0; 142,46; 830,3; 4,91
+28,0; 0,0; 100,0; 132,35; 771,4; 4,56
+29,0; 0,0; 100,0; 125,99; 734,3; 4,34
+30,0; 0,0; 100,0; 120,82; 704,2; 4,16
+
+
+Measurement time:; 27/05/2023 13:37:05
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Crossline
+Scan mode:; StepByStep
+Wedge:; none
+
+Points [mm]:
+Inline; Crossline; Depth; Normalized field; Current field; Ratio
+0,0; 30,0; 100,0; 128,32; 747,8; 4,40
+0,0; 29,0; 100,0; 138,89; 809,5; 4,76
+0,0; 28,1; 100,0; 145,25; 846,5; 4,98
+0,0; 27,1; 100,0; 145,64; 848,8; 5,00
+0,0; 26,0; 100,0; 160,55; 935,7; 5,51
+0,0; 25,0; 100,0; 169,46; 987,6; 5,81
+0,0; 24,0; 100,0; 182,55; 1063,9; 6,26
+0,0; 23,1; 100,0; 190,61; 1110,9; 6,54
+0,0; 22,0; 100,0; 207,04; 1206,7; 7,10
+0,0; 21,0; 100,0; 227,32; 1324,8; 7,80
+0,0; 19,9; 100,0; 271,82; 1584,2; 9,32
+0,0; 19,0; 100,0; 342,23; 1994,5; 11,74
+0,0; 18,0; 100,0; 447,96; 2610,7; 15,37
+0,0; 17,0; 100,0; 667,82; 3892,0; 22,92
+0,0; 16,1; 100,0; 1045,89; 6095,5; 35,89
+0,0; 15,0; 100,0; 1633,82; 9521,9; 56,06
+0,0; 14,0; 100,0; 2186,84; 12744,9; 75,01
+0,0; 13,0; 100,0; 2499,78; 14568,8; 85,79
+0,0; 12,0; 100,0; 2654,83; 15472,4; 91,08
+0,0; 11,0; 100,0; 2744,72; 15996,3; 94,18
+0,0; 10,0; 100,0; 2809,04; 16371,2; 96,36
+0,0; 9,0; 100,0; 2836,18; 16529,3; 97,31
+0,0; 8,1; 100,0; 2861,67; 16677,9; 98,22
+0,0; 7,1; 100,0; 2869,35; 16722,7; 98,46
+0,0; 6,0; 100,0; 2895,02; 16872,3; 99,25
+0,0; 5,1; 100,0; 2892,80; 16859,3; 99,23
+0,0; 4,0; 100,0; 2897,87; 16888,8; 99,45
+0,0; 3,1; 100,0; 2904,14; 16925,4; 99,67
+0,0; 2,0; 100,0; 2920,71; 17021,9; 100,23
+0,0; 1,0; 100,0; 2914,67; 16986,7; 100,03
+0,0; 0,1; 100,0; 2914,75; 16987,2; 99,99
+0,0; -0,9; 100,0; 2915,39; 16990,9; 100,08
+0,0; -2,0; 100,0; 2915,40; 16991,0; 99,98
+0,0; -2,9; 100,0; 2920,93; 17023,2; 100,18
+0,0; -4,0; 100,0; 2909,16; 16954,7; 99,81
+0,0; -5,0; 100,0; 2896,03; 16878,1; 99,33
+0,0; -5,9; 100,0; 2900,74; 16905,6; 99,54
+0,0; -6,9; 100,0; 2879,79; 16783,4; 98,83
+0,0; -8,0; 100,0; 2862,08; 16680,2; 98,23
+0,0; -9,0; 100,0; 2835,35; 16524,4; 97,22
+0,0; -9,9; 100,0; 2800,08; 16318,9; 96,11
+0,0; -11,0; 100,0; 2759,79; 16084,1; 94,71
+0,0; -12,0; 100,0; 2680,76; 15623,5; 92,00
+0,0; -12,9; 100,0; 2566,47; 14957,4; 88,06
+0,0; -13,9; 100,0; 2275,92; 13264,1; 78,08
+0,0; -15,0; 100,0; 1735,94; 10117,1; 59,62
+0,0; -16,0; 100,0; 1156,94; 6742,7; 39,71
+0,0; -17,0; 100,0; 721,15; 4202,9; 24,75
+0,0; -17,9; 100,0; 483,74; 2819,2; 16,60
+0,0; -19,0; 100,0; 356,73; 2079,0; 12,24
+0,0; -19,9; 100,0; 266,89; 1555,4; 9,17
+0,0; -21,0; 100,0; 237,07; 1381,7; 8,14
+0,0; -22,0; 100,0; 223,34; 1301,6; 7,67
+0,0; -23,0; 100,0; 203,57; 1186,4; 6,99
+0,0; -24,0; 100,0; 188,37; 1097,8; 6,46
+0,0; -24,9; 100,0; 164,45; 958,4; 5,64
+0,0; -25,9; 100,0; 169,90; 990,2; 5,83
+0,0; -26,9; 100,0; 165,40; 964,0; 5,68
+0,0; -28,0; 100,0; 159,80; 931,3; 5,49
+0,0; -28,9; 100,0; 155,33; 905,3; 5,33
+0,0; -30,0; 100,0; 143,31; 835,2; 4,92
+
+
+Measurement time:; 27/05/2023 13:39:45
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Beam
+Scan mode:; StepByStep
+Wedge:; none
+
+Points [mm]:
+Inline; Crossline; Depth; Normalized field; Current field; Ratio
+0,0; 0,0; 250,0; 1103,89; 6433,5; 21,48
+0,0; 0,0; 245,1; 1127,72; 6572,4; 21,95
+0,0; 0,0; 240,0; 1170,78; 6823,3; 22,80
+0,0; 0,0; 235,1; 1208,94; 7045,7; 23,52
+0,0; 0,0; 230,0; 1240,15; 7227,6; 24,14
+0,0; 0,0; 225,1; 1275,46; 7433,4; 24,81
+0,0; 0,0; 220,1; 1314,54; 7661,2; 25,58
+0,0; 0,0; 215,0; 1357,51; 7911,6; 26,42
+0,0; 0,0; 210,1; 1394,10; 8124,8; 27,14
+0,0; 0,0; 205,1; 1447,49; 8436,0; 28,17
+0,0; 0,0; 200,1; 1500,46; 8744,7; 29,20
+0,0; 0,0; 195,1; 1547,95; 9021,5; 30,14
+0,0; 0,0; 190,1; 1594,29; 9291,5; 31,05
+0,0; 0,0; 185,0; 1651,08; 9622,5; 32,14
+0,0; 0,0; 180,0; 1711,40; 9974,1; 33,32
+0,0; 0,0; 175,1; 1762,40; 10271,3; 34,33
+0,0; 0,0; 170,1; 1824,34; 10632,3; 35,51
+0,0; 0,0; 165,1; 1882,32; 10970,2; 36,65
+0,0; 0,0; 160,1; 1936,29; 11284,7; 37,71
+0,0; 0,0; 155,1; 2015,07; 11743,9; 39,26
+0,0; 0,0; 150,1; 2071,26; 12071,4; 40,34
+0,0; 0,0; 145,1; 2141,54; 12480,9; 41,71
+0,0; 0,0; 140,1; 2213,24; 12898,8; 43,10
+0,0; 0,0; 135,1; 2288,79; 13339,1; 44,59
+0,0; 0,0; 130,1; 2363,23; 13773,0; 46,01
+0,0; 0,0; 125,1; 2448,79; 14271,6; 47,69
+0,0; 0,0; 120,1; 2530,84; 14749,8; 49,30
+0,0; 0,0; 115,1; 2623,35; 15288,9; 51,11
+0,0; 0,0; 110,1; 2719,52; 15849,4; 53,00
+0,0; 0,0; 105,1; 2817,27; 16419,1; 54,87
+0,0; 0,0; 100,1; 2906,58; 16939,6; 56,60
+0,0; 0,0; 95,1; 3007,59; 17528,3; 58,58
+0,0; 0,0; 90,1; 3122,75; 18199,5; 60,81
+0,0; 0,0; 85,0; 3235,83; 18858,5; 63,04
+0,0; 0,0; 80,0; 3340,91; 19470,9; 65,08
+0,0; 0,0; 75,0; 3459,80; 20163,8; 67,40
+0,0; 0,0; 70,0; 3584,70; 20891,7; 69,86
+0,0; 0,0; 65,0; 3723,92; 21703,1; 72,55
+0,0; 0,0; 60,0; 3855,43; 22469,5; 75,13
+0,0; 0,0; 55,0; 3977,08; 23178,5; 77,49
+0,0; 0,0; 49,9; 4125,48; 24043,4; 80,37
+0,0; 0,0; 44,9; 4285,42; 24975,5; 83,51
+0,0; 0,0; 39,9; 4436,94; 25858,5; 86,44
+0,0; 0,0; 34,9; 4581,94; 26703,6; 89,29
+0,0; 0,0; 29,9; 4740,54; 27628,0; 92,39
+0,0; 0,0; 25,1; 4882,94; 28457,9; 95,17
+0,0; 0,0; 24,1; 4913,75; 28637,4; 95,79
+0,0; 0,0; 23,0; 4962,23; 28919,9; 96,71
+0,0; 0,0; 22,0; 4986,01; 29058,6; 97,17
+0,0; 0,0; 21,1; 5014,36; 29223,8; 97,72
+0,0; 0,0; 20,1; 5028,61; 29306,9; 97,99
+0,0; 0,0; 19,0; 5047,84; 29418,9; 98,38
+0,0; 0,0; 18,0; 5074,19; 29572,5; 98,85
+0,0; 0,0; 17,1; 5091,75; 29674,8; 99,23
+0,0; 0,0; 16,1; 5108,64; 29773,2; 99,59
+0,0; 0,0; 15,0; 5129,36; 29894,0; 100,00
+0,0; 0,0; 14,0; 5127,91; 29885,6; 99,96
+0,0; 0,0; 13,0; 5126,17; 29875,4; 99,90
+0,0; 0,0; 12,0; 5110,91; 29786,5; 99,60
+0,0; 0,0; 11,0; 5068,06; 29536,7; 98,79
+0,0; 0,0; 10,0; 5038,00; 29361,6; 98,23
+0,0; 0,0; 9,0; 4962,48; 28921,4; 96,69
+0,0; 0,0; 8,0; 4879,19; 28436,0; 95,11
+0,0; 0,0; 7,0; 4742,64; 27640,2; 92,45
+0,0; 0,0; 6,0; 4577,36; 26676,9; 89,19
+0,0; 0,0; 5,0; 4322,54; 25191,9; 84,24
+0,0; 0,0; 4,0; 3990,29; 23255,5; 77,81
+0,0; 0,0; 3,0; 3558,93; 20741,5; 69,37
+0,0; 0,0; 2,0; 2958,95; 17244,8; 57,68
+0,0; 0,0; 1,0; 2495,77; 14545,4; 48,66
+0,0; 0,0; 0,0; 2404,99; 14016,3; 46,90
+0,0; 0,0; -0,5; 2388,81; 13922,0; 46,58
+
+
+Measurement time:; 27/05/2023 13:45:35
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; 0,0113830566406818 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,3209 Gy
+
+
+
+Measurement time:; 27/05/2023 13:46:21
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0341796875000568 mm
+Position Crossline:; 0,0428466796875568 mm
+Position Depth:; 100,054885107422 mm
+Dose:; 1,3304 Gy
+
+
+
+Measurement time:; 27/05/2023 13:46:53
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,00997924804693184 mm
+Position Crossline:; -0,0199890136718182 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,3262 Gy
+
+
+
+Measurement time:; 27/05/2023 13:47:28
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0201721191406818 mm
+Position Crossline:; -0,0633850097655682 mm
+Position Depth:; 100,054885107422 mm
+Dose:; 1,3157 Gy
+
+
+
+Measurement time:; 27/05/2023 13:48:26
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0201721191406818 mm
+Position Crossline:; -0,0301818847655682 mm
+Position Depth:; 100,054885107422 mm
+Dose:; 0,6190 Gy
+
+
+
+Measurement time:; 27/05/2023 13:49:08
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0201721191406818 mm
+Position Crossline:; -0,0121459960936932 mm
+Position Depth:; 100,047042089844 mm
+Dose:; 1,6388 Gy
+
+
+
+Measurement time:; 27/05/2023 13:49:47
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0201721191406818 mm
+Position Crossline:; -0,219970703124943 mm
+Position Depth:; 100,011336523438 mm
+Dose:; 1,6404 Gy
+
+
+
+Measurement time:; 27/05/2023 13:50:18
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0201721191406818 mm
+Position Crossline:; -0,00936889648431816 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,6329 Gy
+
+
+
+Measurement time:; 27/05/2023 13:58:27
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 5 x 5 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0138244628905682 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 0,9089 Gy
+
+
+
+Measurement time:; 27/05/2023 13:58:57
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 5 x 5 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0201721191406818 mm
+Position Crossline:; -0,0199890136718182 mm
+Position Depth:; 100,043135839844 mm
+Dose:; 0,9130 Gy
+
+
+
+Measurement time:; 27/05/2023 13:59:56
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 5 x 5 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,00656127929681816 mm
+Position Depth:; 100,074965673828 mm
+Dose:; 0,9169 Gy
+
+
+
+Measurement time:; 27/05/2023 14:01:21
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0201721191406818 mm
+Position Crossline:; -0,0538635253905682 mm
+Position Depth:; 100,081130224609 mm
+Dose:; 1,5633 Gy
+
+
+
+Measurement time:; 27/05/2023 14:01:57
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0445556640624432 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,6324 Gy
+
+
+
+Measurement time:; 27/05/2023 14:02:32
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0201721191406818 mm
+Position Crossline:; -0,0603332519530682 mm
+Position Depth:; 100,050337988281 mm
+Dose:; 1,6320 Gy
+
+
+
+Measurement time:; 27/05/2023 14:03:01
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0497436523436932 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,6375 Gy
+
+
+
+Measurement time:; 27/05/2023 14:04:17
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 10 x 10 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0201721191406818 mm
+Position Crossline:; -0,0277709960936932 mm
+Position Depth:; 100,079360205078 mm
+Dose:; 1,1518 Gy
+
+
+
+Measurement time:; 27/05/2023 14:04:46
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 10 x 10 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; 0,0387268066406818 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,1570 Gy
+
+
+
+Measurement time:; 27/05/2023 14:05:13
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 10 x 10 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0299987792968182 mm
+Position Depth:; 100,044875341797 mm
+Dose:; 1,1619 Gy
+
+
+
+Measurement time:; 27/05/2023 14:06:14
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0590820312499432 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,5818 Gy
+
+
+
+Measurement time:; 27/05/2023 14:06:42
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; 0,00482177734380684 mm
+Position Depth:; 100,054885107422 mm
+Dose:; 1,6390 Gy
+
+
+
+Measurement time:; 27/05/2023 14:07:08
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0301818847655682 mm
+Position Depth:; 100,054885107422 mm
+Dose:; 1,6382 Gy
+
+
+
+Measurement time:; 27/05/2023 14:07:39
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0543518066405682 mm
+Position Depth:; 100,054885107422 mm
+Dose:; 1,6398 Gy
+
+
+
+Measurement time:; 27/05/2023 14:08:41
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 20 x 20 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0101623535155682 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,2592 Gy
+
+
+
+Measurement time:; 27/05/2023 14:09:19
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 20 x 20 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0167541503906818 mm
+Position Crossline:; -0,0154418945311932 mm
+Position Depth:; 100,053145605469 mm
+Dose:; 1,2620 Gy
+
+
+
+Measurement time:; 27/05/2023 14:10:23
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 20 x 20 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0399780273438068 mm
+Position Crossline:; -0,0313110351561932 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,2598 Gy
+
+
+
+Measurement time:; 27/05/2023 14:11:25
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0301818847655682 mm
+Position Depth:; 100,054885107422 mm
+Dose:; 1,6466 Gy
+
+
+
+Measurement time:; 27/05/2023 14:11:53
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0232849121093182 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,6505 Gy
+
+
+
+Measurement time:; 27/05/2023 14:12:21
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; -0,0299987792969318 mm
+Position Crossline:; -0,0301818847655682 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,6467 Gy
+
+
+
+Measurement time:; 27/05/2023 14:13:41
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; 0,0500183105468182 mm
+Position Crossline:; -0,0199890136718182 mm
+Position Depth:; 100,030410009766 mm
+Dose:; 1,3367 Gy
+
+
+
+Measurement time:; 27/05/2023 14:14:16
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; 0,0599975585936932 mm
+Position Crossline:; -0,0448913574218182 mm
+Position Depth:; 100,074965673828 mm
+Dose:; 1,3356 Gy
+
+
+
+Measurement time:; 27/05/2023 14:14:44
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 30 x 30 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; 0,0500183105468182 mm
+Position Crossline:; -0,0445556640624432 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,3364 Gy
+
+
+
+Measurement time:; 27/05/2023 14:15:38
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; 0,0500183105468182 mm
+Position Crossline:; 0,00463867187505684 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,6449 Gy
+
+
+
+Measurement time:; 27/05/2023 14:16:11
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; 0,0599975585936932 mm
+Position Crossline:; -0,0411682128905682 mm
+Position Depth:; 100,054885107422 mm
+Dose:; 1,6496 Gy
+
+
+
+Measurement time:; 27/05/2023 14:16:40
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano polarité -
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; 0,0599975585936932 mm
+Position Crossline:; -0,0651855468749432 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,6545 Gy
+
+
+
+Measurement time:; 27/05/2023 14:22:34
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; 0,0599975585936932 mm
+Position Crossline:; -0,0238342285155682 mm
+Position Depth:; 100,054885107422 mm
+Dose:; 1,6551 Gy
+
+
+
+Measurement time:; 27/05/2023 14:23:08
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; 0,0599975585936932 mm
+Position Crossline:; -0,0645141601561932 mm
+Position Depth:; 100,047042089844 mm
+Dose:; 1,6552 Gy
+
+
+
+Measurement time:; 27/05/2023 14:23:35
+Radiation device:; Novalis TB Accelerator
+Energy:; 6 MV (FFF)
+Controller:; CCU
+Measurement device:; Blue Phantom 2  (48*48*41)
+Field detector:; Razor Nano
+Reference detector:; Stealth CI transmission
+SAD:; 1000 mm
+SSD:; 900 mm
+Field size:; 100 x 100 mm
+Gantry angle:; 0
+Measurement medium:; Water
+Scan type:; Point
+Scan mode:; Absolute
+Wedge:; none
+Position Inline:; 0,0599975585936932 mm
+Position Crossline:; -0,0888366699218182 mm
+Position Depth:; 100,064894873047 mm
+Dose:; 1,6592 Gy
+
+
+

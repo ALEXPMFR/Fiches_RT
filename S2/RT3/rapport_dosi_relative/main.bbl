@@ -1,0 +1,47 @@
+\begin{thebibliography}{1}
+
+\bibitem{ChoixDetecteursCoursBellec}
+Julien Bellec.
+\newblock {\em Choix et utilisation des systèmes de mesure associés aux
+  contrôles dosimétriques en radiothérapie}.
+\newblock Cours DQPRM 2022.
+
+\bibitem{chauvenetutilisation}
+B~Chauvenet, F~Delaunay, JM~Dolo, G~Le~Roy, A~Bridier, P~Francois, and
+  R~Sabattier.
+\newblock Utilisation des r{\'e}f{\'e}rences m{\'e}trologiques nationales de
+  dose absorb{\'e}e dans l'eau et application du protocole de dosim{\'e}trie
+  aiea trs n 398 aux faisceaux de photons de haute {\'e}nergie.
+
+\bibitem{coste2020}
+Frédéric Coste.
+\newblock {\em Définition de la qualité des faisceaux de photons}.
+\newblock Cours Master 2 Nantes.
+
+\bibitem{UtilisationMyQA}
+IBA Dosimetry.
+\newblock {\em MyQA Accept User's Guide}.
+
+\bibitem{mayles2007handbook}
+Philip Mayles, Alan Nahum, and Jean-Claude Rosenwald.
+\newblock {\em Handbook of radiotherapy physics: theory and practice}.
+\newblock CRC Press, 2007.
+
+\bibitem{ansm2007}
+Agence nationale de sécurité du médicament et des produits~de santé.
+\newblock Décision du 27 juillet 2007 fixant les modalités du contrôle de
+  qualité interne des installations de radiothérapie externe.
+\newblock {\em Journal officiel de la république française}, 2007.
+
+\bibitem{podgorsak2005radiation}
+Ervin~B Podgorsak.
+\newblock {\em Radiation oncology physics}.
+\newblock 2005.
+
+\bibitem{Robert2021}
+Charlotte Robert.
+\newblock {\em Distribution de la dose absorbée dans un milieu : faisceau de
+  photons de haute énergie}.
+\newblock Cours Master 2 Paris.
+
+\end{thebibliography}
