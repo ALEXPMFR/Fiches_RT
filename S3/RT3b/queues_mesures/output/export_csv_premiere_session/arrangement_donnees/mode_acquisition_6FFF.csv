@@ -1,5 +1,4 @@
-1s 0,5 cm;;;2s 0,01 cm;;;0,1s 0,01 cm;;;Continu 2,5 cm/s;;;Continu 1 cm/s;;;Continu 0,5 cm/s;;;Continu 0,3 cm/s;
- Crossline; Ratio;; Crossline; Ratio;; Crossline; Ratio;; Crossline; Ratio;; Crossline; Ratio;; Crossline; Ratio;; Crossline; Ratio
+ Crossline; Ratio 1s 0,5cm;; Crossline; Ratio 2s 0,01cm;; Crossline; Ratio 0,1s 0,01cm;; Crossline; Ratio Continu 2,5 cm/s;; Crossline; Ratio Continu 1 cm/s;; Crossline; Ratio Continu 0,5 cm/s;; Crossline; Ratio Continu 0,3 cm/s
 -10;2,86;;-10;3,07;;10;3,22;;-10;3,14;;10;3,29;;-10;3,26;;9,5;3,65
 -9,5;3,55;;-9,9;3,19;;9,9;3,33;;-8,7;4,28;;9,3;3,9;;-8,7;5,26;;8,4;6,93
 -8,9;4,66;;-9,8;3,33;;9,9;3,42;;-6,5;17,93;;7,8;10,01;;-7,4;11,73;;7,3;12,58

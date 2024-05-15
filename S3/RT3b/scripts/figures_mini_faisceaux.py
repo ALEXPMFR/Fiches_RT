@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-from modules_figures import extract_energie, extract_taille_champ, creation_dataframe
+from modules_figures import extract_energie, extract_taille_champ, creation_dataframe, creation_dataframe_mode_acquisition
 
 csv_files = list(Path('../queues_mesures/output/export_csv_premiere_session/arrangement_donnees').glob('champ*.csv'))
 
@@ -69,6 +69,25 @@ def comp_profils_tailles_champs(orientation):
             plt.ylabel('Dose (%)')
             plt.title('Profils de dose en fonction de la taille de champ et de l\'orientation')
 
+def comp_modes_acquisition():
+    path_file = '../queues_mesures/output/export_csv_premiere_session/arrangement_donnees/mode_acquisition_6FFF.csv'
+    df = creation_dataframe_mode_acquisition(path_file)
+    acquisitions = []
+    for col in df.columns[::2]:
+        acquisitions.append(col)
+    for acq in acquisitions:
+        plt.figure(figsize=(12, 7))
+        plt.plot(df[acq], df['Dose ' + acq.split(' ')[1] + ' (%)'], 'o-')
+        plt.grid(ls='--')
+        plt.xlabel('Distance (mm)')
+        plt.ylabel('Dose (%)')
+        if acq.split(' ')[1].split('_')[0] == 'continu':
+            plt.title('Continu ' + acq.split(' ')[1].split('_')[1] + ' ' + 'cm/s')
+        else:
+            plt.title('Step by step ' + acq.split(' ')[1].split('_')[0] + ' s et pas de ' + acq.split(' ')[1].split('_')[1] + ' cm')
+        plt.show()
+    
+
 def main():
     # figures_profils('Inline')
     # figures_profils('Crossline')
@@ -76,9 +95,10 @@ def main():
     # comp_rdt_energie()
     # comp_profils_energie('Inline')
     # comp_profils_energie('Crossline')
-    plt.figure(figsize=(12, 7))
-    comp_profils_tailles_champs('Inline')
-    comp_profils_tailles_champs('Crossline')
-    plt.show()
+    # plt.figure(figsize=(12, 7))
+    # comp_profils_tailles_champs('Inline')
+    # comp_profils_tailles_champs('Crossline')
+    # plt.show()
+    comp_modes_acquisition()
 
 main()
