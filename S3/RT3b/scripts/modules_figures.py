@@ -21,3 +21,6 @@ def creation_dataframe_mode_acquisition(file_name):
 
     df.columns = ['Crossline 1_0,5 (mm)', 'Dose 1_0,5 (%)', 'Crossline 2_0,01 (mm)', 'Dose 2_0,01 (%)', 'Crossline 0,1_0,01 (mm)', 'Dose 0,1_0,01 (%)', 'Crossline continu_2,5 (mm)', 'Dose continu_2,5 (%)', 'Crossline continu_1 (mm)', 'Dose continu_1 (%)', 'Crossline continu_0,3 (mm)', 'Dose continu_0,3 (%)', 'Crossline continu_0,5 (mm)', 'Dose continu_0,5 (%)']
     return df
+
+# def extract_pas_integration(file_name):
+    

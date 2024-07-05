@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+
+\bibitem{TRS483}
+{\em Dosimetry of Small Static Fields Used in External Beam Radiotherapy}.
+\newblock Number 483 in Technical Reports Series. INTERNATIONAL ATOMIC ENERGY
+  AGENCY, Vienna, 2017.
+
+\bibitem{dufreneix2021field}
+S~Dufreneix, J~Bellec, S~Josset, and L~Vieillevigne.
+\newblock Field output factors for small fields: A large multicentre study.
+\newblock {\em Physica Medica}, 81:191--196, 2021.
+
+\bibitem{cours_Dufreneix}
+Stéphane Dufreneix.
+\newblock {\em Dosimétrie des petits faisceaux}.
+\newblock Cours DQPRM, Saclay, 2024.
+
+\bibitem{doc_petits_champs_PTW}
+PTW.
+\newblock {\em Small Field Dosimetry, Application Guide}.
+
+\end{thebibliography}

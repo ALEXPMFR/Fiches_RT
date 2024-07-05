@@ -80,11 +80,465 @@
 \clearpage
 \section{Introduction}
 
+Ce travail va traiter des petits faisceaux de photons utilisés pour la radiothérapie externe sur des accélérateurs permettant de délivrer des traitements dans des conditions stéréotaxiques. Un champ est qualifié de petit si trois conditions sont réunies, qui seront discutées dans la partie \ref*{partie_problematiques}.
 
-% \clearpage
-% \bibliography{biblio}
-% \addcontentsline{toc}{section}{Références}
-% \bibliographystyle{plain}
-% \nocite{*}
+Les traitements stéréotaxiques, comme leur nom l'indique, sont des traitements qui utilisent une méthode de haute précision de repérage dans les trois dimensions. Il sont principalement utilisés pour des tumeurs de très petites tailles. Cette problématique implique de délivrer la dose avec une erreur sur la position qui est faible. Ces traitements sont prescrits en terme d'enveloppe, c'est-à-dire que l'on veut une dose minimale dans une très grande partie du volume cible. Cette dose prescrite correspond à un certain pourcentage du maximum de la dose délivrée, ce qui n'est pas le cas en radiothérapie utilisant des champs plus larges où l'on veut une dose homogène.
+
+
+% l'isodose minimale qui épouse la cible doit être un certain pourcentage de la dose maximum. Ceci implique une hétérogénéité de dose importante dans le volume cible.
+
+\section{Matériels et méthodes}
+\subsection{Problématiques générales des petits faisceaux}
+\label{partie_problematiques}
+
+Un faiceau est considéré comme petit s'il réunie les conditions suivantes : 
+
+\begin{itemize}
+  \item[$\bullet$] manque d'équilibre électronique latéral
+  \item[$\bullet$] occultation partielle de la source primaire par la collimation de l'accélérateur
+  \item[$\bullet$] la taille du détecteur est du même ordre de grandeur ou plus grande que la taille de champ d'irradiation
+\end{itemize}
+
+\subsubsection{Manque d'équilibre électronique latéral}
+
+Nous pouvons parler de manque d'équilibre électronique latéral lorsque le parcours des électrons secondaires est plus grand que les dimensions du champ d'irradiation (voir figure \ref*{fig_schema_mini_faisceaux}). Cette caractéristique a pour effet de diminuer la fluence sur l'axe du faisceau.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{figures/schema_mini_faisceaux.png}
+  \caption{Schéma de l'effet du manque d'équilibre électronique dans le cas des petits champs}
+  \label{fig_schema_mini_faisceaux}
+\end{figure}
+
+La formule \ref*{eq_rLCPE}, fournie par le TRS-483 de l'AIEA \cite{TRS483}, donne la distance en centimètres que les électrons secondaires peuvent parcourir, en fonction du $TPR^{20}_{10}$ du faisceau considéré. Le tableau \ref*{table_eq_lat} donne cette distance pour des faisceaux conventionnels de radiothérapie externe.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cc}
+    \toprule
+    \bfseries Faisceau & $\mathbf{r_{LCPE}}$ \textbf{(}$\mathbf{\textbf{g.cm}^{-2}}$\textbf{)} \\
+    \toprule
+    $^{60}$Co & 0,6 \\
+    6 MV & 1,3 \\
+    10 MV & 1,7 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Rayon minimum d'un champ circulaire pour atteindre l'équilibre électronique latéral sur l'axe du faisceau}
+  \label{table_eq_lat} 
+\end{table}
+
+\begin{equation}
+  r_{LCPE} = 8,369 \times TPR^{20}_{10} - 4,382
+  \label{eq_rLCPE}
+\end{equation}
+
+\subsubsection{Occultation partielle de la source}
+
+Le lieu de production des photons sur la cible n'est pas ponctuel mais a la forme d'une tache. La problématique lorsque que l'on étudie les petits champs, c'est que la collimation risque d'occulter une partie de cette tache (voir figure \ref*{fig_occultation_source}). La taille de la tache varie d'un accélérateur à l'autre mais pour les accélérateurs actuels, la taille de la tache est le plus souvent entre 5 et 8 millimètres \cite{cours_Dufreneix}. Ceci a pour conséquence de réduire la fluence et de provoquer un durcissement du spectre en énergie.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.38]{figures/occultation_source_primaoire.png}
+  \caption{Schéma de l'occultation de la source primaire}
+  \label{fig_occultation_source}
+\end{figure}
+
+\subsubsection{Influence de la taille du détecteur}
+
+La taille du détecteur joue un rôle crucial lors de l'acquisition des mesures dans des conditions de petits champs. En effet, si la taille du détecteur est trop grande par rapport à la taille de champ, la mesure va être moyennée dans les zones de gradients, ce qui va impacter la pénombre ainsi que le maximum de dose, comme le montre la figure \ref*{fig_moyennage_mesure}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.36]{figures/moyennage_mesure.png}
+  \caption{Illustration de l'acquisition d'un profil de dose avec un détecteur de trop grande taille par rapport à celle du champ}
+  \label{fig_moyennage_mesure}
+\end{figure}
+
+\newpage
+\subsection{Matériel utilisé}
+
+Dans le cadre de cette étude, nous avons utilisé l'explorateur de fantôme d'eau BluePhantom2 du constructeur IBA (représentée sur la figure \ref{fig_cuve}) muni du logiciel associé MyQA. Les détecteurs utilisés, ainsi que leurs caractéristiques sont donnés dans le tableau \ref{table_caracteristiques_detecteurs}. Les mesures ont été réalisées sur le Novalis Truebeam STX du constructeur Varian. Cet accélérateur propose trois énergies différentes : le 6 MV, le 6 MV FFF (\textit{Flatening Filter Free}) ainsi que le 10 MV. Le MLC de l'accélérateur est un MLC 120 HD qui possède 120 lames. Les lames centrales ont une épaisseur de 2,5 cm (sur 8 cm) et les lames externes sont de 5 mm d'épaisseur. La taille de champ maximale est de 22 cm $\times$ 40 cm pour les champs fixes et de 22 cm $\times$ 32 cm pour l'IMRT.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{figures/cuve.png}
+  \caption{Représentation de la cuve à eau BlueFantom2}
+  \label{fig_cuve}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|ccc|}
+  \cline{2-4}
+   & \textbf{MicroDiamant} & \textbf{Diode SRS} & \textbf{Semiflex} \\ \hline
+  \multicolumn{1}{|c|}{\textbf{Type de détecteur}} & Solide & Semi-conducteur & Chambre d'ionisation \\
+  \multicolumn{1}{|c|}{\textbf{Volume sensible}} & 0,004 mm$^3$ & 0,3 mm$^3$ & 0,125 cm$^3$ \\
+  \multicolumn{1}{|c|}{\textbf{Référence}} & 60019 & 60018 & 31010 \\
+  \multicolumn{1}{|c|}{\textbf{Orientation}} & Parallèle & Parallèle & Parallèle \\
+  \multicolumn{1}{|c|}{\textbf{Tension (V)}} & 0 & 0 & 400 \\
+  \multicolumn{1}{|c|}{\textbf{Pré-irradiation (UM)}} & 2000 & 2000 & 2000 \\ \hline
+  \end{tabular}
+  \caption{Caratéristiques des détecteurs utilisés}
+  \label{table_caracteristiques_detecteurs}
+\end{table}
+
+\subsection{Méthodes}
+\subsection{Mesures réalisées}
+
+Pour chacune des grandeurs dosimétriques étudiées, nous allons réaliser plusieurs mesures en faisant varier plusieurs paramètres d'influence et d'acquisition comme le montre le tableau \ref{table_mesures}.
+
+Pour les profils de dose, nous avons réalisé à chaque changement de détecteur des profils de centrage au maximum de dose (1,3 cm de profondeur) et à vingt centimètres de profondeur pour s'assurer que le détecteur soit bien positionné au centre du faisceau le long de l'axe.
+
+Concernant la collimation, elle est faite avec le MLC pour l'ensemble des mesures. Les machoires font également une précollimation qui est détaillée dans le tableau \ref*{table_collimation_machoires_MLC}.
+
+\begin{table}[h]
+  \begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{5cm}|}
+    \hline
+    \textbf{Grandeur dosimétrique} & \textbf{Paramètre d'influence} & \textbf{Mesure de référence} & \textbf{Comparaison} \\ \hline
+    \multirow{3}{*}{\textbf{Rendements}} & \textbf{Taille de champ} & 1 cm $\times$ 1 cm & 0,5 cm $\times$ 0,5 cm / 3 cm $\times$ 3 cm \\
+    & \textbf{Détecteur} & MicroDiamant & Diode SRS / Semiflex \\
+    & \textbf{Énergie} & 6FFF & X6 \\ \hline
+    \multirow{4}{*}{\textbf{Profils}} & \textbf{Taille de champ} & 1 cm $\times$ 1 cm & 0,5 cm $\times$ 0,5 cm / 3 cm $\times$ 3 cm \\
+   & \textbf{Détecteur} & MicroDiamant & Diode SRS / Semiflex \\
+   & \textbf{Énergie} & 6FFF & X6 \\
+   & \textbf{Orientation} & Crossline & Inline \\ \hline
+   \multirow{3}{*}{\textbf{FOC}} & \textbf{Détecteur} & MicroDiamant & Diode SRS / Semiflex \\
+   & \textbf{Énergie} & 6FFF & X6 \\
+   & \textbf{Facteur correctif} & Avec & Sans \\ \hline 
+   \multirow{3}{*}{\textbf{Acquisition}} & \textbf{Temps d'intégration} & 1 s & 0,1 s / 2 s \\
+   & \textbf{Pas d'intégration} & 0,1 mm & 0,5 mm \\
+   & \textbf{Facteur correctif} & Avec & Sans \\ \hline 
+  \end{tabular}
+  \caption{Mesures réalisées dans le cadre de cette étude}
+  \label{table_mesures}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{3.5cm}>{\centering\arraybackslash}m{3.5cm}}
+  \toprule
+\bfseries Taille de champ MLC & \bfseries Taille de champ machoires \\
+\toprule
+0,5 cm $\times$ 0,5 cm & 0,8 cm $\times$ 0,8 cm \\
+1 cm $\times$ 1 cm & 1,2 cm $\times$ 1,2 cm \\
+3 cm $\times$ 3 cm & 3,2 cm $\times$ 3,2 cm \\
+10 cm $\times$ 10 cm & 10 cm $\times$ 10 cm \\
+\bottomrule
+  \end{tabular}
+  \caption{Collimation pour le MLC et les machoires en fonction des différentes tailles de champ}
+  \label{table_collimation_machoires_MLC}
+\end{table}
+
+\subsubsection{Rendements en profondeur}
+
+Les rendements en profondeurs sont acquis à l'aide de la cuve à eau citée précédemment. Le détecteur se déplace du fond de la cuve jusqu'à la surface de l'eau pour éviter les mouvements d'eau en surface, ce qui pourrait perturber le signal reccueilli par le détecteur. Nous avons choisi d'utiliser une acquisition en mode pas à pas avec un intervalle de 0,1 mm entre chaque point de mesure et un temps d'intégration d'une seconde, comme le recommande le TRS-483 \cite{TRS483}. La DSP est de 90 cm et la profondeur de 10 cm.
+
+\subsubsection{Profils de dose}
+
+Les profils de dose, tout comme les rendements en profondeurs, ont été acquis dans la cuve à eau BluePhantom2 du constructeur IBA. Le même mode d'acquisition à été réalisé avec un pas de 0,1 mm et un temps d'intégration d'une seconde. La DSP est de 90 cm et la profondeur est de 10 cm. Le positionnement du détecteur lors de l'acquisition des profils de dose a une influence sur les résultats. En effet, le TRS-483 recommande, pour les chambres, de positionner le détecteur soit parallèlement à l'axe du faisceau, soit de le placer perpendiculairement au sens de déplacement. Pour les détecteurs solides, il est recommandé de le placer parallèlement à l'axe du faisceau. Pour ces deux types de détecteurs, la figure \ref*{recommandations_placement_detecteur} schématise le positionnement recommandé.
+
+Concernant les métriques, nous n'avons pas utilisé l'homogénéité comme indicateur puisque les profils de dose des petits faisceaux sont principalement composés de pénombre. La zone homogène est donc quasiment inexistante sur ce type de profils, surtout avec un faisceau sans filtre égalisateur.
+
+\subsubsection{Facteurs d'ouverture du collimateur}
+
+Les mesures ont été acquises en irradiant le détecteur avec 200 UM, pour des champs entre 0,5 cm $\times$ 0,5 cm à 10 cm $\times$ 10 cm. Le détail des mesures de FOC est donné dans le tableau \ref*{table_mesures}. Trois mesures ont été réalisées pour chaque point puis la moyenne a été calculée. Le FOC est défini de manière différente pour les petits champs selon le TRS-483 \cite{TRS483} : 
+
+\begin{equation}
+  FOC_c = \dfrac{M_c}{M_{c_{ref}}} \times k_{Q_{clin}, \; Q_{msr}}^{f_{clin}, \; f_{msr}}
+\end{equation}
+
+Avec $M_c$ la charge collectée pour le champ de côté équivalent $c$, $M_{c_{ref}}$ la charge collectée pour le champ carré de référence (ici un champ 10 cm $\times$ 10 cm) et $k_{Q_{clin}, \; Q_{msr}}^{f_{clin}, \; f_{msr}}$ le facteur correctif permettant de corriger la réponse du détécteur.
+
+\section{Résultats et discussions}
+\subsection{Rendements en profondeur}
+\subsubsection{Influence de l'énergie}
+
+Le fait d'ajouter ou de retirer le filtre égalisateur modifie le spectre énergétique du faisceau. Lorsque que le filtre est en place, celui-ci filtre les basses énergies, ce qui augmente l'énergie moyenne du faisceau. La figure \ref*{fig_rdt_energie} et le tableau \ref*{table_rdt_energie} nous montrent cet effet. Nous pouvons voir que le $z_{max}$ augmente pour le faisceau de 6 MV par rapport au 6FFF. De plus, la pente du rendement en profondeur après le $z_{max}$ est plus faible pour le faisceau de 6 MV que pour le 6FFF puisque le faisceau de 6 MV est plus dur.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{figures/rdt_energie.png}
+  \caption{Rendement en profondeur pour différentes énergies. DSP de 90 cm et taille de champ de 1 cm $\times$ 1 cm}
+  \label{fig_rdt_energie}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    \bfseries Énergie (MV) & $\mathbf{z_{max}}$ \textbf{(cm)} & $\mathbf{D_{peau}}$ \textbf{(cm)} & $\mathbf{D^{20}_{10}}$ \textbf{(\%)} \\
+    \toprule
+    6FFF & 1,1 & 56,6 & 0,50 \\
+    6 & 1,25 & 46,5 & 0,52 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence de l'énergie sur les rendements en profondeur pour les faisceaux de photons du Novalis Truebeam STX. Taille de champ de 1 cm $\times$ 1 cm et DSP de 90 cm.}
+  \label{table_rdt_energie}
+\end{table}
+
+\subsubsection{Influence de la taille de champ}
+
+Nous voyons sur la figure \ref*{fig_rdt_tailles_champ} et dans le tableau \ref*{table_rdt_taille_champ} que la profondeur du maximum augmente avec la taille de champ. Ceci est en contradiction avec ce qui est attendu physiquement. En effet, le fait de fermer plus la collimation est censé durcir le faisceau. Ce qui implique un $z_{max}$ plus important pour les petites tailles de champ. Aucune explication physique n'a pour l'instant été trouvée.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{figures/mesures_NVTB/rdt_tailles_champ.png}
+  \caption{Rendements en profondeur pour les différentes tailles de champ. DSP de 90  cm, détecteur MicroDiamant et faisceau 6FFF.}
+  \label{fig_rdt_tailles_champ}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    \bfseries Taille de champ (cm) & $\mathbf{z_{max}}$ \textbf{(cm)} & $\mathbf{D_{peau}}$ \textbf{(cm)} & $\mathbf{D^{20}_{10}}$ \textbf{(\%)} \\
+    \toprule
+    0,5 $\times$ 0,5 & 0,82 & 64,39 & 0,49 \\
+    1 $\times$ 1 & 1,1 & 56,6 & 0,50 \\
+    3 $\times$ 3 & 1,28 & 54,6 & 0,50 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence de la taille de champ sur les rendements en profondeur pour les faisceaux de photons du Novalis Truebeam STX. Faisceau de 6FFF, détecteur MicroDiamant et DSP de 90 cm.}
+  \label{table_rdt_taille_champ}
+\end{table}
+
+\subsubsection{Influence du détecteur}
+
+Les résultats obtenus à l'aide des trois détecteurs utilisés sont fournis sur la figure \ref*{fig_rdt_detecteurs} ainsi que dans le tableau \ref*{table_rdt_detecteurs}. Nous pouvons voir tout d'abord que l'écart entre les indices de qualité correspondant à chaque détecteur est très faible. De plus, nous voyons qu'il y a un regain de dose à l'entée du fantôme pour les détecteurs solides uniquement. En ce qui concerne la diode, la pente de dose en profondeur est plus grande que pour les deux autres détecteurs.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{figures/rdt_detecteurs.png}
+  \caption{Rendements en profondeur pour différents détecteurs. DSP de 90 cm et faisceau 6FFF}
+  \label{fig_rdt_detecteurs}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    \bfseries Détecteur & $\mathbf{z_{max}}$ \textbf{(cm)} & $\mathbf{D_{peau}}$ \textbf{(\%)} & $\mathbf{D^{20}_{10}}$ \textbf{(\%)} \\
+    \toprule
+    MicroDiamant & 1,10 & 56,6 & 0,50 \\
+    Diode SRS & 1,19 & 54,6 & 0,49 \\
+    Semiflex & 1,16 & 60,0 & 0,50 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence du détecteur sur les rendements en profondeur pour les faisceaux de photons du Novalis Truebeam STX. Taille de champ de 1 cm $\times$ 1 cm, DSP de 90 cm et faisceau 6FFF.}
+  \label{table_rdt_detecteurs}
+\end{table}
+
+\newpage
+\subsection{Profils de dose}
+\subsubsection{Influence de l'énergie}
+
+La figure \ref*{fig_profils_energie} et le tableau \ref*{table_profils_energie} nous indiquent qu'il n'y a quasiment aucune différence visible sur les profils de dose entre le 6 MV et le 6FFF dans le cadre des petits champs. Nous pouvons voir que la pénombre est très légèrement supérieur pour le faisceau de 6 MV. Cela peut s'expliquer par le fait que la proportion de photons diffusés est légèrement plus élevée à plus haute énergie (dans la gamme d'énergie utilisée en radiothérapie externe).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{figures/profils_energie.PNG}
+  \caption{Profils de dose pour différentes énergies. DSP de 90 cm, profondeur de 10 cm et faisceau 6FFF}
+  \label{fig_profils_energie}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    \bfseries Énergie (MV) & \bfseries Symétrie (\%) & \bfseries Pénombre G-D (cm) & \bfseries Taille de champ irradié (cm) \\
+    \toprule
+    6FFF & 106,74 & 0,25-0,25 & 1,07 \\
+    6 & 101,09 & 0,26-0,25 & 1,08 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence de l'énergie sur les profils de dose pour les faisceaux de photons du Novalis Truebeam STX. Taille de champ de 1 cm $\times$ 1 cm, orientation \textit{crossline}, DSP de 90 cm et profondeur de 10 cm.}
+  \label{table_profils_energie}
+\end{table}
+
+\newpage
+\subsubsection{Influence de la taille de champ}
+
+Les résultats fournis par la figure \ref*{fig_profils_taille_champ} et le tableau \ref*{table_profils_taille_champ} nous indiquent que la pénombre augmente avec la taille de champ. Ceci s'explique par la quantité de photons diffusés qui augmente avec la taille de champ.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.7]{figures/profils_taille_champ.PNG}
+  \caption{Profils de dose pour différentes tailles de champ. DSP de 90 cm, profondeur de 10 cm, détecteur MicroDiamant et faisceau 6FFF.}
+  \label{fig_profils_taille_champ}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{3.5cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{3cm}}
+    \toprule
+    \bfseries Taille de champ géométrique (cm) & \bfseries Symétrie (\%) & \bfseries Pénombre G-D (cm) & \bfseries Taille de champ irradié (cm) \\
+    \toprule
+    0,5 cm $\times$ 0,5 cm & 103,25 & 0,21-0,21 & 0,58 \\
+    1 cm $\times$ 1 cm & 106,74 & 0,25-0,25 & 1,07 \\
+    3 cm $\times$ 3 cm & 101,73 & 0,28-0,27 & 3,06 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence de la taille de champ sur les profils de dose pour les faisceaux de photons du Novalis Truebeam STX. Faisceau de 6FFF, détecteur MicroDiamant, DSP de 90 cm et profondeur de 10 cm.}
+  \label{table_profils_taille_champ}
+\end{table}
+
+\subsubsection{Influence du détecteur}
+
+Nous pouvons voir ici que le choix du détecteur est très important pour l'acquisition de profils de dose. En effet, nous voyons que le fait de prendre un détecteur avec une taille proche de celle de la taille de champ implique une pénombre large (détecteur Semiflex) puisque ce type de détecteur n'est pas adapté dans les zones de fort gradient. En ce qui concerne les détecteur solides, nous voyons que la pénombre est plus faible pour la diode que pour le MicroDiamant. Cela s'explique la taille du volume sensible qui est, pour les deux détecteurs, de la forme d'un disque. Pour le MicroDiamant, le rayon du disque est de 1,1 mm contre 0,5 mm pour la diode SRS. L'effet de moyennage du signal se fait donc plus ressentir pour le MicroDiamant dans le cas de l'acquisition de profils de dose.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{figures/profils_detecteurs.PNG}
+  \caption{Profils de dose pour différents détecteurs. DSP de 90 cm, profondeur de 10 cm et faisceau 6FFF}
+  \label{fig_profils_detecteurs}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{3cm}}
+    \toprule
+    \bfseries Détecteur & \bfseries Symétrie (\%) & \bfseries Pénombre G-D (cm) & \bfseries Taille de champ irradié (cm) \\
+    \toprule
+    MicroDiamant & 106,74 & 0,25-0,25 & 1,07 \\
+    Diode & 102,78 & 0,21-0,21 & 1,05 \\
+    Semiflex & 100,93 & 0,42-0,43 & 1,09 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence du détecteur sur les profils de dose pour les faisceaux de photons du Novalis Truebeam STX. Faisceau de 6FFF, DSP de 90 cm, profondeur de 10 cm et taille de champ de 1 cm $\times$ 1 cm.}
+  \label{table_profils_detecteurs}
+\end{table}
+
+\subsubsection{Inlfuence de l'orientation de l'acquisition}
+
+Les résultats de l'influence de l'orientation du profil de dose sont donnés sur la figure \ref*{fig_profils_orientation} et dans le tableau \ref*{table_profils_orientation}. Nous observons que, pour toutes les tailles de champ, les profils en \textit{inline} ont une largeur à mi-hauteur plus faibles que ceux en \textit{crossline}. Cela s'explique par le fait qu'en \textit{inline}, l'effet Tongue and Groove est présent, ce qui n'est pas le cas en \textit{crossline}. Ce phénomène engendre une pénombre ainsi qu'un taille de champ plus faibles pour les profils acquis en \textit{inline}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{figures/mesures_NVTB/profils_orientation.PNG}
+  \caption{Profils de dose pour différentes oritentations (\textit{inline} et \textit{crossline}). DSP de 90 cm, profondeur de 10 cm, détecteur MicroDiamant et faisceau 6FFF.}
+  \label{fig_profils_orientation}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2.5cm}}
+  \toprule
+  \textbf{Taille de champ géométrique} & \textbf{Orientation} & \textbf{Symétrie (\%)} & \textbf{Pénombre G-D (cm)} & \textbf{Taille de champ irradié (cm)} \\ \toprule
+  \multirow{2}{*}{0,5 cm $\times$ 0,5 cm} & Inline & 102,84 & 0,20-0,19 & 0,49 \\
+   & Crossline & 103,25 & 0,21-0,21 & 0,58 \\ \hline
+  \multirow{2}{*}{1 cm $\times$ 1 cm} & Inline & 102,47 & 0,24-0,23 & 0,96 \\
+   & Crossline & 106,74 & 0,25-0,25 & 1,07 \\ \hline
+  \multirow{2}{*}{3 cm $\times$ 3 cm} & Inline & 100,79 & 0,27-0,27 & 2,95 \\
+   & Crossline & 101,73 & 0,28-0,27 & 3,06 \\ \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence de l'orientation sur les profils de dose pour toutes les tailles de champs acquises. DSP de 90 cm, profondeur de 10 cm, détecrteur MicroDiamant et faisceau 6FFF.}
+  \label{table_profils_orientation}
+\end{table}
+
+\newpage
+\subsubsection{Influence des paramètres d'acquisition}
+
+Dans cette étude, nous avons acquis des mesures permettant d'analyser le mode d'acquisition des profils de dose. Les résultats sont fournis sur la figure \ref*{fig_mode_acq} et dans le tableau \ref*{table_modes_acq}.
+
+Nous observons que la pénombre augmente avec le mode continu par rapport au mode pas à pas. Nous pouvons en conclure que le mode continu n'est pas du tout adapté pour acquérir des profils lorsque l'on utilise les petits faisceaux. De plus, nous pouvons remarquer que quasiment tous les modes pas à pas se valent en terme de symétrie, de pénombre et de taille de champ calculée. Le pas de 0,5 mm augmente légèrement la pénombre, il n'est donc pas adapté pour ce type de mesures. Nous voyons également que le temps d'intégration n'a pas trop d'impacte sur les métriques analysées mais la courbe correspondante est tout de même bruitée.
+
+\begin{figure}[h]
+  \begin{minipage}{.5\linewidth}
+    \includegraphics[scale=0.4]{figures/mesures_NVTB/profils_mode_acq.PNG}
+  \end{minipage}
+  \begin{minipage}{.5\linewidth}
+    \includegraphics[scale=0.4]{figures/mesures_NVTB/profils_continu.PNG}
+  \end{minipage}
+  \caption{Inluence du pas et du temps d'intégration (à gauche) et de la vitesse d'acquisition en mode continu (à droite) sur les profils de dose. DSP de 90 cm, profondeur de 10 cm et détecteur MicroDiamant.}
+  \label{fig_mode_acq}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{4cm}>{\centering\arraybackslash}m{3cm}}
+    \toprule
+    \bfseries Paramètres d'acquisition & \bfseries Symétrie (\%) & \bfseries Pénombre G-D (cm) & \bfseries Taille de champ irradié (cm) \\
+    \toprule
+    1 s-0,05 cm & 100,94 & 0,24-0,25 & 1,06 \\
+    0,1 s-0,01 cm & 101,32 & 0,23-0,24 & 1,06 \\
+    2 s-0,01 cm & 101,08 & 0,24-0,24 & 1,06 \\ \hline
+    2,5 cm/s continu & 100,69 & 0,26-0,27 & 1,05 \\
+    1 cm/s continu & 103,84 & 0,27-0,27 & 1,07 \\
+    0,5 cm/s continu & 102,35 & 0,27-0,27 & 1,05 \\
+    0,3 cm/s continu & 101,58 & 0,27-0,27 & 1,07 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence du mode d'acquisition des profils de dose. DSP de 90 cm, profondeur de 10 cm, taille de champ de 1 cm $\times$ 1 cm et détecteur MicroDiamant.}
+  \label{table_modes_acq}
+\end{table}
+
+\newpage
+\subsection{Facteur d'ouverture du collimateur}
+
+La figure \ref*{fig_foc} et le tableau \ref*{table_foc} nous montrent les résultats obtenus pour les facteurs d'ouverture du collimateur sur le Novalis Truebeam STX.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2.5cm}>{\centering\arraybackslash}m{2cm}}
+    \toprule
+    \textbf{Détecteur} & \textbf{Champ carré géométrique (cm)} & \textbf{FOC brut} & \textbf{Champ carré irradié (cm)} & \textbf{Facteur correctif FOC} & \textbf{Foc corrigé} \\ \toprule
+    \multirow{4}{*}{\textbf{MicroDiamant}} & 10 & 1 & 10 & 1 & 1 \\
+    & 0,5 & 0,598 & 0,58 & 0,967 & 0,578 \\
+    & 1 & 0,735 & 1,07 & 0,986 & 0,745 \\
+    & 3 & 0,845 & 3,06 & 1 & 0,845 \\ \hline
+    \multirow{4}{*}{\textbf{Diode}} & 10 & 1 & 10 & 1 & 1 \\
+    & 0,5 & 0,599 & 0,56 & 0,957 & 0,573 \\
+    & 1 & 0,718 & 1,05 & 0,985 & 0,707 \\
+    & 3 & 0,826 & 3,06 & 1,011 & 0,835 \\ \bottomrule
+  \end{tabular}
+  \caption{Résultats de l'influence du détecteur sur les FOC. DSP de 90 cm, profondeur de 10 cm et faisceau 6FFF.}
+  \label{table_foc}
+\end{table}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{figures/mesures_NVTB/foc.PNG}
+  \caption{FOC pour différents détecteurs et application ou non du facteur correctif du TG-483. DSP de 90 cm et faisceau 6FFF.}
+  \label{fig_foc}
+\end{figure}
+
+Tout d'abord, nous pouvons voir facilement que les FOC pour de petites tailles de champ ne concordent pas entre les deux détecteurs utilisés. En effet, si l'on n'applique pas de facteur correctif, la réponse est différente entre les détecteurs. Cependant, le fait d'appliquer le facteur correctif du TRS-483 ne permet pas vraiment de s'affranchir du détecteur. Une étude multicentrique a été menée \cite{dufreneix2021field}. Il est toutefois compliqué de comparer nos résultats avec ceux de cette étude puisque nous avons effectué une interpolation linéaire des facteurs correctifs à la taille de champ calculée par le logiciel MyQA, ce qui n'est pas le cas de l'étude puisque les tailles de champ géonétriques ont été utilisées. De plus, nous voyons que pour une grande taille de champ (ici un champ de 10 cm $\times$ 10 cm), les valeurs de FOC sont identiques peu importe le détecteur choisi ainsi de l'application ou non du facteur correctif. Nous pouvons voir que la valeur de FOC est plus faible pour la diode SRS que pour le MicroDiamant. Cela peut s'expliquer par le fait que le matériau sensible de la diode possède un $Z$ plus élevé que celui du MicroDiamant. Et vu que le FOC est normalisé pour le champ 10 cm $\times$ 10 cm, la diode va détecter une plus grande proportion du rayonnement diffusé que le MicroDiamant, rayonnement qui se fait plus rare pour de petits champs.
+
+\section{Conclusion}
+
+Pour conclure, ce travail nous montre que chaque détecteur est adapté pour des conditions de mesures précises. Dans le cas des petits faisceaux, nous pouvons déjà exclure la Semiflex qui possède un volume sensible beaucoup trop gros, ce qui augmente drastiquement la pénombre pour l'acquisition des profils de dose. Concernant le MicroDiamant, celui-ci est adapté jusqu'à une taille de champ de 1 cm $\times$ 1 cm, tout comme la diode (selon la documentation constructeur \cite{doc_petits_champs_PTW}). Cependant, nous avons pu voir que la diode permettait d'avoir une pénombre plus faible que celle du MicroDiamant. La diode SRS est donc à privilégier lorsque nous utilisons des tailles de champ inférieures à 1 cm de côté. 
+
+De plus, le mode d'acquisition est à choisir avec soin. Nous avons pu voir que le mode continu était à proscrire puisque celui-ci possède une vitesse trop rapide pour ce type de mesures. Concernant le mode pas à pas, le temps d'intégration et le pas sont à choisir avec précaution pour reccueillir assez de signal à chacun des points mais aussi avoir une discrétisation du profils suffisamment grande.
+
+Concernant les rendements en profondeur, le MicroDiamant parait le plus adapté dû à son épaisseur très faible (0,001 mm). Ceci permet de moyenner le moins possible le signal le long de l'axe du faisceau.
+
+Pour l'acquisition des FOC, le TRS-483 fournie des facteurs correctifs jusqu'à des très petites tailles de champ (0,5 cm $\times$ 0,5 cm) pour le MicroDiamant et la diode SRS (ainsi que d'autres détecteurs). Les deux détecteurs se valent plutôt bien pour se type de mesures puisque les résultats sont assez semblables.
+
+\clearpage
+\section{Annexe}
+
+\begin{figure}[h]
+  \begin{minipage}{.5\linewidth}
+    \includegraphics[scale=0.4]{figures/position_chambre.png}
+  \end{minipage}
+  \begin{minipage}{.5\linewidth}
+    \includegraphics[scale=0.4]{figures/position_det_solide.png}
+  \end{minipage}
+  \caption{Positionnement pour une chambre d'ionisation (à gauche) et pour un détecteur solide (à droite) selon le TRS-483 pour l'acquisition de profils de dose}
+  \label{recommandations_placement_detecteur}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.7]{figures/table_facteurs_correctifs.png}
+  \caption{Facteurs correctifs du FOC pour des champs collimater avec MLC ou cône pour des machines possédant un faisceau de 6 MV WFF ou FFF.}
+  \label{fig_table_facteurs_correctifs}
+\end{figure}
+
+\clearpage
+\bibliography{biblio}
+\addcontentsline{toc}{section}{Références}
+\bibliographystyle{plain}
+\nocite{*}
 
 \end{document}

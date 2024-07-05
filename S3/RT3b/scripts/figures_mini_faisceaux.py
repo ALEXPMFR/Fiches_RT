@@ -86,7 +86,37 @@ def comp_modes_acquisition():
         else:
             plt.title('Step by step ' + acq.split(' ')[1].split('_')[0] + ' s et pas de ' + acq.split(' ')[1].split('_')[1] + ' cm')
         plt.show()
-    
+
+def comp_step():
+    path_file = '../queues_mesures/output/export_csv_premiere_session/arrangement_donnees/mode_acquisition_6FFF.csv'
+    df = creation_dataframe_mode_acquisition(path_file)
+    df_ref = creation_dataframe(csv_files[0])
+    plt.figure(figsize=(12, 7))
+    plt.plot(df_ref['Crossline (mm)'], df_ref['Dose Crossline (%)'], '+-', label='1 s 0,01 cm')
+    acquisitions = []
+    for col in df.columns[::2]:
+        acquisitions.append(col)
+        integration_time = col.split(' ')[1].split('_')[0]
+        step = col.split(' ')[1].split('_')[1]
+        if integration_time == '1':
+            plt.plot(df[col], df['Dose ' + col.split(' ')[1] + ' (%)'], '+-', label=integration_time + ' s ' + step + ' cm')
+    plt.legend()
+    plt.grid(ls='--')
+    plt.xlabel('Distance (mm)')
+    plt.ylabel('Dose (%)')
+    plt.title('Influence du pas d\'intégration')
+    plt.show()
+
+def comp_temps_integraption():
+    path_file = '../queues_mesures/output/export_csv_premiere_session/arrangement_donnees/mode_acquisition_6FFF.csv'
+    df_ref = creation_dataframe(csv_files[0])
+    df = creation_dataframe_mode_acquisition(path_file)
+    # plt.figure(figsize=(12, 7))
+    # plt.plot(df_ref['Crossline (mm)'], df_ref['Dose Crossline (%)'], '+-', label='1 s 0,01 cm')
+    acquisitions = []
+    for col in df.columns:
+        print(col)
+
 
 def main():
     # figures_profils('Inline')
@@ -99,6 +129,8 @@ def main():
     # comp_profils_tailles_champs('Inline')
     # comp_profils_tailles_champs('Crossline')
     # plt.show()
-    comp_modes_acquisition()
+    # comp_modes_acquisition()
+    # comp_step()
+    comp_temps_integraption()
 
 main()
